@@ -1,5 +1,5 @@
-export interface IApiListResponse<T> {
-    items: T[];
+export interface IApiListResponse<Type> {
+    items: Type[];
     total: number;
 }
 

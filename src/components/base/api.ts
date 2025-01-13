@@ -1,42 +1,44 @@
-export type ApiListResponse<Type> = {
-    total: number,
-    items: Type[]
-};
+import { EnumApiMethods, ErrorState } from '../../types/components/base/Api';
 
-export type ApiPostMethods = 'POST' | 'PUT' | 'DELETE';
+export interface IApi {
+    get<T>(uri: string, method: string): Promise<T>;
+    post<T>(uri: string, data: object, method: string): Promise<T>;
+}
 
-export class Api {
+export class Api implements IApi {
     readonly baseUrl: string;
-    protected options: RequestInit;
+    protected _options: RequestInit;
 
     constructor(baseUrl: string, options: RequestInit = {}) {
         this.baseUrl = baseUrl;
-        this.options = {
+        this._options = {
             headers: {
                 'Content-Type': 'application/json',
-                ...(options.headers as object ?? {})
-            }
+                ...(options.headers as object ?? {}),
+            },
         };
     }
 
-    protected handleResponse(response: Response): Promise<object> {
+    protected async _handleResponse<T>(response: Response): Promise<T> {
         if (response.ok) return response.json();
-        else return response.json()
-            .then(data => Promise.reject(data.error ?? response.statusText));
+        const data = (await response.json()) as ErrorState;
+        return Promise.reject(data.error ?? response.statusText);
     }
 
-    get(uri: string) {
-        return fetch(this.baseUrl + uri, {
-            ...this.options,
-            method: 'GET'
-        }).then(this.handleResponse);
-    }
-
-    post(uri: string, data: object, method: ApiPostMethods = 'POST') {
-        return fetch(this.baseUrl + uri, {
-            ...this.options,
+    async get<T>(uri: string, method = EnumApiMethods.GET): Promise<T> {
+        const response = await fetch(this.baseUrl + uri, {
+            ...this._options,
             method,
-            body: JSON.stringify(data)
-        }).then(this.handleResponse);
+        });
+        return this._handleResponse<T>(response);
+    }
+
+    async post<T>(uri: string, data: object, method = EnumApiMethods.POST): Promise<T> {
+        const response = await fetch(this.baseUrl + uri, {
+            ...this._options,
+            method,
+            body: JSON.stringify(data),
+        });
+        return this._handleResponse<T>(response);
     }
 }
