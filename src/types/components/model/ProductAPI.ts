@@ -1,11 +1,11 @@
-interface IApiListResponse<T> {
+export interface IApiListResponse<T> {
     items: T[];
     total: number;
 }
 
-type ItemId = string;
-interface IProduct {
-    _id: ItemId;
+export type TItemId = string;
+export interface IProduct {
+    _id: TItemId;
     title: string;
     image: string;
     category: string;
@@ -19,23 +19,23 @@ interface IOrderMethod {
     address: string;
 }
 
-interface IContacts extends IOrderMethod {
+export interface IContacts extends IOrderMethod {
     email: string;
     phone: string;
 }
 
-interface IOrder extends IContacts {
+export interface IOrder extends IContacts {
     total: number;
-    items: ItemId[];
+    items: TItemId[];
 }
 
-interface IOrderResult {
-    items: ItemId;
+export interface IOrderResult {
+    items: TItemId;
     total: number;
 }
 
-interface IProductAPI {
+export interface IProductAPI {
     getProducts: () => Promise<IProduct[]>;
-	getProduct: (id: ItemId) => Promise<IProduct>;
+	getProduct: (id: TItemId) => Promise<IProduct>;
 	orderProducts: (order: IOrder) => Promise<IOrderResult[]>;
 }
