@@ -25,7 +25,7 @@ export class Api implements IApi {
         return Promise.reject(data.error ?? response.statusText);
     }
 
-    async get<T>(uri: string, method = EnumApiMethods.GET): Promise<T> {
+    async get<T>(uri: string, method = EnumApiMethods.GET) {
         const response = await fetch(this.baseUrl + uri, {
             ...this._options,
             method,
@@ -33,7 +33,7 @@ export class Api implements IApi {
         return this._handleResponse<T>(response);
     }
 
-    async post<T>(uri: string, data: object, method = EnumApiMethods.POST): Promise<T> {
+    async post<T>(uri: string, data: object, method = EnumApiMethods.POST) {
         const response = await fetch(this.baseUrl + uri, {
             ...this._options,
             method,
