@@ -41,9 +41,16 @@ npm run build
 yarn build
 ```
 
+
+## Архитектура приложения 
+- MVC (Model-View-Controller) 
+
+
 ## Типы данных в проекте
 
+
 ### base/
+
 
 #### Api.ts
 - EnumApiMethods – перечисление HTTP-методов API.
