@@ -1,6 +1,4 @@
-import {
-    IClickable
-} from '../../base/View';
+import { IClickable } from '../../base/View';
 
 export interface ButtonData {
     label: string;
