@@ -1,6 +1,6 @@
 import { IClickable } from '../../base/View';
 
-export interface CardData {
+export interface ICardData {
 	_id: string;
     title: string;
     category: string;    
@@ -8,7 +8,7 @@ export interface CardData {
     imageUrl: string;
 }
 
-export interface CardSettings extends IClickable<string> {
+export interface ICardSettings extends IClickable<string> {
     title: string;
     category: string;    
     price: number;

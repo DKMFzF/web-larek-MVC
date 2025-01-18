@@ -1,15 +1,15 @@
-import { HeaderData } from '../common/Header';
-import { ProductData } from '../partial/Product';
+import { IHeaderData } from '../common/Header';
+import { IProductData } from '../partial/Product';
 
-export interface BasketData {
-    products: ProductData[];
-    header: HeaderData;
+export interface IBasketData {
+    products: IProductData[];
+    header: IHeaderData;
     isActive: boolean;
     isDisabled: boolean;
     totlal: number;
 }
 
-export interface BasketSettings {
+export interface IBasketSettings {
     onRemove: (id: string) => void;
     onClose: () => void;
     onNext: () => void;

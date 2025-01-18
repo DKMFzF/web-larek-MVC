@@ -1,7 +1,7 @@
-export interface HeaderData {
+export interface IHeaderData {
     title: string;
 }
 
-export interface HeaderSettings {
+export interface IHeaderSettings {
     title: string;
 }

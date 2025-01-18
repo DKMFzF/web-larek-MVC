@@ -1,17 +1,17 @@
-import { OrderData } from '../partial/Order';
-import { HeaderData } from '../common/Header';
+import { IOrderData } from '../partial/Order';
+import { IHeaderData } from '../common/Header';
 
-export interface OrderFormData {
-	contacts: OrderData;
-	header: HeaderData;
+export interface IOrderFormData {
+	contacts: IOrderData;
+	header: IHeaderData;
 	isActive: boolean;
 	isDisabled: boolean;
 	message: string;
 	isError: boolean;
 }
 
-export interface OrderFormSettings {
-	onChange: (data: OrderData) => void;
+export interface IOrderFormSettings {
+	onChange: (data: IOrderData) => void;
 	onClose: () => void;
 	onNext: () => void;
 }

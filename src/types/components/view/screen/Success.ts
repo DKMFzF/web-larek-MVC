@@ -1,12 +1,12 @@
-import { HeaderData } from '../common/Header';
+// import { HeaderData } from '../common/Header';
 
-export interface SuccessData {
+export interface ISuccessData {
 	title: string;
     discription: string;
     
 	isActive: boolean;
 }
 
-export interface SuccessSettings {
+export interface ISuccessSettings {
 	onClose: () => void;
 }

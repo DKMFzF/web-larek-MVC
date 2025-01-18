@@ -1,4 +1,4 @@
-export interface ProductData {
+export interface IProductData {
     _id: string;
     title: string;
     category: string;
@@ -7,7 +7,7 @@ export interface ProductData {
     imageUrl: string;
 }
 
-export interface ProductSettings {
+export interface IProductSettings {
     _id: string;
     title: string;
     category: string;

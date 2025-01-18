@@ -1,17 +1,17 @@
-import { ProductData } from "../partial/Product";
+import { IProductData } from "../partial/Product";
 
-export interface ProductItem extends ProductData {
+export interface IProductItem extends IProductData {
     id: string;
     cover: string;
 }
 
-export interface MainData {
+export interface IMainData {
     counter: number;
-	items: ProductData[];
-	selected: ProductItem;
+	items: IProductData[];
+	selected: IProductItem;
 }
 
-export interface MainSettings {
+export interface IMainSettings {
     onOpenBasket: () => void;
 	// onSelectProduct: (id: string) => void;
 	onOpenProduct: (id: string) => void;

@@ -1,4 +1,4 @@
-import { ElementChild } from '../types/html';
+import { TElementChild } from '../types/html';
 
 // По факту проверяет что x - строка, но не гарантирует что это селектор.
 // Но главное, что мы вынесли эту проверку в отдельную функцию
@@ -23,6 +23,6 @@ export function isBoolean(v: unknown): v is boolean {
 // Для использования элемента или массива элементов в element.replaceChildren
 
 // no
-export function isChildElement(x: unknown): x is ElementChild {
+export function isChildElement(x: unknown): x is TElementChild {
 	return x instanceof HTMLElement || Array.isArray(x);
 }
