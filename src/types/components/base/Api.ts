@@ -5,6 +5,11 @@ export enum EnumApiMethods {
 	GET = 'GET',
 }
 
-export type ErrorState = {
+export type TErrorState = {
 	error: string;
 };
+
+export interface IApi {
+    get<T>(uri: string, method: string): Promise<T>;
+    post<T>(uri: string, data: object, method: string): Promise<T>;
+}

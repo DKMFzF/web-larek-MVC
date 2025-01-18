@@ -1,9 +1,8 @@
-import { EnumApiMethods, ErrorState } from '../../types/components/base/Api';
-
-export interface IApi {
-    get<T>(uri: string, method: string): Promise<T>;
-    post<T>(uri: string, data: object, method: string): Promise<T>;
-}
+import { 
+    IApi, 
+    EnumApiMethods, 
+    TErrorState 
+} from '../../types/components/base/Api';
 
 export class Api implements IApi {
     readonly baseUrl: string;
@@ -21,7 +20,7 @@ export class Api implements IApi {
 
     protected async _handleResponse<T>(response: Response): Promise<T> {
         if (response.ok) return response.json();
-        const data = (await response.json()) as ErrorState;
+        const data = (await response.json()) as TErrorState;
         return Promise.reject(data.error ?? response.statusText);
     }
 
