@@ -1,11 +1,8 @@
 import {
     TItemId,
     IProduct,
-    TPaymentMethod,
-    IOrderMethod,
     IContacts,
     IOrder,
-    IOrderResult,
     IProductAPI
 } from '../../types/components/model/ProductAPI';
 import {
@@ -13,7 +10,6 @@ import {
     IPersistedState,
     IAppState,
     IAppStateSetting,
-    IAppStateConstructor,
     EnumAppStateModals,
     EnumAppStateChanges,
 } from '../../types/components/model/AppState';
@@ -171,7 +167,7 @@ export class AppState implements IAppState {
             this.notifyChanged(EnumAppStateChanges.MODAL);
         }
     }
-    
+
     // изменение состояния прилоежния
     protected notifyChanged(changed: EnumAppStateChanges): void {
 		this.settings.onChange(changed);
