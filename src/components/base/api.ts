@@ -4,6 +4,9 @@ import {
     TErrorState 
 } from '../../types/components/base/Api';
 
+/**
+ * @class Api - Основной класс для работы с API
+ */
 export class Api implements IApi {
     readonly baseUrl: string;
     protected _options: RequestInit;

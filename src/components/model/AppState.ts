@@ -14,6 +14,9 @@ import {
     EnumAppStateChanges,
 } from '../../types/components/model/AppState';
 
+/**
+ * @class AppState - Модель данных приложения
+ */
 export class AppState implements IAppState {
     private _selectedProduct: string | null = null;
     basket: Map<string, IProductBasket> = new Map<string, IProductBasket>();

@@ -8,6 +8,9 @@ import {
     EnumAppStateChanges
 } from '../../types/components/model/AppState';
 
+/**
+ * @class AppStateEmitter
+ */
 export class AppStateEmitter extends EventEmitter {
     public model: IAppState;
     protected previousModal: EnumAppStateModals = EnumAppStateModals.NONE;

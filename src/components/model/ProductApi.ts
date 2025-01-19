@@ -8,6 +8,9 @@ import {
     TItemId
 } from '../../types/components/model/ProductAPI';
 
+/**
+ * @class ProductAPI - API для работы с продуктами
+ */
 export class ProductAPI extends Api implements IProductAPI {
     readonly cdn: string;
 
