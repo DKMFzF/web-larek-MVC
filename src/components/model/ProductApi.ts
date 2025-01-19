@@ -18,7 +18,7 @@ export class ProductAPI extends Api implements IProductAPI {
 
     async getProducts(): Promise<IProduct[]> {
         const data = await this.get<IApiListResponse<IProduct>>('/product/');
-        console.log(data);
+        // console.log(data);
         return data.items;
     }
 

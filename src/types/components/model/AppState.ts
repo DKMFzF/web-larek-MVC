@@ -9,37 +9,40 @@ import {
 // краткое описание продукта для отображения в корзине
 export interface IProductBasket {
     _id: TItemId;
+
+    // на всякий случай (потом мб нужно удалить)
     title: string;
     price: number | null;
 }
 
 // все модальные окна страницы
-export enum AppStateModals {
-    basket = 'modal:basket',
-	place = 'modal:adrress',
-	contacts = 'modal:contacts',
-	success = 'modal:success',
-	none = 'modal:none',
+export enum EnumAppStateModals {
+    CARD = 'modal:card',
+    BASKET = 'modal:basket',
+	ADRRESS = 'modal:adrress',
+	CONTACTS = 'modal:contacts',
+	SUCCESS = 'modal:success',
+	NONE = 'modal:none',
 }
 
 // Какие изменения состояния приложения могут происходить
-export enum AppStateChanges {
-	products = 'change:product',
-	modal = 'change:modal',
-	modalMessage = 'change:modalMessage',
-	selectedProduct = 'change:selectedProduct',
-    basket = 'change:basket',
-    order = 'change:order',
+export enum EnumAppStateChanges {
+	PRODUCTS = 'change:product',
+	MODAL = 'change:modal',
+	MODAL_MESSAGE = 'change:modalMessage',
+	SELECTED_PRODUCT = 'change:selectedProduct',
+    BASKET = 'change:basket',
+    ORDER = 'change:order',
 }
 
 // состояние приложения, которое мы будем хранить в localStorage
 export interface IPersistedState {
-    items: IProductBasket[];
+    products: IProductBasket[];
     contacts: IContacts;
 }
 
 // модель данных приложения
-export interface AppState {
+export interface IAppState {
     // загрузка данных с сервера
     products: Map<string, IProduct>;
 
@@ -51,7 +54,7 @@ export interface AppState {
     order: IOrder | null;
 
     // состояние интрфейса
-    openedModal: AppStateModals;
+    openedModal: EnumAppStateModals;
     isOrderReady: boolean;
     modalMessage: string | null;
     isError: boolean;
@@ -64,25 +67,25 @@ export interface AppState {
     persistState(): void;
 
     // пользовательские действия
-    selectProduct(id: string): void;
-	removeProductInBasket(id: string): void;
+    selectProduct(id: TItemId): void;
+	removeProductInBasket(id: TItemId): void;
 	fillContacts(contacts: Partial<IContacts>): void;
 	isValidContacts(): boolean;
 
     // Методы для работы с модальными окнами
-	openModal(modal: AppStateModals): void;
+	openModal(modal: EnumAppStateModals): void;
 	setMessage(message: string | null, isError: boolean): void;
 }
 
 // Настройка модели данных
-export interface AppStateSetting {
+export interface IAppStateSetting {
     formatCurrency: (value: number) => string;
 	storageKey: string;
 	// Функция, которая будет вызываться при изменении состояния
-	onChange: (changed: AppStateChanges) => void;
+	onChange: (changed: EnumAppStateChanges) => void;
 }
 
 // Конструктор модели данных
-export interface AppStateConstructor {
-    new (api: IProductAPI, setting: AppStateSetting): AppState;
+export interface IAppStateConstructor {
+    new (api: IProductAPI, setting: IAppStateSetting): IAppState;
 }

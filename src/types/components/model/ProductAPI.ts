@@ -13,8 +13,8 @@ export interface IProduct {
     price: number | null;
 }
 
-type TPaymentMethod = 'online' | 'upon receipt';
-interface IOrderMethod {
+export type TPaymentMethod = 'online' | 'upon receipt' | null;
+export interface IOrderMethod {
     payment: TPaymentMethod;
     address: string;
 }
