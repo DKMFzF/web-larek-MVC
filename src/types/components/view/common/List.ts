@@ -1,4 +1,5 @@
 import { IView } from '../../base/View';
+// import { TItemId } from '../../model/ProductAPI';
 
 export type TElementsMap = Record<string, HTMLElement>;
 

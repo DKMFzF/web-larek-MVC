@@ -27,9 +27,7 @@ export abstract class View<T, S extends object> implements IView<T, S> {
 		// можно реализовать так называемые методы жизненного цикла класса,
 		// которые вызываются в нужный момент и могут быть легко переопределены.
 		this.init();
-		if (!this.element) {
-			throw new Error('Element is not defined');
-		}
+		if (!this.element) throw new Error('Element is not defined');
 	}
 
 	// копирующий конструктор, чтобы настроить один раз
