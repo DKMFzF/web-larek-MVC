@@ -13,10 +13,10 @@ export const SETTINGS: ISettings = {
 		itemClass: '.basket__item'
     },
 
-    productBaksetTemplate: '#card-basket',
-	productBaksetSettings: {
+    productBasketTemplate: '#card-basket',
+	productBasketSettings: {
 		index: '.basket__item-index',
-		titel: '.card__title',
+		title: '.card__title',
 		price: '.card__price',
 		delete: '.basket__item-delete',
 	},

@@ -9,10 +9,10 @@ export interface ISettings {
 		itemClass: string;
 	};
 
-	productBaksetTemplate: string;
-	productBaksetSettings: {
+	productBasketTemplate: string;
+	productBasketSettings: {
 		index: string;
-		titel: string;
+		title: string;
 		price: string;
 		delete: string;
 	};

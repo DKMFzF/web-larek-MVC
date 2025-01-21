@@ -18,6 +18,7 @@ import { IModalScreenSettings } from '../../../types/components/view/screen/Moda
 export abstract class ModalScreen<M, C, S extends IModalScreenSettings> extends Screen<C, S> {
 	// модальное окно
 	protected declare modal: ModalView<M>;
+	
 	// кнопка "Далее"
 	protected declare nextButton: HTMLButtonElement;
 
@@ -34,7 +35,6 @@ export abstract class ModalScreen<M, C, S extends IModalScreenSettings> extends 
 
 		this.modal = this.getModalView(
 			{
-				// headerView: this.initHeader(),
 				contentView: this.initContent(),
 			},
 			this.settings.onClose
@@ -76,10 +76,6 @@ export abstract class ModalScreen<M, C, S extends IModalScreenSettings> extends 
 
 	// Методы установки данных
 
-	// set header(value: H) {
-	// 	this.modal.header = value;
-	// }
-
 	set content(value: M) {
 		this.modal.content = value;
 	}
@@ -87,14 +83,15 @@ export abstract class ModalScreen<M, C, S extends IModalScreenSettings> extends 
 	set isActive(value: boolean) {
 		this.modal.isActive = value;
 	}
+	
 
-	// set message(value: string) {
-	// 	this.modal.message = value;
-	// }
+	set message(value: string) {
+		this.modal.message = value;
+	}
 
-	// set isError(value: boolean) {
-	// 	this.modal.isError = value;
-	// }
+	set isError(value: boolean) {
+		this.modal.isError = value;
+	}
 
 	set isDisabled(state: boolean) {
 		this.nextButton.disabled = state;

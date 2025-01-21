@@ -5,7 +5,7 @@ import {
 import { View } from "../../base/View";
 
 // Отображения продукта в корзине
-export class IProductBasketView extends View<IProductBasketData, IProductBasketSettings> {
+export class ProductBasketView extends View<IProductBasketData, IProductBasketSettings> {
     protected _item!: IProductBasketData;
 
     init() {
@@ -26,4 +26,9 @@ export class IProductBasketView extends View<IProductBasketData, IProductBasketS
     set price(value: string) {
         this.setValue(this.settings.price, value);
     }
+
+    render(data: IProductBasketData) {
+		this._item = data;
+		return super.render(data);
+	}
 }

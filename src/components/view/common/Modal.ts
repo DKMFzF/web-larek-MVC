@@ -1,5 +1,4 @@
 import { View } from '../../base/View';
-
 import { IModalData, IModalSettings } from '../../../types/components/view/common/Modal';
 
 /**
@@ -42,22 +41,22 @@ export class ModalView<C> extends View<IModalData<C>, IModalSettings<C>> {
 	}
 
 	// Установка сообщения в модальное окно
-	// set message(value: string | undefined) {
-	// 	if (value) {
-	// 		this.setValue(this.settings.message, value);
-	// 		this.setVisibility(this.settings.message, true);
-	// 	} else {
-	// 		this.setVisibility(this.settings.message, false);
-	// 	}
-	// }
+	set message(value: string | undefined) {
+		if (value) {
+			this.setValue(this.settings.message, value);
+			this.setVisibility(this.settings.message, true);
+		} else {
+			this.setVisibility(this.settings.message, false);
+		}
+	}
 
-	// // установка ошибки
-	// set isError(state: boolean) {
-	// 	this.ensure(this.settings.message).classList.toggle(
-	// 		this.settings.messageErrorClass,
-	// 		!!state
-	// 	);
-	// }
+	// установка ошибки
+	set isError(state: boolean) {
+		this.ensure(this.settings.message).classList.toggle(
+			this.settings.messageErrorClass,
+			!!state
+		);
+	}
 
 	// Открытие и закрытие модального окна
 	set isActive(state: boolean) {
