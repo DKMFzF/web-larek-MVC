@@ -6,5 +6,20 @@ export const DEVELOPMENT = process.env.NODE_ENV === 'development';
 
 // Настройка приложения
 export const SETTINGS: ISettings = {
-    // ...Буду дополнять в реализации...
+    modalTemplate: '#modal',
+    modalSettings: {
+		close: '.modal__close',
+		header: '.modal__header',
+		content: '.modal__content',
+		footer: '.modal__footer',
+		message: '.modal__message',
+		activeClass: 'modal_active',
+		messageErrorClass: 'modal__message_error',
+	},
+    basketModal: {
+        headerTitle: 'Корзина',
+        nextLabel: 'Оформить',
+        nextSettings: ['button', { className: 'button'}],
+        totalLabel: 'синапсов'
+    }
 };

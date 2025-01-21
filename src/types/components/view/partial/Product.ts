@@ -1,5 +1,5 @@
 export interface IProductData {
-    _id: string;
+    // _id: string;
     title: string;
     category: string;
     description: string;
@@ -8,11 +8,11 @@ export interface IProductData {
 }
 
 export interface IProductSettings {
-    _id: string;
+    // _id: string;
     title: string;
     category: string;
     description: string;
-    price: number;
+    price: string;
     imageUrl: string;
     compactClass: string;
 	tagsSeparator: string;

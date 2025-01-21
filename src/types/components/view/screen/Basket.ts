@@ -1,16 +1,17 @@
-import { IHeaderData } from '../common/Header';
+import { 
+    IModalScreenStatusIsActive,
+    IModalScreenStatusIsDisabled,
+    IModalScreenSettings
+} from './ModalScreen';
 import { IProductData } from '../partial/Product';
 
-export interface IBasketData {
+export interface IBasketData extends IModalScreenStatusIsActive, IModalScreenStatusIsDisabled {
     products: IProductData[];
-    header: IHeaderData;
-    isActive: boolean;
-    isDisabled: boolean;
     totlal: number;
 }
 
-export interface IBasketSettings {
+export interface IBasketSettings extends IModalScreenSettings {
     onRemove: (id: string) => void;
-    onClose: () => void;
-    onNext: () => void;
+    // onClose: () => void;
+    // onNext: () => void;
 }
