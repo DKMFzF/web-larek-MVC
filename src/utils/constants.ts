@@ -33,6 +33,13 @@ export const SETTINGS: ISettings = {
         phone: '',
     },
 
+    messageTemplate: '#success',
+    messageSettings: {
+        title: '.order-success__title',
+        description: '.order-success__description',
+        action: '.order-success__close',
+    },
+
     // modal settings
     modalTemplate: '#modal',
     modalSettings: {

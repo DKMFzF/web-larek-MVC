@@ -1,8 +1,10 @@
+import { IHeaderData } from '../common/Header';
 import { IModalScreenStatusIsActive } from './ModalScreen';
 
+
 export interface ISuccessData extends IModalScreenStatusIsActive {
-	title: string;
-    discription: string;
+	content: IHeaderData;
+    isActive: boolean;
 }
 
 // TODO: добавить onNext (или носледовать от IModalScreenSettings)

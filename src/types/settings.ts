@@ -27,7 +27,14 @@ export interface ISettings {
 	contactsSettings: {
 		email: string;
 		phone: string;
-	} 
+	};
+
+	messageTemplate: string;
+	messageSettings: {
+		title: string;
+		description: string;
+		action: string;
+	};
 	
 	// modal settings
 	modalTemplate: string;
