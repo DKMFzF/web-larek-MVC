@@ -27,6 +27,12 @@ export const SETTINGS: ISettings = {
         address: 'input[name="address"]',
 	},
 
+    contactsTemplate: '',
+    contactsSettings: {
+        email: '',
+        phone: '',
+    },
+
     // modal settings
     modalTemplate: '#modal',
     modalSettings: {
@@ -51,7 +57,5 @@ export const SETTINGS: ISettings = {
             'button',
             { className: 'button' }
         ],
-    },
-
-    
+    }, 
 };

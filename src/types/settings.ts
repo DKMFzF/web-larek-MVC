@@ -22,6 +22,12 @@ export interface ISettings {
 		payment: string;
 		address: string;
 	};
+
+	contactsTemplate: string;
+	contactsSettings: {
+		email: string;
+		phone: string;
+	} 
 	
 	// modal settings
 	modalTemplate: string;
@@ -42,10 +48,4 @@ export interface ISettings {
 		nextLabel: string;
 		nextSettings: TElementCreator;
 	};
-
-	// contactsTemplate: string;
-	// contactsSettings: {
-	// 	nextLabel: string;
-	// 	nextSettings: TElementCreator;
-	// } 
 }
