@@ -5,13 +5,13 @@ import {
     IModalScreenSettings,
     IModalScreenChangeSettings
 } from './ModalScreen';
-import { IAddressData } from '../partial/Address';
+import { IOrderData } from '../partial/Order';
 
-export interface IAddressFormData 
+export interface IOrderFormData 
     extends IModalScreenStatusIsActive, 
         IModalScreenStatusIsDisabled, 
         IModalScreenErrorInfo {
-    address: IAddressData;
+    address: IOrderData;
 }
 
-export interface IAddressFormSettings extends IModalScreenSettings, IModalScreenChangeSettings<IAddressData> {}
+export interface IOrderFormSettings extends IModalScreenSettings, IModalScreenChangeSettings<IOrderData> {}

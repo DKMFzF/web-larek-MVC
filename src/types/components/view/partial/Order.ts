@@ -1,11 +1,11 @@
 import { IChangeable } from '../../base/View';
 
-export interface IAddressData {
+export interface IOrderData {
     address: string;
     email: string;
 }
 
-export interface IAddressSettings extends IChangeable<IAddressData> {
+export interface IOrderSettings extends IChangeable<IOrderData> {
     address: string;
     email: string;
 }

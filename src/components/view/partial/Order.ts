@@ -1,13 +1,13 @@
 import { View } from '../../base/View';
 import {
-    IAddressData,
-    IAddressSettings,
-} from '../../../types/components/view/partial/Address';
+    IOrderData,
+    IOrderSettings,
+} from '../../../types/components/view/partial/Order';
 
 /**
  * @class AddressView - форма заказа
  */
-export class AddressView extends View<IAddressData, IAddressSettings> {
+export class OrderView extends View<IOrderData, IOrderSettings> {
     init() {
         this.element.addEventListener('submit', this.onSubmitHandler.bind(this));
         this.element.addEventListener('change', this.onSubmitHandler.bind(this));
