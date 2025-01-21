@@ -3,7 +3,8 @@ import {
     IProduct,
     IContacts,
     IOrder,
-    IProductAPI
+    IProductAPI,
+    IOrderResult
 } from '../../types/components/model/ProductAPI';
 import {
     IProductBasket,
@@ -67,6 +68,8 @@ export class AppState implements IAppState {
     }
 
     // api
+    
+    // загрузка продуктов 
     async laodProducts(): Promise<void> {
         this.products.clear();
         const products: IProduct[] = await this.api.getProducts();
@@ -74,6 +77,22 @@ export class AppState implements IAppState {
             this.products.set(product._id, product);
         }
         this.notifyChanged(EnumAppStateChanges.PRODUCTS);
+    }
+
+    // отправка заказа продукта
+    async orderProducts(): Promise<IOrderResult[]> {
+        try {
+            const result = await this.api.orderProducts(this.order);
+            this.basket.clear();
+            this.selectProduct(null);
+            this.persistState();
+            this.notifyChanged(EnumAppStateChanges.BASKET);
+            return result;
+        } catch (err: unknown) {
+            if (err instanceof Error) this.setMessage(err.message, true);
+            if (typeof err === 'string') this.setMessage(err, true);
+            return [];
+        }
     }
 
     // localStorage in website

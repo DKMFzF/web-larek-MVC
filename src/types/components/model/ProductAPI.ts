@@ -37,5 +37,5 @@ export interface IOrderResult {
 export interface IProductAPI {
     getProducts: () => Promise<IProduct[]>;
 	getProduct: (id: TItemId) => Promise<IProduct>;
-	// orderProducts: (order: IOrder) => Promise<IOrderResult[]>;
+	orderProducts: (order: IOrder) => Promise<IOrderResult[]>;
 }

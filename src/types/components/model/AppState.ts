@@ -3,7 +3,8 @@ import {
     IOrder,
     IProductAPI,
     IContacts,
-    TItemId
+    TItemId,
+    IOrderResult
 } from './ProductAPI';
 
 // краткое описание продукта для отображения в корзине
@@ -61,6 +62,7 @@ export interface IAppState {
 
     // действия с API
     laodProducts(): Promise<void>;
+    orderProducts(): Promise<IOrderResult[]>;
 
     // действия с localStorage
     restoreState(): void;
