@@ -12,6 +12,4 @@ export interface IBasketData extends IModalScreenStatusIsActive, IModalScreenSta
 
 export interface IBasketSettings extends IModalScreenSettings {
     onRemove: (id: string) => void;
-    // onClose: () => void;
-    // onNext: () => void;
 }
