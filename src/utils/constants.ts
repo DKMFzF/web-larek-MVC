@@ -6,12 +6,29 @@ export const DEVELOPMENT = process.env.NODE_ENV === 'development';
 
 // Настройка приложения
 export const SETTINGS: ISettings = {
+    // view settings
+    basketTemplate: '#basket',
+    basketSettings: {
+        activeItemClass: '',
+		itemClass: '.basket__item'
+    },
+
+    productBaksetTemplate: '#card-basket',
+	productBaksetSettings: {
+		index: '.basket__item-index',
+		titel: '.card__title',
+		price: '.card__price',
+		delete: '.basket__item-delete',
+	},
+
+    // modal settings
     modalTemplate: '#modal',
     modalSettings: {
 		close: '.modal__close',
 		content: '.modal__content',
-		activeClass: 'modal_active',
+		activeClass: '.modal_active',
 	},
+
     basketModal: {
         title: 'Корзина',
         nextLabel: 'Оформить',

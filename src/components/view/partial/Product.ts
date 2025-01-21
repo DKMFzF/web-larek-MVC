@@ -1,6 +1,7 @@
 import { View } from '../../base/View';
 import { IProductData, IProductSettings } from '../../../types/components/view/partial/Product';
 
+// Класс который показывает продукт в main и в модальном окне
 export class ProductView extends View<IProductData, IProductSettings> {
     init() {
         this.isCompact = this.settings.isCompact;

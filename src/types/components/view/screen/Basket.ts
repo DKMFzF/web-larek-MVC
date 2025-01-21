@@ -3,10 +3,10 @@ import {
     IModalScreenStatusIsDisabled,
     IModalScreenSettings
 } from './ModalScreen';
-import { IProductData } from '../partial/Product';
+import { IProductBasketData } from '../partial/ProductBasket';
 
 export interface IBasketData extends IModalScreenStatusIsActive, IModalScreenStatusIsDisabled {
-    products: IProductData[];
+    products: IProductBasketData[];
     totlal: number;
 }
 
