@@ -21,20 +21,20 @@ export class ContactsView extends View<IContactsData, IContactsSettings> {
 
     get data() {
 		return {
+			email: this.ensure<HTMLInputElement>(this.settings.email).value,
 			phone: this.ensure<HTMLInputElement>(this.settings.phone).value,
-            payment: this.ensure<HTMLInputElement>(this.settings.payment).value
 		};
 	}
 	
+	set email(value: string) {
+    	this.setValue<HTMLInputElement>(this.settings.email, {
+    		value,
+    	});
+    }
+
 	set phone(value: string) {
 		this.setValue<HTMLInputElement>(this.settings.phone, {
 			value,
 		});
 	}
-
-    set payment(value: string) {
-        this.setValue<HTMLInputElement>(this.settings.payment, {
-            value
-        })
-    }
 }

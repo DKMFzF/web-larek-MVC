@@ -1,11 +1,11 @@
 import { IChangeable } from '../../base/View';
 
 export interface IContactsData {
+    email: string;
     phone: string;
-    payment: string;
 }
 
 export interface IContactsSettings extends IChangeable<IContactsData>{
     phone: string;
-    payment: string;
+    email: string;
 }

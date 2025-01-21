@@ -8,6 +8,9 @@ import { IProductBasketData } from '../../../types/components/view/partial/Produ
 import { ProductBasketView } from '../partial/ProductBasket';
 import { IClickableEvent } from '../../../types/components/base/View';
 
+/**
+ * @class BasketScreen - реализация модального окна корзины
+ */
 export class BasketScreen extends ModalScreen<IListData<IProductBasketData>, IBasketData, IBasketSettings> {
     initContent() {
         return new ListView<IProductBasketData>(cloneTemplate(SETTINGS.basketTemplate), {
@@ -20,7 +23,7 @@ export class BasketScreen extends ModalScreen<IListData<IProductBasketData>, IBa
     }
 
     protected onRemoveTicket({ item }: IClickableEvent<IProductBasketData>) {
-		this.settings.onRemove(item.title); // поменять на id
+		this.settings.onRemove(item.id);
 	}
 
     set productsBasket(products: IProductBasketData[]) {

@@ -17,6 +17,12 @@ export interface ISettings {
 		delete: string;
 	};
 	
+	orderTemplate: string;
+	orderSettings: {
+		payment: string;
+		address: string;
+	};
+	
 	// modal settings
 	modalTemplate: string;
     modalSettings: {
@@ -31,4 +37,15 @@ export interface ISettings {
 		nextSettings: TElementCreator; 
 		totalLabel: string;
 	};
+
+	orderModal: {
+		nextLabel: string;
+		nextSettings: TElementCreator;
+	};
+
+	// contactsTemplate: string;
+	// contactsSettings: {
+	// 	nextLabel: string;
+	// 	nextSettings: TElementCreator;
+	// } 
 }

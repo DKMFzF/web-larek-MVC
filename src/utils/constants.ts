@@ -21,6 +21,12 @@ export const SETTINGS: ISettings = {
 		delete: '.basket__item-delete',
 	},
 
+    orderTemplate: 'string',
+	orderSettings: {
+        payment: '.order__buttons .button',
+        address: 'input[name="address"]',
+	},
+
     // modal settings
     modalTemplate: '#modal',
     modalSettings: {
@@ -32,7 +38,20 @@ export const SETTINGS: ISettings = {
     basketModal: {
         title: 'Корзина',
         nextLabel: 'Оформить',
-        nextSettings: ['button', { className: 'button'}],
+        nextSettings: [
+            'button', 
+            { className: 'button'}
+        ],
         totalLabel: 'синапсов'
-    }
+    },
+
+    orderModal: {
+        nextLabel: 'Далее',
+        nextSettings: [
+            'button',
+            { className: 'button' }
+        ],
+    },
+
+    
 };
