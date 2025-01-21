@@ -17,6 +17,7 @@ import { IView } from '../../types/components/base/View';
 export abstract class View<T, S extends object> implements IView<T, S> {
 	// чтобы при копировании создавать дочерний класс, не зная его имени
 	['constructor']!: new (root: HTMLElement, settings: S) => this;
+	
 	// введем кеш чтобы не пересоздавать и не искать повторно элементы
 	protected cache: Record<string, HTMLElement> = {};
 

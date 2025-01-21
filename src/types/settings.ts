@@ -1,20 +1,16 @@
 import { TElementCreator } from './html';
 
+// типизация для настройки приложения
 export interface ISettings {
     modalTemplate: string;
-
     modalSettings: {
 		close: string;
-		header: string;
 		content: string;
-		footer: string;
-		message: string;
 		activeClass: string;
-		messageErrorClass: string;
 	};
-    
+
 	basketModal: {
-		headerTitle: string;
+		title: string;
 		nextLabel: string;
 		nextSettings: TElementCreator; 
 		totalLabel: string;

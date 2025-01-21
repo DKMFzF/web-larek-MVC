@@ -15,15 +15,13 @@ import { IModalScreenSettings } from '../../../types/components/view/screen/Moda
  * C - внешние данные для экрана
  * S - настройки экрана (обработчик событий)
  */
-export abstract class ModalScreen<H, M, C, S extends IModalScreenSettings> extends Screen<C, S> {
+export abstract class ModalScreen<M, C, S extends IModalScreenSettings> extends Screen<C, S> {
 	// модальное окно
-	protected declare modal: ModalView<H, M>;
+	protected declare modal: ModalView<M>;
 	// кнопка "Далее"
 	protected declare nextButton: HTMLButtonElement;
 
-	// Абстрактные методы для реализации в дочерних классах
-
-	abstract initHeader(): IView<H>;
+	// Абстрактные метод для реализации в дочерних классах
 
 	abstract initContent(): IView<M>;
 
@@ -36,7 +34,7 @@ export abstract class ModalScreen<H, M, C, S extends IModalScreenSettings> exten
 
 		this.modal = this.getModalView(
 			{
-				headerView: this.initHeader(),
+				// headerView: this.initHeader(),
 				contentView: this.initContent(),
 			},
 			this.settings.onClose
@@ -59,22 +57,28 @@ export abstract class ModalScreen<H, M, C, S extends IModalScreenSettings> exten
 	}
 
 	protected getModalView(
-		settings: { headerView: IView<H>; contentView: IView<M> },
+		settings: { 
+			// headerView: IView<H>; 
+			contentView: IView<M> 
+		},
 		onClose: () => void
 	) {
-		return new ModalView<H, M>(cloneTemplate(SETTINGS.modalTemplate), {
-			...SETTINGS.modalSettings,
-			...settings,
-			actions: [this.nextButton],
-			onClose,
-		});
+		return new ModalView<M>(
+			cloneTemplate(SETTINGS.modalTemplate), 
+			{
+				...SETTINGS.modalSettings,
+				...settings,
+				actions: [this.nextButton],
+				onClose,
+			}
+		);
 	}
 
 	// Методы установки данных
 
-	set header(value: H) {
-		this.modal.header = value;
-	}
+	// set header(value: H) {
+	// 	this.modal.header = value;
+	// }
 
 	set content(value: M) {
 		this.modal.content = value;
@@ -84,13 +88,13 @@ export abstract class ModalScreen<H, M, C, S extends IModalScreenSettings> exten
 		this.modal.isActive = value;
 	}
 
-	set message(value: string) {
-		this.modal.message = value;
-	}
+	// set message(value: string) {
+	// 	this.modal.message = value;
+	// }
 
-	set isError(value: boolean) {
-		this.modal.isError = value;
-	}
+	// set isError(value: boolean) {
+	// 	this.modal.isError = value;
+	// }
 
 	set isDisabled(state: boolean) {
 		this.nextButton.disabled = state;

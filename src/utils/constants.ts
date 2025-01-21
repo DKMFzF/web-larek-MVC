@@ -9,15 +9,11 @@ export const SETTINGS: ISettings = {
     modalTemplate: '#modal',
     modalSettings: {
 		close: '.modal__close',
-		header: '.modal__header',
 		content: '.modal__content',
-		footer: '.modal__footer',
-		message: '.modal__message',
 		activeClass: 'modal_active',
-		messageErrorClass: 'modal__message_error',
 	},
     basketModal: {
-        headerTitle: 'Корзина',
+        title: 'Корзина',
         nextLabel: 'Оформить',
         nextSettings: ['button', { className: 'button'}],
         totalLabel: 'синапсов'
