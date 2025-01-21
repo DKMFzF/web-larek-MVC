@@ -7,6 +7,28 @@ export const DEVELOPMENT = process.env.NODE_ENV === 'development';
 // Настройка приложения
 export const SETTINGS: ISettings = {
     // view settings
+    gallerySelector: '.gallery',
+	gallerySettings: {
+		activeItemClass: 'gallery__item_active',
+		itemClass: 'gallery__item',
+	},
+
+    cardTemplate: '.gallery__item',
+    cardSettings: {
+        title: '.card__title',
+        category: '.card__category',
+        price: '.card__price',
+        imageUrl: '.card__image',
+    },
+
+    pageSelector: '.page',
+	pageSettings: {
+		wrapper: '.page__wrapper',
+		counter: '.header__basket-counter',
+		basket: '.header__basket',
+		lockedClass: '.page__wrapper_locked',
+	},
+
     basketTemplate: '#basket',
     basketSettings: {
         activeItemClass: '',

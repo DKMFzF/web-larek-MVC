@@ -21,6 +21,6 @@ export class PageView extends View<IPageData, IPageSettings> {
     // Метод для блокировки/разблокировки прокерутки страницы
     // при открытии модального окна
     set isLocked(value: string) {
-        this.setValue
+        this.setValue(this.settings.lockedClass, value);
     }
 }

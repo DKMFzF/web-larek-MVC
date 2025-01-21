@@ -3,6 +3,12 @@ import { TElementCreator } from './html';
 // типизация для настройки приложения
 export interface ISettings {
     // view settings
+	gallerySelector: string;
+	gallerySettings: {
+		activeItemClass: string;
+		itemClass: string;
+	}
+
 	basketTemplate: string;
 	basketSettings: {
 		activeItemClass: string;
@@ -34,6 +40,22 @@ export interface ISettings {
 		title: string;
 		description: string;
 		action: string;
+	};
+	
+	pageSelector: string;
+	pageSettings: {
+		wrapper: string;
+		counter: string;
+		basket: string;
+		lockedClass: string;
+	};
+
+	cardTemplate: string;
+	cardSettings: {
+		title: string;
+		imageUrl: string;
+		category: string;
+		price: string;
 	};
 	
 	// modal settings
