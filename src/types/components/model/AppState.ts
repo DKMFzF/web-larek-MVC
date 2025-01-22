@@ -4,7 +4,8 @@ import {
     IProductAPI,
     IContacts,
     TItemId,
-    IOrderResult
+    IOrderResult,
+    IOrderMethod
 } from './ProductAPI';
 
 // краткое описание продукта для отображения в корзине
@@ -34,6 +35,7 @@ export enum EnumAppStateChanges {
 	SELECTED_PRODUCT = 'change:selectedProduct',
     BASKET = 'change:basket',
     ORDER = 'change:order',
+    CONTACTS = 'change:contacts',
 }
 
 // состояние приложения, которое мы будем хранить в localStorage
@@ -71,6 +73,7 @@ export interface IAppState {
     // пользовательские действия
     selectProduct(id: TItemId): void;
 	removeProductInBasket(id: TItemId): void;
+    fillOrder(order: Partial<IOrderMethod>): void
 	fillContacts(contacts: Partial<IContacts>): void;
 	isValidContacts(): boolean;
 

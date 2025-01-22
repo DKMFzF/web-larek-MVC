@@ -1,6 +1,6 @@
 import { IChangeable } from '../../base/View';
 
-export type TPayment = 'cash' | 'card' | null;
+export type TPayment = 'online' | 'upon receipt' | null;
 export interface IOrderData {
     payment: TPayment;
     address: string;

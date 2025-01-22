@@ -4,7 +4,8 @@ import {
     IContacts,
     IOrder,
     IProductAPI,
-    IOrderResult
+    IOrderResult,
+    IOrderMethod
 } from '../../types/components/model/ProductAPI';
 import {
     IProductBasket,
@@ -146,12 +147,22 @@ export class AppState implements IAppState {
         this.notifyChanged(EnumAppStateChanges.BASKET);
     }
 
+    // метод заполнения payment и address 
+    fillOrder(order: Partial<IOrderMethod>): void {
+        this.contacts = {
+            ...this.contacts,
+            ...order
+        }
+        this.notifyChanged(EnumAppStateChanges.ORDER);
+    }
+
+    // метод заполнения email и phone
     fillContacts(contacts: Partial<IContacts>): void {
         this.contacts = {
             ...this.contacts,
             ...contacts
         }
-        this.notifyChanged(EnumAppStateChanges.ORDER);
+        this.notifyChanged(EnumAppStateChanges.CONTACTS);
     }
 
     isValidContacts(): boolean {
