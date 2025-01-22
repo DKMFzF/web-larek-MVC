@@ -37,15 +37,14 @@ export const SETTINGS: ISETTINGS = {
 		itemClass: '.basket__item'
     },
 
-    // TODO: заполнить настройки для отображения продукта в модалке
-    productTemplate: '',
+    productTemplate: '#card-preview',
 	productSettings: {
-		title: '',
-		cover: '',
-		category: '',
-		price: '',
-		description: '',
-        addBasket: '',
+		title: '.card__title',
+		cover: '.card__image',
+		category: '.card__category',
+		price: '.card__price',
+		description: '.card__text',
+        addBasket: '.card__button',
 	},
 
     productBasketTemplate: '#card-basket',
@@ -62,12 +61,11 @@ export const SETTINGS: ISETTINGS = {
         card: 'button["cash"]',
         address: 'input[name="address"]',
 	},
-
-    // TODO: заполнить контакцты
-    contactsTemplate: '',
+    
+    contactsTemplate: '#contacts',
     contactsSettings: {
-        email: '',
-        phone: '',
+        email: 'input["email"]',
+        phone: 'input["phone"]',
     },
 
     messageTemplate: '#success',
