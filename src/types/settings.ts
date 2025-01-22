@@ -25,7 +25,8 @@ export interface ISettings {
 	
 	orderTemplate: string;
 	orderSettings: {
-		payment: string;
+		cash: string;
+		card: string;
 		address: string;
 	};
 

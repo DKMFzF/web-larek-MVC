@@ -2,17 +2,18 @@ import { View } from '../../base/View';
 import {
     IOrderData,
     IOrderSettings,
+    TPayment,
 } from '../../../types/components/view/partial/Order';
 
 /**
  * @class OrderView - форма заказа с полями адреса и выбора способа оплаты
  */
 export class OrderView extends View<IOrderData, IOrderSettings> {
+    protected isPatment: boolean | null = null;
+
     init() {
         this.element.addEventListener('submit', this.onSubmitHandler.bind(this));
         this.element.addEventListener('change', this.onSubmitHandler.bind(this));
-        const buttons = this.ensure(this.settings.payment).querySelectorAll<HTMLButtonElement>('button');
-        buttons.forEach(button => button.addEventListener('click', this.onPaymentSelect.bind(this)));
     }
 
     onSubmitHandler(event: SubmitEvent): boolean {
@@ -21,26 +22,23 @@ export class OrderView extends View<IOrderData, IOrderSettings> {
         return false;
     }
 
-    onPaymentSelect(event: MouseEvent) {
-        const button = event.target as HTMLButtonElement;
-        if (!button) return;
-        this.payment = button.name;
-        const buttons = this.ensure(this.settings.payment).querySelectorAll<HTMLButtonElement>('button');
-        buttons.forEach(btn => btn.classList.toggle('button_alt_active', btn === button));
-    }
-
     get data(): IOrderData {
         return {
-            payment: this.ensure(this.settings.payment).querySelector('.button_alt_active')?.getAttribute('name') ?? '',
-            address: this.ensure<HTMLInputElement>(this.settings.address).value,
+            payment: this.getSelectedPaymentMethod(),
+            address: this.ensure<HTMLInputElement>(this.settings.address).value.trim(),
         };
     }
 
-    set payment(value: string) {
-        this.setValue<HTMLInputElement>(this.settings.payment, { value })
-    }
-
-    set address(value: string) {
-        this.setValue<HTMLInputElement>(this.settings.address, { value })
+    // метод проверки выбранного способа оплаты
+    private getSelectedPaymentMethod(): TPayment | null {
+        const cashButton = this.ensure<HTMLButtonElement>(this.settings.cash);
+        const cardButton = this.ensure<HTMLButtonElement>(this.settings.card);
+    
+        if (cashButton.classList.contains('button_alt-active')) {
+            return 'cash';
+        } else if (cardButton.classList.contains('button_alt-active')) {
+            return 'card';
+        }
+        return null; // Если ни один способ не выбран
     }
 }

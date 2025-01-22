@@ -9,14 +9,16 @@ export class ProductBasketView extends View<IProductBasketData, IProductBasketSe
     protected _item!: IProductBasketData;
 
     init() {
+        // При инициализации ставим к HTML элементу листенер
         this.ensure(this.settings.delete).addEventListener(
             'click',
             this.onClickHandler.bind(this)
         );
     }
 
+    // Корневая функция обработки кнопки
     onClickHandler(event: MouseEvent) {
-		this.settings.onClick({ event, item: this._item });
+		this.settings.onClick({ event, item: this._item }); // ссылается на функцию onClick в интрефейсус IClickable с типом IClickableEvent 
 	}
 
     set title(value: string) {

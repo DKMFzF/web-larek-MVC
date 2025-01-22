@@ -14,4 +14,6 @@ export interface IOrderFormData
     address: IOrderData;
 }
 
-export interface IOrderFormSettings extends IModalScreenSettings, IModalScreenChangeSettings<IOrderData> {}
+export interface IOrderFormSettings 
+    extends IModalScreenSettings, 
+        IModalScreenChangeSettings<IOrderData> {}

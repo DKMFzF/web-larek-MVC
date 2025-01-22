@@ -17,13 +17,14 @@ export class BasketScreen extends ModalScreen<IListData<IProductBasketData>, IBa
             ...SETTINGS.basketSettings,
             item: new ProductBasketView(cloneTemplate(SETTINGS.productBasketTemplate), {
                 ...SETTINGS.productBasketSettings,
-                onClick: this.onRemoveTicket.bind(this),
+                onClick: this.onRemoveProduct.bind(this), // ставим на ProductBasketView листенер
             }),
         });
     }
 
-    protected onRemoveTicket({ item }: IClickableEvent<IProductBasketData>) {
-		this.settings.onRemove(item.id);
+    // фнукция которая удаляет продукт из корзины
+    protected onRemoveProduct({ item }: IClickableEvent<IProductBasketData>) {
+		this.settings.onRemove(item.id); // ссылается на абстракцию в интрефейсе метод onRemove (ссылается на id продукта)
 	}
 
     set productsBasket(products: IProductBasketData[]) {
