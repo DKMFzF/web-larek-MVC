@@ -1,7 +1,7 @@
 import { TElementCreator } from './html';
 
 // типизация для настройки приложения
-export interface ISettings {
+export interface ISETTINGS {
     // view settings
 	gallerySelector: string;
 	gallerySettings: {
@@ -15,11 +15,22 @@ export interface ISettings {
 		itemClass: string;
 	};
 
+	productTemplate: string;
+	productSettings: {
+		title: string;
+		cover: string;
+		category: string;
+		price: string;
+		description: string;
+		addBasket: string;
+	};
+
 	productBasketTemplate: string;
 	productBasketSettings: {
 		index: string;
 		title: string;
 		price: string;
+
 		delete: string;
 	};
 	

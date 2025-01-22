@@ -4,7 +4,7 @@ import { Screen } from '../../base/Screen';
 import { ListView } from "../common/List";
 import { PageView } from "../partial/Page";
 import { ICardData } from "../../../types/components/view/partial/Card";
-import { IMainData, IMainSettings, IProductItem } from "../../../types/components/view/screen/Main";
+import { IMainData, IMainSettings } from "../../../types/components/view/screen/Main";
 import { CardView } from "../partial/Card";
 
 // Класс основного экрана страницы
@@ -41,7 +41,7 @@ export class MainScreen extends Screen<IMainData, IMainSettings> {
         this.cards.items = value;
     }
 
-    set selected(value: IProductItem) {
-        this.cards.setActiveItem(value.id);
-    }
+    // set selected(value: IProductItem) {
+    //     this.cards.setActiveItem(value.id);
+    // }
 }

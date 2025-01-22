@@ -1,4 +1,4 @@
-import { ISettings } from '../types/settings';
+import { ISETTINGS } from '../types/settings';
 
 export const API_URL = `${process.env.API_ORIGIN}/api/weblarek`;
 export const CDN_URL = `${process.env.API_ORIGIN}/content/weblarek`;
@@ -7,7 +7,7 @@ export const DEVELOPMENT = process.env.NODE_ENV === 'development';
 // TODO: подправить нейминг классов и индификаторов
 
 // Настройка приложения
-export const SETTINGS: ISettings = {
+export const SETTINGS: ISETTINGS = {
     // view settings
     gallerySelector: '.gallery',
 	gallerySettings: {
@@ -36,6 +36,17 @@ export const SETTINGS: ISettings = {
         activeItemClass: '',
 		itemClass: '.basket__item'
     },
+
+    // TODO: заполнить настройки для отображения продукта в модалке
+    productTemplate: '',
+	productSettings: {
+		title: '',
+		cover: '',
+		category: '',
+		price: '',
+		description: '',
+        addBasket: '',
+	},
 
     productBasketTemplate: '#card-basket',
 	productBasketSettings: {

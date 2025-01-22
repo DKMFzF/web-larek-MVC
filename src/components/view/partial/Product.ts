@@ -3,8 +3,14 @@ import { IProductData, IProductSettings } from '../../../types/components/view/p
 
 // Класс который показывает продукт в корзине (compact) и в модальном окне (full)
 export class ProductView extends View<IProductData, IProductSettings> {
+    protected _item: IProductData;
+
     init() {
-        this.isCompact = this.settings.isCompact;
+        this.ensure(this.settings.addBasket).addEventListener('click', this.onClickHandler.bind(this));
+    }
+
+    onClickHandler(event: MouseEvent) {
+        this.settings.onClick({ event });
     }
 
     set title(value: string) {
@@ -26,8 +32,4 @@ export class ProductView extends View<IProductData, IProductSettings> {
     set cover(value: string) {
         this.setValue(this.settings.cover, value);
     }
-
-    set isCompact(value: boolean) {
-		this.element.classList.toggle(this.settings.compactClass, value);
-	}
 }

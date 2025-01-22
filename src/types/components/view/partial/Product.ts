@@ -1,3 +1,5 @@
+import { IClickable } from "../../base/View";
+
 export interface IProductData {
     title: string;
     category: string;
@@ -6,15 +8,17 @@ export interface IProductData {
     cover: string;
 }
 
-export interface IProductSettings {
+// interface ProductItem extends IProductData {
+//     id: string;
+// }
+
+// TODO: может быть не понадодиться 
+export interface IProductSettings extends IClickable<IProductData>{
     title: string;
     category: string;
     description: string;
     price: string;
     cover: string;
-    
-    // настройки отображения
-    compactClass: string;
-	tagsSeparator: string;
-	isCompact: boolean;
+
+    addBasket: string;
 }

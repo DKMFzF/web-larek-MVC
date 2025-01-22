@@ -10,10 +10,7 @@ export class ProductBasketView extends View<IProductBasketData, IProductBasketSe
 
     init() {
         // При инициализации ставим к HTML элементу листенер
-        this.ensure(this.settings.delete).addEventListener(
-            'click',
-            this.onClickHandler.bind(this)
-        );
+        this.ensure(this.settings.delete).addEventListener('click', this.onClickHandler.bind(this));
     }
 
     // Корневая функция обработки кнопки

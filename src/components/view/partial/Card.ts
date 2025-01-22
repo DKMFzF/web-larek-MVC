@@ -1,7 +1,7 @@
 import { ICardData, ICardSettings } from "../../../types/components/view/partial/Card";
 import { View } from "../../base/View";
 
-// реализация карточки продукта
+// реализация карточки продукта на начальном экране
 export class CardView extends View<ICardData, ICardSettings> {
     id: string;
     

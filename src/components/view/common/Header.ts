@@ -12,10 +12,7 @@ import {
  */
 export class HeaderView extends View<IHeaderData, IHeaderSettings> {
 	init() {
-		this.ensure(this.settings.action).addEventListener(
-			'click',
-			this.onClickHandler.bind(this)
-		);
+		this.ensure(this.settings.action).addEventListener('click', this.onClickHandler.bind(this));
 	}
 
 	onClickHandler(event: MouseEvent) {
