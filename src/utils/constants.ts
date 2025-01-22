@@ -15,12 +15,12 @@ export const SETTINGS: ISettings = {
 		itemClass: 'gallery__item',
 	},
 
-    cardTemplate: '.gallery__item',
+    cardTemplate: '#card-catalog',
     cardSettings: {
         title: '.card__title',
         category: '.card__category',
         price: '.card__price',
-        imageUrl: '.card__image',
+        cover: '.card__image',
     },
 
     pageSelector: '.page',

@@ -1,31 +1,31 @@
-import { View } from '../../base/View';
-import { ICardData, ICardSettings } from '../../../types/components/view/partial/Card';
+import { ICardData, ICardSettings } from "../../../types/components/view/partial/Card";
+import { View } from "../../base/View";
 
-/**
- * @class CardView - маленькая карточка продукта для списка
- */
+// реализация карточки продукта
 export class CardView extends View<ICardData, ICardSettings> {
-	id: string;
+    id: string;
+    
+    init() {
+        this.element.addEventListener('click', this.onCLickHandler.bind(this))
+    }
 
-	init() {
-		this.element.addEventListener('click', this.onClickHandler.bind(this));
-	}
+    onCLickHandler(event: MouseEvent) {
+        this.settings.onClick({ event, item: this.id });
+    }
 
-	onClickHandler(event: MouseEvent) {
-		this.settings.onClick({ event, item: this.id });
-	}
+    set cover(value: string) {
+        this.setValue<HTMLImageElement>(this.settings.cover, { src: value });
+    }
 
-	set image(value: string) {
-		this.setValue<HTMLImageElement>(this.settings.imageUrl, {
-			src: value,
-		});
-	}
+    set title(value: string) {
+        this.setValue(this.settings.title, value);
+    }
 
-	set title(value: string) {
-		this.setValue(this.settings.title, value);
-        // this.setValue(this.settings.category, value);
-        this.setValue<HTMLImageElement>(this.settings.imageUrl, {
-			alt: value,
-		});
-	}
+    set price(value: string) {
+        this.setValue(this.settings.price, value);
+    }
+
+    set category(value: string) {
+        this.setValue(this.settings.category, value);
+    }
 }

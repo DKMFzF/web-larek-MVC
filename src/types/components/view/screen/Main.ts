@@ -1,18 +1,23 @@
+import { ICardData } from "../partial/Card";
 import { IProductData } from "../partial/Product";
 
 export interface IProductItem extends IProductData {
     id: string;
-    cover: string;
 }
 
 export interface IMainData {
     counter: number;
-	items: IProductData[];
-	selected: IProductItem;
+	items: ICardData[]; // то что будет находиться в галерии
+	selected: IProductItem; 
 }
 
 export interface IMainSettings {
-    onOpenBasket: () => void;
-	// onSelectProduct: (id: string) => void;
-	onOpenProduct: (id: string) => void;
+    // yes
+    onOpenBasket: () => void; // открытие корзины
+	
+    // 
+    onOpenProduct: (id: string) => void; // открытие карточки товара
+
+    // TODO: это свойство может понадобиться в реализации CardScreen
+    // onSelectProduct: (id: string) => void;
 }

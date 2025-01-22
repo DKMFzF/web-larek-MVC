@@ -1,7 +1,7 @@
 import { View } from '../../base/View';
 import { IProductData, IProductSettings } from '../../../types/components/view/partial/Product';
 
-// Класс который показывает продукт в main и в модальном окне
+// Класс который показывает продукт в корзине (compact) и в модальном окне (full)
 export class ProductView extends View<IProductData, IProductSettings> {
     init() {
         this.isCompact = this.settings.isCompact;
@@ -23,8 +23,8 @@ export class ProductView extends View<IProductData, IProductSettings> {
         this.setValue(this.settings.price, String(value));
     }
 
-    set imageUrl(value: string) {
-        this.setValue(this.settings.imageUrl, value);
+    set cover(value: string) {
+        this.setValue(this.settings.cover, value);
     }
 
     set isCompact(value: boolean) {

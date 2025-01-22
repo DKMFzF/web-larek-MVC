@@ -6,6 +6,7 @@ import {
 import { IItemData } from "../../../types/components/view/common/List";
 import { View } from "../../base/View";
 
+// универсальный класс списка
 export class ListView<T extends IItemData> extends View<IListData<T>, IListSettings<T>> {
     // Сохраняем элементы в объекте, где ключ - id элемента
     protected _elements: TElementsMap;

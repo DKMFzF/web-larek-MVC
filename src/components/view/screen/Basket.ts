@@ -8,6 +8,8 @@ import { IProductBasketData } from '../../../types/components/view/partial/Produ
 import { ProductBasketView } from '../partial/ProductBasket';
 import { IClickableEvent } from '../../../types/components/base/View';
 
+// TODO: посмотреть реализацию через Card
+
 /**
  * @class BasketScreen - реализация модального окна корзины
  */

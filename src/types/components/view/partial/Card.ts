@@ -1,16 +1,16 @@
-import { IClickable } from '../../base/View';
+import { IClickable } from "../../base/View";
 
 export interface ICardData {
-	id: string;
+    id: string;
     title: string;
-    category: string;    
-    price: number;
-    imageUrl: string;
+    price: string;
+    cover: string;
+    category: string;
 }
 
 export interface ICardSettings extends IClickable<string> {
     title: string;
-    category: string;    
     price: string;
-    imageUrl: string;
+    cover: string;
+    category: string;
 }

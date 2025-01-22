@@ -54,7 +54,7 @@ export interface ISettings {
 	cardTemplate: string;
 	cardSettings: {
 		title: string;
-		imageUrl: string;
+		cover: string;
 		category: string;
 		price: string;
 	};

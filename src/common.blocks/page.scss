@@ -11,6 +11,7 @@ html, body.page {
 .page__wrapper {
 	width: 100%;
 
+	// класс который блокинует страницу при открытии модального окна
 	&_locked {
 		position: fixed;
 	}
