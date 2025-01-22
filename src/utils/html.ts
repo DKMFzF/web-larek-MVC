@@ -11,10 +11,7 @@ import {
  * @param selectorElement — может быть селектором, элементом или коллекцией элементов
  * @param context
  */
-export function ensureElement<T extends HTMLElement>(
-	selectorElement: TSelectorElement<T>,
-	context?: HTMLElement
-): T {
+export function ensureElement<T extends HTMLElement>(selectorElement: TSelectorElement<T>, context?: HTMLElement): T {
 	if (isSelector(selectorElement)) {
 		const elements = ensureAllElements<T>(selectorElement, context);
 		if (elements.length > 1) {
@@ -37,7 +34,7 @@ export function ensureElement<T extends HTMLElement>(
  * @param context
  */
 export function ensureAllElements<T extends HTMLElement>(
-	selectorElement: TSelectorCollection<T>,
+	selectorElement: TSelectorCollection<T>, 
 	context: HTMLElement = document as unknown as HTMLElement
 ): T[] {
 	if (isSelector(selectorElement)) {

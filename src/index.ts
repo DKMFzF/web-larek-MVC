@@ -7,7 +7,7 @@ import { AppState } from './components/model/AppState';
 import { AppStateEmitter } from './components/model/AppStateEmitter';
 import { MainScreen } from './components/view/screen/Main';
 import { MainController } from './components/controller/Main';
-import { EnumAppStateModals } from './types/components/model/AppState';
+import { EnumAppStateChanges, EnumAppStateModals } from './types/components/model/AppState';
 import { BasketController } from './components/controller/Basket';
 import { OrderFormScreen } from './components/view/screen/OrderForm';
 import { OrderController } from './components/controller/Order';
@@ -16,13 +16,7 @@ import { ContactsController } from './components/controller/Contacts';
 import { SuccessScreen } from './components/view/screen/Success';
 import { ModalController } from './components/controller/Modal';
 import { PrewiewScreen } from './components/view/screen/ProductViewing';
-
-// const api = new ProductAPI(CDN_URL, API_URL);
-
-// Testing Api
-// api.getProducts();
-// api.getProduct("854cef69-976d-4c2a-a18c-2aa45046c390");
-// api.orderProducts();
+import { PrewiewController } from './components/controller/PrewiewController';
 
 const api = new ProductAPI(CDN_URL, API_URL);
 const app = new AppStateEmitter(api, SETTINGS.appState, AppState);
@@ -32,5 +26,9 @@ const modal = {
     [EnumAppStateModals.ORDER]: new OrderFormScreen(new OrderController(app.model)),
     [EnumAppStateModals.CONTACTS]: new ContactsFormScreen(new ContactsController(app.model)),
     [EnumAppStateModals.SUCCESS]: new SuccessScreen(new ModalController(app.model)),
-    // [EnumAppStateModals.CARD]: new PrewiewScreen(new PrewiewController(app.model))
+    [EnumAppStateModals.CARD]: new PrewiewScreen(new PrewiewController(app.model))
 }
+
+// // app.on<>(EnumAppStateChanges.)
+// api.getProducts();
+// api.getProduct("854cef69-976d-4c2a-a18c-2aa45046c390");

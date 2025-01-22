@@ -22,6 +22,8 @@ export class PrewiewScreen extends Screen<IPrewiewScreenData, IPrewiewScreenSett
             onClose: this.settings.onClose,
             actions: []
         });
+
+        this.element = this._modal.element;
     }
 
     protected onAddProductInBasket({ item }: IClickableEvent<IProductBasketData>) {

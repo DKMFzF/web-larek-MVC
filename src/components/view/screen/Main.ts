@@ -6,6 +6,7 @@ import { PageView } from "../partial/Page";
 import { ICardData } from "../../../types/components/view/partial/Card";
 import { IMainData, IMainSettings } from "../../../types/components/view/screen/Main";
 import { CardView } from "../partial/Card";
+import { cloneTemplate, ensureElement } from "../../../utils/html";
 
 // Класс основного экрана страницы
 export class MainScreen extends Screen<IMainData, IMainSettings> {
@@ -14,19 +15,22 @@ export class MainScreen extends Screen<IMainData, IMainSettings> {
 
     protected init() {
         // создание основного Layout страницы
-        this.page = new PageView(this.ensureTemplate(SETTINGS.pageSelector), {
+        this.page = new PageView(ensureElement(SETTINGS.pageSelector), {
             ...SETTINGS.pageSettings,
             onClick: this.settings.onOpenBasket,
         });
-
+        
         // создание списка карточек товаров
-        this.cards = new ListView<ICardData>(this.ensureTemplate(SETTINGS.gallerySelector), {
+        this.cards = new ListView<ICardData>(ensureElement(SETTINGS.gallerySelector), {
             ...SETTINGS.gallerySettings,
-            item: new CardView(this.ensureTemplate(SETTINGS.cardTemplate), {
+            item: new CardView(cloneTemplate(SETTINGS.cardTemplate), {
                 ...SETTINGS.cardSettings,
                 onClick: this.onSelectProductHandler.bind(this)
             })
         });
+
+        // передаём эелмент, что бы не выбросилась ошибка
+        this.element = this.page.element;
     }
 
     protected onSelectProductHandler({ item }: IClickableEvent<string>) {

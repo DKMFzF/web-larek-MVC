@@ -7,10 +7,10 @@ import { HeaderView } from "../common/Header";
 import { ModalView } from "../common/Modal";
 
 export class SuccessScreen extends Screen<ISuccessData, ISuccessSettings> {
-    protected declare modal: ModalView<IHeaderData>;
+    protected declare _modal: ModalView<IHeaderData>;
     
     init() {
-        this.modal = new ModalView<IHeaderData>(cloneTemplate(SETTINGS.modalTemplate), {
+        this._modal = new ModalView<IHeaderData>(cloneTemplate(SETTINGS.modalTemplate), {
             ...SETTINGS.modalSettings,
             contentView: new HeaderView(cloneTemplate(SETTINGS.messageTemplate), {
                 ...SETTINGS.messageSettings,
@@ -20,14 +20,14 @@ export class SuccessScreen extends Screen<ISuccessData, ISuccessSettings> {
             actions: []
         });
 
-        this.element = this.modal.element;
+        this.element = this._modal.element;
     }
 
     set content(value: IHeaderData) {
-        this.modal.content = value;
+        this._modal.content = value;
     }
 
     set isActive(value: boolean) {
-        this.modal.isActive = value;
+        this._modal.isActive = value;
     }
 }

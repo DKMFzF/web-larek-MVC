@@ -14,14 +14,22 @@
 	<title>WebLarek</title>
 	<meta name="description" content="">
 </head>
+
+<!-- yes -->
 <body class="page">
+	<!-- yes -->
 	<div class="page__wrapper">
+		
 		<header class="header">
 			<div class="header__container">
 				<a class="header__logo" href="/">
 					<img class="header__logo-image" src="<%=require('../images/logo.svg')%>" alt="Film! logo" />
 				</a>
+				
+				<!-- yes -->
 				<button class="header__basket">
+					
+					<!-- yes -->
 					<span class="header__basket-counter">0</span>
 				</button>
 			</div>
@@ -32,15 +40,27 @@
 		</main>
 	</div>
 
+	<!-- modale_active -->
 	<!-- TODO: базовое окно для модальных окон -->
-	<div class="modal modal_activ" id="modal">
+	<template id="modal">
+		<div class="modal" >
+			<div class="modal__container">
+				<button class="modal__close" aria-label="закрыть"></button>
+				<div class="modal__content">
+				</div>
+			</div>
+		</div>
+	</template>
+
+
+	<!-- Сюда будет помещается модуль -->
+	<!-- <div class="modal modal_activ" >
 		<div class="modal__container">
 			<button class="modal__close" aria-label="закрыть"></button>
 			<div class="modal__content">
-				<!-- Сюда будет помещается модуль -->
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<template id="success">
 		<div class="order-success">

@@ -11,7 +11,7 @@ export const SETTINGS: ISETTINGS = {
     // view settings
     gallerySelector: '.gallery',
 	gallerySettings: {
-		activeItemClass: 'gallery__item_active',
+		activeItemClass: '.gallery__item_active',
 		itemClass: 'gallery__item',
 	},
 
@@ -28,7 +28,7 @@ export const SETTINGS: ISETTINGS = {
 		wrapper: '.page__wrapper',
 		counter: '.header__basket-counter',
 		basket: '.header__basket',
-		lockedClass: '.page__wrapper_locked',
+		lockedClass: 'page__wrapper_locked',
 	},
 
     basketTemplate: '#basket',
