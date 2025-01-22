@@ -20,7 +20,7 @@ import {
  * @class AppState - Модель данных приложения
  */
 export class AppState implements IAppState {
-    private _selectedProduct: string | null = null;
+    // private _selectedProduct: string | null = null;
     basket: Map<string, IProductBasket> = new Map<string, IProductBasket>();
 
     products: Map<string, IProduct> = new Map<string, IProduct>();
@@ -54,11 +54,11 @@ export class AppState implements IAppState {
         );
     }
 
-    get selectedProduct(): IProduct | null {
-        return this._selectedProduct && this.products.has(this._selectedProduct) 
-            ? this.products.get(this._selectedProduct)
-            : null;
-    }
+    // get selectedProduct(): IProduct | null {
+    //     return this._selectedProduct && this.products.has(this._selectedProduct) 
+    //         ? this.products.get(this._selectedProduct)
+    //         : null;
+    // }
 
     get order(): IOrder | null {
         return {
@@ -85,7 +85,7 @@ export class AppState implements IAppState {
         try {
             const result = await this.api.orderProducts(this.order);
             this.basket.clear();
-            this.selectProduct(null);
+            this.addInBasket(null);
             this.persistState();
             this.notifyChanged(EnumAppStateChanges.BASKET);
             return result;
@@ -123,22 +123,20 @@ export class AppState implements IAppState {
         };
         if (localStorage && this.settings.storageKey) {
             localStorage.setItem(this.settings.storageKey, JSON.stringify(state));
-        } 
+        }
     }
 
     // user case
-    selectProduct(id: TItemId): void {
-        if (!id) {
-            this._selectedProduct = null;
+    addInBasket(product: IProductBasket): void {
+        if (!product) {
             this.notifyChanged(EnumAppStateChanges.SELECTED_PRODUCT);
-            return;
+            throw new Error(`[INVALID PRODUCT]: Product cannot be null or undefined`);
         }
-        if (this.products.has(id)) {
-            this._selectedProduct = id;
+        if (this.products.has(product._id)) {
+            this.basket.set(product._id, product);
             this.notifyChanged(EnumAppStateChanges.SELECTED_PRODUCT);
-        } else {
-            throw new Error(`[INVALIDE PRODUCT ID]: ${id}`);
         }
+        else throw new Error(`[INVALIDE PRODUCT ID]: ${product._id} / ${product.title} / ${product.price}`);
     }
 
     removeProductInBasket(id: TItemId): void {
@@ -184,10 +182,10 @@ export class AppState implements IAppState {
 
     openModal(modal: EnumAppStateModals): void {
         switch (modal) {
-            case EnumAppStateModals.CARD:
-                if (!this._selectedProduct) throw new Error('[CARD NO SELECTED]');
-                break;
-            case EnumAppStateModals.ADRRESS:
+            // case EnumAppStateModals.CARD:
+            //     if (!this._selectedProduct) throw new Error('[CARD NO SELECTED]');
+            //     break;
+            case EnumAppStateModals.ORDER:
                 if (this.basket.size === 0) throw new Error(`[NO SELECTED PRODUCTS]`);
                 break;
             case EnumAppStateModals.CONTACTS:

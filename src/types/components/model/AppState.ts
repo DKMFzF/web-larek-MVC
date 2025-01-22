@@ -11,8 +11,6 @@ import {
 // краткое описание продукта для отображения в корзине
 export interface IProductBasket {
     _id: TItemId;
-
-    // на всякий случай (потом мб нужно удалить)
     title: string;
     price: number | null;
 }
@@ -21,7 +19,7 @@ export interface IProductBasket {
 export enum EnumAppStateModals {
     CARD = 'modal:card',
     BASKET = 'modal:basket',
-	ADRRESS = 'modal:adrress',
+	ORDER = 'modal:order',
 	CONTACTS = 'modal:contacts',
 	SUCCESS = 'modal:success',
 	NONE = 'modal:none',
@@ -50,7 +48,7 @@ export interface IAppState {
     products: Map<string, IProduct>;
 
     // заполнение пользователем данные
-    selectedProduct: IProduct | null;
+    // selectedProduct: IProduct | null;
     basket: Map<string, IProductBasket>;
     basketTotal: number;
     contacts: IContacts; // внутренние хранилище
@@ -71,7 +69,7 @@ export interface IAppState {
     persistState(): void;
 
     // пользовательские действия
-    selectProduct(id: TItemId): void;
+    addInBasket(product: IProductBasket): void;
 	removeProductInBasket(id: TItemId): void;
     fillOrder(order: Partial<IOrderMethod>): void
 	fillContacts(contacts: Partial<IContacts>): void;

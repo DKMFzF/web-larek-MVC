@@ -9,6 +9,5 @@ export interface IProductBasketData {
 export interface IProductBasketSettings extends IClickable<IProductBasketData> {
     title: string;
     price: string;
-    
     delete: string;
 }

@@ -7,7 +7,7 @@ export type TItemId = string;
 export interface IProduct {
     _id: TItemId;
     title: string;
-    image: string;
+    cover: string;
     category: string;
     description: string;
     price: number | null;

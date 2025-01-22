@@ -89,4 +89,9 @@ export interface ISETTINGS {
 		nextLabel: string;
 		nextSettings: TElementCreator;
 	};
+
+	appState: {
+		formatCurrency: (value: number) => string;
+		storageKey: string;
+	}
 }

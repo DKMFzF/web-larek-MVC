@@ -17,7 +17,7 @@ export class AppStateEmitter extends EventEmitter {
 
     constructor(
         api: IProductAPI,
-        settings: IAppStateSetting,
+        settings: Omit<IAppStateSetting, 'onChange'>,
         Model: IAppStateConstructor
     ) {
         super();

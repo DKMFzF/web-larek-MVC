@@ -1,6 +1,7 @@
 import { IClickableEvent } from "../../../types/components/base/View";
 import { IProductData } from "../../../types/components/view/partial/Product";
-import { IProductViewingData, IProductViewingSettings } from "../../../types/components/view/screen/ProductViewing";
+import { IProductBasketData } from "../../../types/components/view/partial/ProductBasket";
+import { IPrewiewScreenData, IPrewiewScreenSettings } from "../../../types/components/view/screen/ProductViewing";
 import { SETTINGS } from "../../../utils/constants";
 import { cloneTemplate } from "../../../utils/html";
 import { Screen } from "../../base/Screen";
@@ -8,7 +9,7 @@ import { ModalView } from "../common/Modal";
 import { ProductView } from "../partial/Product";
 
 // модальное окно просмотра продукта
-export class ProductViewingScreen extends Screen<IProductViewingData, IProductViewingSettings> {
+export class PrewiewScreen extends Screen<IPrewiewScreenData, IPrewiewScreenSettings> {
     protected declare _modal: ModalView<IProductData>;
 
     init() {
@@ -23,7 +24,7 @@ export class ProductViewingScreen extends Screen<IProductViewingData, IProductVi
         });
     }
 
-    protected onAddProductInBasket({ item }: IClickableEvent<IProductData>) {
-        this.settings.addBasket(item);
+    protected onAddProductInBasket({ item }: IClickableEvent<IProductBasketData>) {
+        this.settings.addInBasket(item);
     }
 }

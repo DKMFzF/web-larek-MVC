@@ -2,8 +2,9 @@
 import { Controller } from "../base/Controller";
 import { EnumAppStateModals, IAppState } from "../../types/components/model/AppState";
 import { IContactsData } from "../../types/components/view/partial/Contact";
+import { IContactsFormSettings } from "../../types/components/view/screen/ContactsForm";
 
-export class ContactsController extends Controller<IAppState> {
+export class ContactsController extends Controller<IAppState> implements IContactsFormSettings{
     onChange = (value: IContactsData) => {
         this.model.fillContacts(value);
     }

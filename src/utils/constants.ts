@@ -99,5 +99,10 @@ export const SETTINGS: ISETTINGS = {
             'button',
             { className: 'button' }
         ],
-    }, 
+    },
+
+    appState: {
+		formatCurrency: (value: number) => `${value} рублей`,
+		storageKey: '',
+	},
 };
