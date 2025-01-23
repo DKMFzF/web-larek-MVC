@@ -13,7 +13,7 @@ export class CardView extends View<ICardData, ICardSettings> {
         this.settings.onClick({ event, item: this.id });
     }
 
-    set cover(value: string) {
+    set iamge(value: string) {
         this.setValue<HTMLImageElement>(this.settings.image, { src: value });
     }
 
@@ -23,7 +23,8 @@ export class CardView extends View<ICardData, ICardSettings> {
     }
 
     set price(value: number) {
-        this.setValue(this.settings.price, `${String(value)} синапсов`);
+        if (!value) this.setValue(this.settings.price, `Бесценно`);
+        else this.setValue(this.settings.price, `${String(value)} синапсов`);
     }
 
     set category(value: string) {
