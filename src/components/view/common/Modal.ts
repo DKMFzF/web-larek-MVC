@@ -37,7 +37,8 @@ export class ModalView<C> extends View<IModalData<C>, IModalSettings<C>> {
 
 	// установка контента в модальное окно
 	set content(data: C) {
-		this.setValue(this.settings.content,this.settings.contentView.render(data));
+		console.log('ТУТ');
+		this.setValue(this.settings.content, this.settings.contentView.render(data));
 	}
 
 	// Установка сообщения в модальное окно

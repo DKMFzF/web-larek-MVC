@@ -9,8 +9,8 @@ import {
 } from './ProductAPI';
 
 // краткое описание продукта для отображения в корзине
-export interface IProductBasket {
-    _id: TItemId;
+export type IProductBasket = {
+    id: TItemId;
     title: string;
     price: number | null;
 }
@@ -75,6 +75,10 @@ export interface IAppState {
     fillOrder(order: Partial<IOrderMethod>): void
 	fillContacts(contacts: Partial<IContacts>): void;
 	isValidContacts(): boolean;
+
+    // helpers
+    formatCurrency(value: number): string;
+    // formatProductDescription(ticket: IProductBasket): ;
 
     // Методы для работы с модальными окнами
 	openModal(modal: EnumAppStateModals): void;

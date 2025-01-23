@@ -44,10 +44,11 @@ export class ListView<T extends IItemData> extends View<IListData<T>, IListSetti
 			// Добавляем класс элемента
 			el.element.classList.add(this.settings.itemClass);
 
+			if (el.element.classList.contains('modal')) console.log('ХУЙ');
+
 			// Заполняем нужными данными и сохраняем в объекте
 			result[item.id] = el.render(item);
 
-			
 			// вынужденный говнокод TODO: обязательно исправить
 			if (el.element.classList.contains('gallery__item')) {
 				const cotegory = el.element.querySelector('.card__category');

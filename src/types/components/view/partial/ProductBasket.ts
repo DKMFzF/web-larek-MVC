@@ -3,7 +3,7 @@ import { IClickable } from '../../base/View';
 export interface IProductBasketData {
     id: string;
     title: string;
-    price: string;
+    price: number;
 }
 
 export interface IProductBasketSettings extends IClickable<IProductBasketData> {

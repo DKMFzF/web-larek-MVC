@@ -37,7 +37,7 @@ export class MainScreen extends Screen<IMainData, IMainSettings> {
 		this.settings.onOpenProduct(item);
 	}
 
-    set counter(value: string) {
+    set counter(value: number) {
         this.page.counter = value;
     }
 

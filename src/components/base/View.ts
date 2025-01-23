@@ -48,6 +48,7 @@ export abstract class View<T, S extends object> implements IView<T, S> {
 
 	// рендер, вызывается когда надо обновить отображение с данными
 	render(data: Partial<T>): HTMLElement {
+		console.log(data);
 		// Простая реализация рендера позволяющая, в том числе
 		// установить сеттеры для отдельных полей
 		// и вызывать их через поверхностное копирование.
@@ -57,6 +58,7 @@ export abstract class View<T, S extends object> implements IView<T, S> {
 			// главное это прописать тип данных для рендера в дочерних классах
 			Object.assign(this, data);
 		}
+		console.log(this.element);
 		return this.element;
 	}
 

@@ -7,7 +7,7 @@ import { IProductBasketData } from '../partial/ProductBasket';
 
 export interface IBasketData extends IModalScreenStatusIsActive, IModalScreenStatusIsDisabled {
     products: IProductBasketData[];
-    totlal: number;
+    totlal: string;
 }
 
 export interface IBasketSettings extends IModalScreenSettings {

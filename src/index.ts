@@ -17,6 +17,7 @@ import { SuccessScreen } from './components/view/screen/Success';
 import { ModalController } from './components/controller/Modal';
 import { PrewiewScreen } from './components/view/screen/ProductViewing';
 import { PrewiewController } from './components/controller/PrewiewController';
+import { TModalChange } from './types/components/model/AppStateEmitter';
 
 const api = new ProductAPI(CDN_URL, API_URL);
 const app = new AppStateEmitter(api, SETTINGS.appState, AppState);
@@ -33,6 +34,34 @@ const modal = {
 // срабатывает когда изменяется список продуктов
 app.on(EnumAppStateChanges.PRODUCTS, () => {
     main.items = Array.from(app.model.products.values());
+});
+
+// указываем состояние модального окна
+app.on<TModalChange>(EnumAppStateChanges.MODAL, ({ previous, current }) => {
+    main.page.isLocked = current !== EnumAppStateModals.NONE;
+    if (previous !== EnumAppStateModals.NONE) modal[previous].render({ isActive: false}); // рендеринг окна
+});
+
+// срабатывает когда обновляется состояние корзины
+// app.on(EnumAppStateChanges.BASKET, () => {
+//     main.counter = app.model.basket.size; // вносим изменения в счетчик
+    
+//     // вносим изменения в саму коризину
+//     modal[EnumAppStateModals.BASKET].render({
+//         products: Array.from(app.model.basket.values()),
+//     });
+// });
+
+// console.log(modal[EnumAppStateModals.BASKET]);
+
+// срабатывает когда открывается модальное окно корзины
+app.on(EnumAppStateModals.BASKET, () => {
+    modal[EnumAppStateModals.BASKET].render({
+        products: Array.from(app.model.basket.values()),
+        totlal: app.model.formatCurrency(app.model.basketTotal),
+        isDisabled: app.model.basket.size === 0,
+        isActive: true,
+    });
 });
 
 // загрузка продуктов

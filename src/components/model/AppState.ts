@@ -31,7 +31,9 @@ export class AppState implements IAppState {
         phone: ''
     }
 
+    // открытый на данный момент модуль
     openedModal: EnumAppStateModals = EnumAppStateModals.NONE;
+    
     modalMessage: string | null = null;
     isError: boolean = false;
 
@@ -64,7 +66,7 @@ export class AppState implements IAppState {
         return {
              ...this.contacts,
              total: this.basketTotal,
-             items: Array.from(this.basket.values()).map((product) => product._id)
+             items: Array.from(this.basket.values()).map((product) => product.id)
         }
     }
 
@@ -110,7 +112,7 @@ export class AppState implements IAppState {
             this.notifyChanged(EnumAppStateChanges.ORDER);
             this.basket.clear();
             for (const product of products) {
-                this.basket.set(product._id, product);
+                this.basket.set(product.id, product);
             }
             this.notifyChanged(EnumAppStateChanges.BASKET);
         } catch (err) {
@@ -135,11 +137,11 @@ export class AppState implements IAppState {
             this.notifyChanged(EnumAppStateChanges.SELECTED_PRODUCT);
             throw new Error(`[INVALID PRODUCT]: Product cannot be null or undefined`);
         }
-        if (this.products.has(product._id)) {
-            this.basket.set(product._id, product);
+        if (this.products.has(product.id)) {
+            this.basket.set(product.id, product);
             this.notifyChanged(EnumAppStateChanges.SELECTED_PRODUCT);
         }
-        else throw new Error(`[INVALIDE PRODUCT ID]: ${product._id} / ${product.title} / ${product.price}`);
+        else throw new Error(`[INVALIDE PRODUCT ID]: ${product.id} / ${product.title} / ${product.price}`);
     }
 
     removeProductInBasket(id: TItemId): void {
@@ -183,7 +185,9 @@ export class AppState implements IAppState {
 		this.notifyChanged(EnumAppStateChanges.MODAL_MESSAGE);
 	}
 
+    // метод открытия модального окна
     openModal(modal: EnumAppStateModals): void {
+        // console.log('AppState -> openModal');
         switch (modal) {
             // case EnumAppStateModals.CARD:
             //     if (!this._selectedProduct) throw new Error('[CARD NO SELECTED]');
@@ -195,12 +199,21 @@ export class AppState implements IAppState {
                 if (!this.contacts.address || this.contacts.email) throw new Error(`[NO SELECTED ADRRESS]`);
                 break;   
         }
-
         if (this.openedModal !== modal) {
             this.openedModal = modal;
-            this.notifyChanged(EnumAppStateChanges.MODAL);
+            // console.log(this.openedModal);
+            this.notifyChanged(EnumAppStateChanges.MODAL); // ВЫЗЫВАЕТСЯ ТОЛЬКО ПРИ ОТКРЫТИИ ОКНА
         }
     }
+
+    // helpers
+    formatCurrency(value: number) {
+        return this.settings.formatCurrency(value);
+    }
+
+    // formatungProductInProductView() {
+
+    // }
 
     // изменение состояния прилоежния
     protected notifyChanged(changed: EnumAppStateChanges): void {

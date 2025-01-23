@@ -7,6 +7,7 @@ import {
     EnumAppStateModals,
     EnumAppStateChanges
 } from '../../types/components/model/AppState';
+import { TModalChange } from '../../types/components/model/AppStateEmitter';
 
 /**
  * @class AppStateEmitter
@@ -30,12 +31,14 @@ export class AppStateEmitter extends EventEmitter {
     // метод для изменения модели
     protected onModelChange(changed: EnumAppStateChanges) {
 		if (changed === EnumAppStateChanges.MODAL) {
-			this.emit(changed, {
+            console.log(`${this.previousModal} предыдущее состояние`);
+            console.log(`${this.model.openedModal} текущее состояние`);
+			this.emit<TModalChange>(changed, {
 				previous: this.previousModal,
 				current: this.model.openedModal,
 			});
 			this.emit(this.model.openedModal, {});
-		} else {
+        } else {
 			this.emit(changed, {});
 		}
 		this.previousModal = this.model.openedModal;

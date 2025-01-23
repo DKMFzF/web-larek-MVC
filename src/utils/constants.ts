@@ -34,7 +34,7 @@ export const SETTINGS: ISETTINGS = {
     basketTemplate: '#basket',
     basketSettings: {
         activeItemClass: '',
-		itemClass: '.basket__item'
+		itemClass: 'basket__item'
     },
 
     productTemplate: '#card-preview',
@@ -80,7 +80,7 @@ export const SETTINGS: ISETTINGS = {
     modalSettings: {
 		close: '.modal__close',
 		content: '.modal__content',
-		activeClass: '.modal_active',
+		activeClass: 'modal_active',
 	},
 
     basketModal: {
@@ -102,7 +102,7 @@ export const SETTINGS: ISETTINGS = {
     },
 
     appState: {
-		formatCurrency: (value: number) => `${value} рублей`,
+		formatCurrency: (value: number) => `${value} синапсов`,
 		storageKey: '__products',
 	},
 };

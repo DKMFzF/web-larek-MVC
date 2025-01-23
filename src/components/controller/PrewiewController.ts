@@ -19,9 +19,9 @@ export class PrewiewController extends Controller<IAppState> implements IPrewiew
     // Если я не прав, то уничтожте меня аргументами (скорее всего я не прав xD)
     protected mapProductBasketDataToModel(data: IProductBasketData): IProductBasket {
         return {
-            _id: data.id,
+            id: data.id,
             title: data.title,
-            price: parseFloat(data.price) || null,
+            price: data.price || null,
         };
     }
 }

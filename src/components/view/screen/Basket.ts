@@ -27,13 +27,16 @@ export class BasketScreen extends ModalScreen<IListData<IProductBasketData>, IBa
 		this.settings.onRemove(item.id); // ссылается на абстракцию в интрефейсе метод onRemove (ссылается на id продукта)
 	}
 
+    // метод изменяет состояние корзины
     set productsBasket(products: IProductBasketData[]) {
+        console.log('ТАТ'); 
         this.modal.content = {
             items: products,
         };
         this.nextButton.disabled = !products.length;
     }
 
+    // изменения общего ценника
     set totalBasket(total: number) {
         this.modal.message = `${total} ${SETTINGS.basketModal.totalLabel}`;
     }
