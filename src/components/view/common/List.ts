@@ -42,8 +42,6 @@ export class ListView<T extends IItemData> extends View<IListData<T>, IListSetti
 			const el = this.settings.item.copy();
 			// Добавляем класс элемента
 			el.element.classList.add(this.settings.itemClass);
-			console.log(el);
-			console.log(item);
 			// Заполняем нужными данными и сохраняем в объекте
 			result[item.id] = el.render(item);
 			return result;

@@ -44,8 +44,4 @@ export class MainScreen extends Screen<IMainData, IMainSettings> {
     set items(value: ICardData[]) {
         this.cards.items = value;
     }
-
-    // set selected(value: IProductItem) {
-    //     this.cards.setActiveItem(value.id);
-    // }
 }

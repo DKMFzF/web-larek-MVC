@@ -22,12 +22,13 @@ export class ProductAPI extends Api implements IProductAPI {
     // загрузка всех продуктов
     async getProducts(): Promise<IProduct[]> {
         const data = await this.get<IApiListResponse<IProduct>>('/product/');
+        // изначально в image идёт .svg, меняем на .png + добалвляем сслыку 
+        data.items.map(product => product.image = `${this.cdn}${product.image.replace(/\.svg$/, '.png')}`);
         return data.items;
     }
 
     async getProduct(id: TItemId): Promise<IProduct> {
         const data = await this.get<IProduct>(`/product/${id}`);
-        console.log(data);
         return data;
     }
 

@@ -35,9 +35,9 @@ export class OrderView extends View<IOrderData, IOrderSettings> {
         const cardButton = this.ensure<HTMLButtonElement>(this.settings.card);
     
         if (cashButton.classList.contains('button_alt-active')) {
-            return 'online';
+            return 'card';
         } else if (cardButton.classList.contains('button_alt-active')) {
-            return 'upon receipt';
+            return 'cash';
         }
         return null; // Если ни один способ не выбран
     }

@@ -13,7 +13,7 @@ export interface IProduct {
     price: number | null;
 }
 
-export type TPaymentMethod = 'online' | 'upon receipt' | null;
+export type TPaymentMethod = 'card' | 'cash' | null;
 export interface IOrderMethod {
     payment: TPaymentMethod;
     address: string;

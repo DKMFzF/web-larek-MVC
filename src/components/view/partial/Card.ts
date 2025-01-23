@@ -13,7 +13,7 @@ export class CardView extends View<ICardData, ICardSettings> {
         this.settings.onClick({ event, item: this.id });
     }
 
-    set iamge(value: string) {
+    set image(value: string) {
         this.setValue<HTMLImageElement>(this.settings.image, { src: value });
     }
 

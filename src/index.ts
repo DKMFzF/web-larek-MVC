@@ -34,10 +34,11 @@ const modal = {
 
 // подписка на продукты
 app.on(EnumAppStateChanges.PRODUCTS, () => {
+    console.log(app.model.products.values());
     main.items = Array.from(app.model.products.values());
 });
 
 // загрузка продуктов
 app.model
     .laodProducts()
-    // .catch((err: string) => console.log(`Error: ${err}`));
+    .catch((err: string) => console.log(`Error: ${err}`));
