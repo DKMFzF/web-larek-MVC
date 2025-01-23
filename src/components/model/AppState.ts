@@ -98,7 +98,10 @@ export class AppState implements IAppState {
 
     // localStorage in website
     restoreState(): void {
-        if (!localStorage || !this.settings.storageKey) return;
+        if (!localStorage || !this.settings.storageKey) {
+            console.log('[NO LOCAL STORAGE]');
+            return;
+        };
         try {
             const state = localStorage.getItem(this.settings.storageKey);
             if (!state) return;

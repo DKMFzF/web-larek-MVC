@@ -17,7 +17,6 @@ import { SuccessScreen } from './components/view/screen/Success';
 import { ModalController } from './components/controller/Modal';
 import { PrewiewScreen } from './components/view/screen/ProductViewing';
 import { PrewiewController } from './components/controller/PrewiewController';
-import { ICardData } from './types/components/view/partial/Card';
 
 const api = new ProductAPI(CDN_URL, API_URL);
 const app = new AppStateEmitter(api, SETTINGS.appState, AppState);
@@ -30,15 +29,16 @@ const modal = {
     [EnumAppStateModals.CARD]: new PrewiewScreen(new PrewiewController(app.model))
 }
 
-// срабатывает когда изменяется список продуктов
-
 // подписка на продукты
+// срабатывает когда изменяется список продуктов
 app.on(EnumAppStateChanges.PRODUCTS, () => {
-    console.log(app.model.products.values());
     main.items = Array.from(app.model.products.values());
 });
 
 // загрузка продуктов
 app.model
     .laodProducts()
+    // .then(() => {
+    //     // app.model.restoreState();
+    // })
     .catch((err: string) => console.log(`Error: ${err}`));

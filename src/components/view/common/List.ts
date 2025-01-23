@@ -64,6 +64,9 @@ export class ListView<T extends IItemData> extends View<IListData<T>, IListSetti
 					case 'хард-скил':
 						cotegory.classList.add('card__category_hard');
 						break;
+					case 'кнопка':
+						cotegory.classList.add('card__category_button');
+						break;
 						
 				}
 			}

@@ -103,6 +103,6 @@ export const SETTINGS: ISETTINGS = {
 
     appState: {
 		formatCurrency: (value: number) => `${value} рублей`,
-		storageKey: '',
+		storageKey: '__products',
 	},
 };
