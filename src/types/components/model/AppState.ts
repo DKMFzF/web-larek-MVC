@@ -25,6 +25,7 @@ export enum EnumAppStateModals {
 	NONE = 'modal:none',
 }
 
+// TODO: исправить нейминг состояний
 // Какие изменения состояния приложения могут происходить
 export enum EnumAppStateChanges {
 	PRODUCTS = 'change:product',

@@ -11,7 +11,7 @@ export const SETTINGS: ISETTINGS = {
     // view settings
     gallerySelector: '.gallery',
 	gallerySettings: {
-		activeItemClass: '.gallery__item_active',
+		activeItemClass: 'gallery__item_active',
 		itemClass: 'gallery__item',
 	},
 
@@ -20,7 +20,7 @@ export const SETTINGS: ISETTINGS = {
         title: '.card__title',
         category: '.card__category',
         price: '.card__price',
-        cover: '.card__image',
+        image: '.card__image',
     },
 
     pageSelector: '.page',
@@ -40,7 +40,7 @@ export const SETTINGS: ISETTINGS = {
     productTemplate: '#card-preview',
 	productSettings: {
 		title: '.card__title',
-		cover: '.card__image',
+		image: '.card__image',
 		category: '.card__category',
 		price: '.card__price',
 		description: '.card__text',

@@ -27,6 +27,7 @@ export class AppStateEmitter extends EventEmitter {
         })
     }
 
+    // метод для изменения модели
     protected onModelChange(changed: EnumAppStateChanges) {
 		if (changed === EnumAppStateChanges.MODAL) {
 			this.emit(changed, {

@@ -39,10 +39,15 @@ export class ListView<T extends IItemData> extends View<IListData<T>, IListSetti
 	set items(items: T[]) {
 		this._elements = items.reduce<TElementsMap>((result, item) => {
 			// Копируем заранее настроенное отображение
+			console.log(result);
 			const el = this.settings.item.copy();
+			console.log(el);
+			// console.log(this.settings.item.copy());
 			// Добавляем класс элемента
 			el.element.classList.add(this.settings.itemClass);
 			// Заполняем нужными данными и сохраняем в объекте
+			// console.log(item);
+			console.log(el);
 			result[item.id] = el.render(item);
 			return result;
 		}, {});

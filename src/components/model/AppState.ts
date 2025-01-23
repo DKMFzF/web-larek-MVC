@@ -75,7 +75,7 @@ export class AppState implements IAppState {
         this.products.clear();
         const products: IProduct[] = await this.api.getProducts();
         for (const product of products) {
-            this.products.set(product._id, product);
+            this.products.set(product.id, product);
         }
         this.notifyChanged(EnumAppStateChanges.PRODUCTS);
     }

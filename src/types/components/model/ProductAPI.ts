@@ -5,9 +5,9 @@ export interface IApiListResponse<Type> {
 
 export type TItemId = string;
 export interface IProduct {
-    _id: TItemId;
+    id: TItemId;
     title: string;
-    cover: string;
+    image: string;
     category: string;
     description: string;
     price: number | null;

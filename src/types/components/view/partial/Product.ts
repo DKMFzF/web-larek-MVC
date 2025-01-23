@@ -5,7 +5,7 @@ export interface IProductData {
     category: string;
     description: string;
     price: number;
-    cover: string;
+    image: string;
 }
 
 export interface IProductSettings extends IClickable<IProductData>{
@@ -13,6 +13,6 @@ export interface IProductSettings extends IClickable<IProductData>{
     category: string;
     description: string;
     price: string;
-    cover: string;
+    image: string;
     addBasket: string;
 }

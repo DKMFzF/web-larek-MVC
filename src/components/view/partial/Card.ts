@@ -14,15 +14,16 @@ export class CardView extends View<ICardData, ICardSettings> {
     }
 
     set cover(value: string) {
-        this.setValue<HTMLImageElement>(this.settings.cover, { src: value });
+        this.setValue<HTMLImageElement>(this.settings.image, { src: value });
     }
 
     set title(value: string) {
         this.setValue(this.settings.title, value);
+        this.setValue<HTMLImageElement>(this.settings.image, { alt: value, });
     }
 
-    set price(value: string) {
-        this.setValue(this.settings.price, value);
+    set price(value: number) {
+        this.setValue(this.settings.price, `${String(value)} синапсов`);
     }
 
     set category(value: string) {

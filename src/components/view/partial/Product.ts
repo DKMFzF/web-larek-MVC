@@ -30,6 +30,6 @@ export class ProductView extends View<IProductData, IProductSettings> {
     }
 
     set cover(value: string) {
-        this.setValue(this.settings.cover, value);
+        this.setValue(this.settings.image, value);
     }
 }

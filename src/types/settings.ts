@@ -18,7 +18,7 @@ export interface ISETTINGS {
 	productTemplate: string;
 	productSettings: {
 		title: string;
-		cover: string;
+		image: string;
 		category: string;
 		price: string;
 		description: string;
@@ -65,7 +65,7 @@ export interface ISETTINGS {
 	cardTemplate: string;
 	cardSettings: {
 		title: string;
-		cover: string;
+		image: string;
 		category: string;
 		price: string;
 	};
