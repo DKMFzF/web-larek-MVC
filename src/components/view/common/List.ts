@@ -40,10 +40,34 @@ export class ListView<T extends IItemData> extends View<IListData<T>, IListSetti
 		this._elements = items.reduce<TElementsMap>((result, item) => {
 			// Копируем заранее настроенное отображение
 			const el = this.settings.item.copy();
+
 			// Добавляем класс элемента
 			el.element.classList.add(this.settings.itemClass);
+
 			// Заполняем нужными данными и сохраняем в объекте
 			result[item.id] = el.render(item);
+
+			
+			// вынужденный говнокод TODO: обязательно исправить
+			if (el.element.classList.contains('gallery__item')) {
+				const cotegory = el.element.querySelector('.card__category');
+				switch (cotegory.textContent) {
+					case 'софт-скил':
+						cotegory.classList.add('card__category_soft');
+						break;
+					case 'другое':
+						cotegory.classList.add('card__category_other');
+						break;
+					case 'дополнительное':
+						cotegory.classList.add('card__category_additional');
+						break;
+					case 'хард-скил':
+						cotegory.classList.add('card__category_hard');
+						break;
+						
+				}
+			}
+
 			return result;
 		}, {});
 		this.setValue(this.element, Object.values(this._elements));
