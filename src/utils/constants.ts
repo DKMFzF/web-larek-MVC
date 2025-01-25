@@ -33,8 +33,13 @@ export const SETTINGS: ISETTINGS = {
 
     basketTemplate: '#basket',
     basketSettings: {
+        title: '.basket__title',
+        list: '.basket__list',
+        button: '.basket__button',
+        price: '.basket__price',
+
         activeItemClass: '',
-		itemClass: 'basket__item'
+        itemClass: '.basket__item', // класс элементов корзины
     },
 
     productTemplate: '#card-preview',
@@ -68,6 +73,7 @@ export const SETTINGS: ISETTINGS = {
         phone: 'input["phone"]',
     },
 
+    // TODO: разобраться
     messageTemplate: '#success',
     messageSettings: {
         title: '.order-success__title',
@@ -78,10 +84,12 @@ export const SETTINGS: ISETTINGS = {
     // modal settings
     modalTemplate: '#modal',
     modalSettings: {
-		close: '.modal__close',
-		content: '.modal__content',
-		activeClass: 'modal_active',
-	},
+		close: '.modal__close', // класс кнопки закрытия
+		content: '.modal__content', // класс контента модального окна
+		activeClass: 'modal_active', // класс активного модального окна
+    },
+
+    // data modal
 
     basketModal: {
         title: 'Корзина',

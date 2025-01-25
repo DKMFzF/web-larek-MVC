@@ -11,6 +11,7 @@ import {
 // краткое описание продукта для отображения в корзине
 export type IProductBasket = {
     id: TItemId;
+    index: number;
     title: string;
     price: number | null;
 }

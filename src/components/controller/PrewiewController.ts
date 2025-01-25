@@ -20,6 +20,7 @@ export class PrewiewController extends Controller<IAppState> implements IPrewiew
     protected mapProductBasketDataToModel(data: IProductBasketData): IProductBasket {
         return {
             id: data.id,
+            index: data.index,
             title: data.title,
             price: data.price || null,
         };

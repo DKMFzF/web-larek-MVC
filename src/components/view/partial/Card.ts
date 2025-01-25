@@ -29,6 +29,5 @@ export class CardView extends View<ICardData, ICardSettings> {
 
     set category(value: string) {
         this.setValue(this.settings.category, value);
-        // console.log(this.settings.category + ' ' + 'hut' );
     }
 }

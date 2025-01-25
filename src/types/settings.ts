@@ -11,6 +11,13 @@ export interface ISETTINGS {
 
 	basketTemplate: string;
 	basketSettings: {
+		title: string;
+		list: string;
+		button: string;
+		price: string;
+
+		// message: string;
+
 		activeItemClass: string;
 		itemClass: string;
 	};
@@ -69,13 +76,13 @@ export interface ISETTINGS {
 		category: string;
 		price: string;
 	};
-	
+
 	// modal settings
 	modalTemplate: string;
     modalSettings: {
-		close: string;
-		content: string;
-		activeClass: string;
+		close: string; // кнопка закрытия модального окна
+		content: string; // контент модального окна
+		activeClass: string; // активный класс модального окна
 	};
 
 	basketModal: {

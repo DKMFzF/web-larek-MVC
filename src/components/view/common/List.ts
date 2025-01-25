@@ -50,30 +50,36 @@ export class ListView<T extends IItemData> extends View<IListData<T>, IListSetti
 			result[item.id] = el.render(item);
 
 			// вынужденный говнокод TODO: обязательно исправить
-			if (el.element.classList.contains('gallery__item')) {
-				const cotegory = el.element.querySelector('.card__category');
-				switch (cotegory.textContent) {
-					case 'софт-скил':
-						cotegory.classList.add('card__category_soft');
-						break;
-					case 'другое':
-						cotegory.classList.add('card__category_other');
-						break;
-					case 'дополнительное':
-						cotegory.classList.add('card__category_additional');
-						break;
-					case 'хард-скил':
-						cotegory.classList.add('card__category_hard');
-						break;
-					case 'кнопка':
-						cotegory.classList.add('card__category_button');
-						break;
-						
-				}
-			}
-
+			this.cardListCategoriySet(el.element);
+			
 			return result;
 		}, {});
 		this.setValue(this.element, Object.values(this._elements));
+	}
+
+	// TODO: переделеать, слишком сильная связь
+	// метод устанавливающий категорию карточки
+	protected cardListCategoriySet(element: HTMLElement): void {
+		if (element.classList.contains('gallery__item')) {
+			const cotegory = element.querySelector('.card__category');
+			switch (cotegory.textContent) {
+				case 'софт-скил':
+					cotegory.classList.add('card__category_soft');
+					break;
+				case 'другое':
+					cotegory.classList.add('card__category_other');
+					break;
+				case 'дополнительное':
+					cotegory.classList.add('card__category_additional');
+					break;
+				case 'хард-скил':
+					cotegory.classList.add('card__category_hard');
+					break;
+				case 'кнопка':
+					cotegory.classList.add('card__category_button');
+					break;
+					
+			}
+		}
 	}
 }

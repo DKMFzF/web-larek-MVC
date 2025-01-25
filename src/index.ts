@@ -13,34 +13,37 @@ import { OrderFormScreen } from './components/view/screen/OrderForm';
 import { OrderController } from './components/controller/Order';
 import { ContactsFormScreen } from './components/view/screen/ContactsForm';
 import { ContactsController } from './components/controller/Contacts';
-import { SuccessScreen } from './components/view/screen/Success';
+// import { SuccessScreen } from './components/view/screen/Success';
 import { ModalController } from './components/controller/Modal';
-import { PrewiewScreen } from './components/view/screen/ProductViewing';
+// import { PrewiewScreen } from './components/view/screen/ProductViewing';
 import { PrewiewController } from './components/controller/PrewiewController';
 import { TModalChange } from './types/components/model/AppStateEmitter';
 
-const api = new ProductAPI(CDN_URL, API_URL);
-const app = new AppStateEmitter(api, SETTINGS.appState, AppState);
+const api = new ProductAPI(CDN_URL, API_URL); 
+const app = new AppStateEmitter(api, SETTINGS.appState, AppState); // Брокер событий
 const main = new MainScreen(new MainController(app.model));
 const modal = {
     [EnumAppStateModals.BASKET]: new BasketScreen(new BasketController(app.model)),
-    [EnumAppStateModals.ORDER]: new OrderFormScreen(new OrderController(app.model)),
-    [EnumAppStateModals.CONTACTS]: new ContactsFormScreen(new ContactsController(app.model)),
-    [EnumAppStateModals.SUCCESS]: new SuccessScreen(new ModalController(app.model)),
-    [EnumAppStateModals.CARD]: new PrewiewScreen(new PrewiewController(app.model))
+
+    // [EnumAppStateModals.ORDER]: new OrderFormScreen(new OrderController(app.model)),
+    // [EnumAppStateModals.CONTACTS]: new ContactsFormScreen(new ContactsController(app.model)),
+
+    // TODO: ошибка с action
+    // [EnumAppStateModals.SUCCESS]: new SuccessScreen(new ModalController(app.model)),
+    // [EnumAppStateModals.CARD]: new PrewiewScreen(new PrewiewController(app.model))
 }
 
 // подписка на продукты
 // срабатывает когда изменяется список продуктов
-app.on(EnumAppStateChanges.PRODUCTS, () => {
-    main.items = Array.from(app.model.products.values());
-});
+// app.on(EnumAppStateChanges.PRODUCTS, () => {
+//     main.items = Array.from(app.model.products.values());
+// });
 
 // указываем состояние модального окна
-app.on<TModalChange>(EnumAppStateChanges.MODAL, ({ previous, current }) => {
-    main.page.isLocked = current !== EnumAppStateModals.NONE;
-    if (previous !== EnumAppStateModals.NONE) modal[previous].render({ isActive: false}); // рендеринг окна
-});
+// app.on<TModalChange>(EnumAppStateChanges.MODAL, ({ previous, current }) => {
+//     main.page.isLocked = current !== EnumAppStateModals.NONE;
+//     if (previous !== EnumAppStateModals.NONE) modal[previous].render({ isActive: false}); // рендеринг окна
+// });
 
 // срабатывает когда обновляется состояние корзины
 // app.on(EnumAppStateChanges.BASKET, () => {
@@ -54,6 +57,33 @@ app.on<TModalChange>(EnumAppStateChanges.MODAL, ({ previous, current }) => {
 
 // console.log(modal[EnumAppStateModals.BASKET]);
 
+// app.on(EnumAppStateChanges.BASKET, () => {
+//     main.counter = app.model.basket.size;
+
+//     modal[EnumAppStateModals.BASKET].
+// });
+
+
+
+// id: TItemId;
+// index: number;
+// title: string;
+// price: number | null;
+
+app.model.basket.set('хеш1', {
+    id: 'хеш1',
+    index: 1,
+    title: 'Моржевый хуй',
+    price: 100,
+});
+
+app.model.basket.set('хеш2', {
+    id: 'хеш2',
+    index: 2,
+    title: 'Моржевый хуй 2',
+    price: 500,
+});
+
 // срабатывает когда открывается модальное окно корзины
 app.on(EnumAppStateModals.BASKET, () => {
     modal[EnumAppStateModals.BASKET].render({
@@ -65,9 +95,9 @@ app.on(EnumAppStateModals.BASKET, () => {
 });
 
 // загрузка продуктов
-app.model
-    .laodProducts()
-    // .then(() => {
-    //     // app.model.restoreState();
-    // })
-    .catch((err: string) => console.log(`Error: ${err}`));
+// app.model
+//     .laodProducts()
+//     // .then(() => {
+//     //     // app.model.restoreState();
+//     // })
+//     .catch((err: string) => console.log(`Error: ${err}`));

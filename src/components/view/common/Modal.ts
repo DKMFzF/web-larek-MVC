@@ -2,18 +2,23 @@ import { View } from '../../base/View';
 import { IModalData, IModalSettings } from '../../../types/components/view/common/Modal';
 
 /**
- * @class ModalView - Отображение модального окна
+ * @class ModalView - Класс реализации отображения модального окна
  */
 export class ModalView<C> extends View<IModalData<C>, IModalSettings<C>> {
 	// модальное окно, которое сейчас открыто, оно всегда одно
 	protected static _openedModal: ModalView<unknown> | null = null;
 
+	// initContent() {}
+
+	// основные действия с Modal задаются при инициализации
 	protected init() {
+		// TODO: сделать закрытие на клавишу Esc
+
 		// слушаем клик по иконке закрыть
-		this.ensure(this.settings.close).addEventListener('click', this.onCloseHandler.bind(this));
+		this.ensure(this.settings.close).addEventListener('click', this.onCloseHandler.bind(this)); // работает
 
 		// клик по оверлею тоже закрывает модальное окно
-		this.element.addEventListener('click', this.onCloseHandler.bind(this));
+		this.element.addEventListener('click', this.onCloseHandler.bind(this)); // работает
 	}
 
 	// метод закрываший модальное окно
@@ -27,6 +32,7 @@ export class ModalView<C> extends View<IModalData<C>, IModalSettings<C>> {
 		if (ModalView._openedModal === this) ModalView._openedModal = null;
 	}
 
+	// метод открытия модального окна
 	protected onOpenHandler() {
 		if (ModalView._openedModal) ModalView._openedModal.isActive = false;
 		ModalView._openedModal = this;
@@ -35,29 +41,29 @@ export class ModalView<C> extends View<IModalData<C>, IModalSettings<C>> {
 		this.settings.onOpen?.();
 	}
 
-	// установка контента в модальное окно
+	// установка контента в модальное окно TODO: контент не устанавливается
 	set content(data: C) {
-		console.log('ТУТ');
-		this.setValue(this.settings.content, this.settings.contentView.render(data));
+		console.log('Хуятина в Modal');
+		this.setValue(
+			this.settings.content, // заносятся парамерты
+			this.settings.contentView.render(data) // рендеринг
+		);
 	}
 
 	// Установка сообщения в модальное окно
-	set message(value: string | undefined) {
-		if (value) {
-			this.setValue(this.settings.message, value);
-			this.setVisibility(this.settings.message, true);
-		} else {
-			this.setVisibility(this.settings.message, false);
-		}
-	}
+	// set message(value: string | undefined) {
+	// 	if (value) {
+	// 		this.setValue(this.settings.message, value);
+	// 		this.setVisibility(this.settings.message, true);
+	// 	} else {
+	// 		this.setVisibility(this.settings.message, false);
+	// 	}
+	// }
 
 	// установка ошибки
-	set isError(state: boolean) {
-		this.ensure(this.settings.message).classList.toggle(
-			this.settings.messageErrorClass,
-			!!state
-		);
-	}
+	// set isError(state: boolean) {
+	// 	this.ensure(this.settings.message).classList.toggle(this.settings.messageErrorClass, !!state);
+	// }
 
 	// Открытие и закрытие модального окна
 	set isActive(state: boolean) {

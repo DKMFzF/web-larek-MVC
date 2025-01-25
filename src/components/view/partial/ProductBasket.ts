@@ -18,12 +18,16 @@ export class ProductBasketView extends View<IProductBasketData, IProductBasketSe
 		this.settings.onClick({ event, item: this._item }); // ссылается на функцию onClick в интрефейсус IClickable с типом IClickableEvent 
 	}
 
+    set index(value: number) {
+        this.setValue(this.settings.index, String(value));
+    }
+
     set title(value: string) {
         this.setValue(this.settings.title, value);
     }
 
-    set price(value: string) {
-        this.setValue(this.settings.price, value);
+    set price(value: number) {
+        this.setValue(this.settings.price, String(value));
     }
 
     render(data: IProductBasketData) {

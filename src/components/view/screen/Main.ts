@@ -23,6 +23,8 @@ export class MainScreen extends Screen<IMainData, IMainSettings> {
         // создание списка карточек товаров
         this.cards = new ListView<ICardData>(ensureElement(SETTINGS.gallerySelector), {
             ...SETTINGS.gallerySettings,
+
+            // Клонирует темплейт
             item: new CardView(cloneTemplate(SETTINGS.cardTemplate), {
                 ...SETTINGS.cardSettings,
                 onClick: this.onSelectProductHandler.bind(this)

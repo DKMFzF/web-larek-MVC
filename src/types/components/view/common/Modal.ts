@@ -2,19 +2,20 @@ import { IView } from '../../base/View';
 
 export interface IModalData<C> {
 	content: C;
-	message?: string;
 	isActive: boolean;
-	isError?: boolean;
 }
 
 export interface IModalSettings<C> {
-	close: string;
-	content: string;
-	contentView: IView<C>;
-	actions: HTMLElement[];
-	activeClass: string;
-	message?: string;
-	messageErrorClass?: string;
+	close: string; // элемент закрытия модального окна
+	content: string; // контент
+	activeClass: string; // активный класс для открытия
+	// message: string;
+
+	// отображение
+	contentView: IView<C>; // контентное отображение (передаётся в initContent())
+	// actions: HTMLElement[];
+	
+	// основные методы для работы с модальным окном
 	onOpen?: () => void;
 	onClose?: () => void;
 }

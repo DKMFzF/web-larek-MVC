@@ -5,11 +5,11 @@ import {
 } from './ModalScreen';
 import { IProductBasketData } from '../partial/ProductBasket';
 
-export interface IBasketData extends IModalScreenStatusIsActive, IModalScreenStatusIsDisabled {
+export interface IBasketScreenData extends IModalScreenStatusIsActive, IModalScreenStatusIsDisabled {
     products: IProductBasketData[];
     totlal: string;
 }
 
-export interface IBasketSettings extends IModalScreenSettings {
+export interface IBasketScreenSettings extends IModalScreenSettings {
     onRemove: (id: string) => void;
 }

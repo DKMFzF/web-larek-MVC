@@ -6,18 +6,21 @@ import { cloneTemplate } from '../../../utils/html';
 import { SETTINGS } from '../../../utils/constants';
 import { IProductBasketData } from '../../../types/components/view/partial/ProductBasket';
 import { ProductBasketView } from '../partial/ProductBasket';
-import { IClickableEvent } from '../../../types/components/base/View';
+import { IClickableEvent, IView } from '../../../types/components/base/View';
 
 /**
  * @class BasketScreen - реализация модального окна корзины
  */
 export class BasketScreen extends ModalScreen<IListData<IProductBasketData>, IBasketData, IBasketSettings> {
+    // тут долно быть создание Basket, basket состоит из List, который состоит из продукторв, от Basket тут только название
+    // по факту тут только реализация List с продуктами
     initContent() {
+        console.log(`BasketScreen -> initContent()`);
         return new ListView<IProductBasketData>(cloneTemplate(SETTINGS.basketTemplate), {
             ...SETTINGS.basketSettings,
             item: new ProductBasketView(cloneTemplate(SETTINGS.productBasketTemplate), {
                 ...SETTINGS.productBasketSettings,
-                onClick: this.onRemoveProduct.bind(this), // ставим на ProductBasketView листенер
+                onClick: this.onRemoveProduct.bind(this),
             }),
         });
     }
@@ -29,15 +32,13 @@ export class BasketScreen extends ModalScreen<IListData<IProductBasketData>, IBa
 
     // метод изменяет состояние корзины
     set productsBasket(products: IProductBasketData[]) {
-        console.log('ТАТ'); 
-        this.modal.content = {
-            items: products,
-        };
+        console.log(`BasketScreen -> set productsBasket(${products})`); // срабатывает когда включается render
+        this.modal.content = { items: products };
         this.nextButton.disabled = !products.length;
     }
 
     // изменения общего ценника
-    set totalBasket(total: number) {
-        this.modal.message = `${total} ${SETTINGS.basketModal.totalLabel}`;
-    }
+    // set totalBasket(total: number) {
+    //     this.modal.message = `${total} ${SETTINGS.basketModal.totalLabel}`;
+    // }
 }
