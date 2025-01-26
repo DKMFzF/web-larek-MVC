@@ -5,20 +5,12 @@ import { IModalData, IModalSettings } from '../../../types/components/view/commo
  * @class ModalView - Класс реализации отображения модального окна
  */
 export class ModalView<C> extends View<IModalData<C>, IModalSettings<C>> {
-	// модальное окно, которое сейчас открыто, оно всегда одно
 	protected static _openedModal: ModalView<unknown> | null = null;
 
-	// initContent() {}
-
-	// основные действия с Modal задаются при инициализации
 	protected init() {
 		// TODO: сделать закрытие на клавишу Esc
-
-		// слушаем клик по иконке закрыть
-		this.ensure(this.settings.close).addEventListener('click', this.onCloseHandler.bind(this)); // работает
-
-		// клик по оверлею тоже закрывает модальное окно
-		this.element.addEventListener('click', this.onCloseHandler.bind(this)); // работает
+		this.ensure(this.settings.close).addEventListener('click', this.onCloseHandler.bind(this)); // слушаем клик по иконке закрыть
+		this.element.addEventListener('click', this.onCloseHandler.bind(this)); // клик по оверлею тоже закрывает модальное окно
 	}
 
 	// метод закрываший модальное окно
@@ -43,27 +35,8 @@ export class ModalView<C> extends View<IModalData<C>, IModalSettings<C>> {
 
 	// установка контента в модальное окно TODO: контент не устанавливается
 	set content(data: C) {
-		console.log('Хуятина в Modal');
-		this.setValue(
-			this.settings.content, // заносятся парамерты
-			this.settings.contentView.render(data) // рендеринг
-		);
+		this.setValue(this.settings.content, this.settings.contentView.render(data));
 	}
-
-	// Установка сообщения в модальное окно
-	// set message(value: string | undefined) {
-	// 	if (value) {
-	// 		this.setValue(this.settings.message, value);
-	// 		this.setVisibility(this.settings.message, true);
-	// 	} else {
-	// 		this.setVisibility(this.settings.message, false);
-	// 	}
-	// }
-
-	// установка ошибки
-	// set isError(state: boolean) {
-	// 	this.ensure(this.settings.message).classList.toggle(this.settings.messageErrorClass, !!state);
-	// }
 
 	// Открытие и закрытие модального окна
 	set isActive(state: boolean) {

@@ -27,14 +27,10 @@ export class ContactsView extends View<IContactsData, IContactsSettings> {
 	}
 	
 	set email(value: string) {
-    	this.setValue<HTMLInputElement>(this.settings.email, {
-    		value,
-    	});
+    	this.setValue<HTMLInputElement>(this.settings.email, { value, });
     }
 
 	set phone(value: string) {
-		this.setValue<HTMLInputElement>(this.settings.phone, {
-			value,
-		});
+		this.setValue<HTMLInputElement>(this.settings.phone, { value, });
 	}
 }

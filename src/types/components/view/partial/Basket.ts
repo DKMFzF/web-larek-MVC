@@ -1,9 +1,9 @@
-import { IClickable } from "../../base/View";
+// import { IClickable } from "../../base/View";
 
-export interface BasketData {
+// export interface BasketData {
 
-}
+// }
 
-export interface basketSettings extends IClickable<BasketData> {
+// export interface basketSettings extends IClickable<BasketData> {
     
-}
+// }

@@ -13,7 +13,7 @@ export interface ISETTINGS {
 	basketSettings: {
 		title: string;
 		list: string;
-		button: string;
+		action: string;
 		price: string;
 
 		// message: string;

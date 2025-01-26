@@ -15,75 +15,37 @@ import { IModalScreenSettings } from '../../../types/components/view/screen/Moda
  * S - настройки экрана (обработчик событий)
  */
 export abstract class ModalScreen<M, C, S extends IModalScreenSettings> extends Screen<C, S> {
-	protected declare modal: ModalView<M>; // Тут будет храниться модальное окно
-	
-	// кнопка "Далее"
+	protected declare modal: ModalView<M>;
 	protected declare nextButton: HTMLButtonElement; // TODO: не рендароиться
+	abstract initContent(): IView<M>;
 
-	// Абстрактные метод для реализации в дочерних классах
-	// реализация initModelScreenContent() для реализации в дочерних классах
-	abstract initContent(): IView<M>; // тут будут баскет, ордер и тд. (контент модального окна)
-
-	// Переопределенный init() для инициализации модального окна
 	protected init() {
-
-		// Очень странная инициализация
-		this.nextButton = this.getNextButton(
-			SETTINGS.basketModal,
-			this.settings.onNext
-		);
-		
 		this.modal = this.getModalView({ contentView: this.initContent() }, this.settings.onClose); // инициализация модального окна
-		
-		this.element = this.modal.element;
+		this.element = this.modal.element; // передача заполненного элемента в основной элемент
 	}
 
-	// Вспомогательные методы
-
 	// TODO: этот метод должен быть на уровне реализации отбедельных модальных окон
-	protected getNextButton(
-        settings: { 
-			nextLabel: string; 
-			nextSettings: TElementCreator 
-		},
-		onClick: () => void
-	) {
-		return ButtonView.make<HTMLButtonElement>(
-			settings.nextLabel,
-			settings.nextSettings,
-			onClick
-		);
+	protected getNextButton(settings: { nextLabel: string; nextSettings: TElementCreator }, onClick: () => void) {
+		return ButtonView.make<HTMLButtonElement>(settings.nextLabel, settings.nextSettings, onClick);
 	}
 
 	// клонирование базового модального окна
 	protected getModalView(settings: { contentView: IView<M> }, onClose: () => void) {
-		return new ModalView<M>(cloneTemplate(SETTINGS.modalTemplate), {
-				...SETTINGS.modalSettings,
-				...settings,
-				onClose,
-			}
-		);
+		// создание экземпляра модального окна с темплейта и настройками включающие контент и обработчик закрытия
+		return new ModalView<M>(cloneTemplate(SETTINGS.modalTemplate), { 
+			...SETTINGS.modalSettings, 
+			...settings, 
+			onClose, 
+		});
 	}
 
-	// Методы установки данных
-
 	set content(value: M) {
-		console.log('ModalScreen -> set content');
 		this.modal.content = value;
 	}
 
 	set isActive(value: boolean) {
 		this.modal.isActive = value;
 	}
-
-	// Убраны по причине ненужности
-	// set message(value: string) {
-	// 	this.modal.message = value;
-	// }
-
-	// set isError(value: boolean) {
-	// 	this.modal.isError = value;
-	// }
 
 	set isDisabled(state: boolean) {
 		this.nextButton.disabled = state;

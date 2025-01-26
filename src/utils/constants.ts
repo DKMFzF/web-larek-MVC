@@ -33,13 +33,13 @@ export const SETTINGS: ISETTINGS = {
 
     basketTemplate: '#basket',
     basketSettings: {
-        title: '.basket__title',
+        title: '.modal__title',
         list: '.basket__list',
-        button: '.basket__button',
+        action: '.basket__button',
         price: '.basket__price',
 
         activeItemClass: '',
-        itemClass: '.basket__item', // класс элементов корзины
+        itemClass: 'basket__item', // класс элементов корзины
     },
 
     productTemplate: '#card-preview',

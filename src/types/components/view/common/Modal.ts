@@ -13,8 +13,7 @@ export interface IModalSettings<C> {
 
 	// отображение
 	contentView: IView<C>; // контентное отображение (передаётся в initContent())
-	// actions: HTMLElement[];
-	
+
 	// основные методы для работы с модальным окном
 	onOpen?: () => void;
 	onClose?: () => void;

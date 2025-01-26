@@ -211,10 +211,6 @@ export class AppState implements IAppState {
         return this.settings.formatCurrency(value);
     }
 
-    // formatungProductInProductView() {
-
-    // }
-
     // изменение состояния прилоежния
     protected notifyChanged(changed: EnumAppStateChanges): void {
 		this.settings.onChange(changed);

@@ -56,7 +56,6 @@ export abstract class View<T, S extends object> implements IView<T, S> {
 			// но при правильной типизации в TS можем себе позволить
 			// главное это прописать тип данных для рендера в дочерних классах
 			Object.assign(this, data);
-			// console.log(data);
 		}
 		return this.element;
 	}
@@ -129,7 +128,6 @@ export abstract class View<T, S extends object> implements IView<T, S> {
 		query: TSelectorElement<T>,
 		value: TElementValue<T>
 	) {
-		console.log('ХУЯТИНА');
 		const el = query instanceof HTMLElement ? query : this.ensure(query);
 		if (typeof value === 'string') el.textContent = value;
 		else if (isChildElement(value)) setElementChildren(el, value);
