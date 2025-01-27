@@ -1,21 +1,20 @@
+import { ListView } from "../../../../components/view/common/List";
 import { IView } from "../../base/View";
 import { IListData } from "../common/List";
 import { IProductBasketData } from "./ProductBasket";
 
 export interface IBasketData {
     title: string;
-    products: IListData<IProductBasketData>;
+    products: IProductBasketData[];
     total: string;
 }
 
 export interface IBasketSettings<T> {
     title: string;
-    basketList: string;
     total: string;
     nextButton: string;
-
-    // isDisabled: boolean;
-    // actions: HTMLButtonElement;
-
-    basketListView: IView<T>;
+    basketListView: {
+        basketList: string;
+        basketListContent: IView<T>;
+    }
 }

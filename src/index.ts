@@ -95,9 +95,7 @@ app.on(EnumAppStateModals.BASKET, () => {
     modal[EnumAppStateModals.BASKET].render({
         basket: {
             title: SETTINGS.basketModal.title,
-            products: {
-                items:  Array.from(app.model.basket.values()),
-            },
+            products: Array.from(app.model.basket.values()),
             total: app.model.formatCurrency(app.model.basketTotal),
         },
         isDisabled: app.model.basket.size === 0,

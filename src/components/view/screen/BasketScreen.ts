@@ -8,7 +8,6 @@ import { ProductBasketView } from '../partial/ProductBasket';
 import { IClickableEvent } from '../../../types/components/base/View';
 import { BasketView } from '../partial/Basket';
 import { IBasketData } from '../../../types/components/view/partial/Basket';
-import { IListData } from '../../../types/components/view/common/List';
 
 /**
  * @class BasketScreen - реализация модального окна корзины
@@ -28,14 +27,16 @@ export class BasketScreen extends ModalScreen<IBasketData, IBasketScreenData, IB
 
         this.basketContent = new BasketView(templatebasket, {
             title: SETTINGS.basketSettings.title,
-            basketList: contentListClass,
-            basketListView: new ListView<IProductBasketData>(templatebasket.querySelector(contentListClass), {
-                ...SETTINGS.basketSettings.list,
-                item: new ProductBasketView(cloneTemplate(SETTINGS.productBasketTemplate), {
-                    ...SETTINGS.productBasketSettings,
-                    onClick: this.onRemoveProduct.bind(this)
-                }),
-            }),
+            basketListView: {
+                basketList: SETTINGS.basketSettings.basketList,
+                basketListContent: new ListView<IProductBasketData>(templatebasket.querySelector(contentListClass), {
+                    ...SETTINGS.basketSettings.list,
+                    item: new ProductBasketView(cloneTemplate(SETTINGS.productBasketTemplate), {
+                        ...SETTINGS.productBasketSettings,
+                        onClick: this.onRemoveProduct.bind(this)
+                    }),
+                })
+            },
             nextButton: SETTINGS.basketSettings.nextButton,
             total: SETTINGS.basketSettings.total,
         });
@@ -49,7 +50,7 @@ export class BasketScreen extends ModalScreen<IBasketData, IBasketScreenData, IB
 	}
 
     set basket(basket: IBasketData) {
-        this.nextButton.disabled = !basket.products.items.length;
+        this.nextButton.disabled = !basket.products.length;
         this.modal.content = basket;
     }
 }
