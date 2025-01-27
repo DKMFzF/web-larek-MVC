@@ -27,7 +27,7 @@ export class ProductBasketView extends View<IProductBasketData, IProductBasketSe
     }
 
     set price(value: number) {
-        this.setValue(this.settings.price, String(value));
+        this.setValue(this.settings.price, String(value) + ' синапсов');
     }
 
     render(data: IProductBasketData) {

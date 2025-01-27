@@ -1,15 +1,17 @@
 import { 
     IModalScreenStatusIsActive,
     IModalScreenStatusIsDisabled,
-    IModalScreenSettings
+    IModalScreenSettings,
+    INextButton
 } from './ModalScreen';
+import { IBasketData } from '../partial/Basket';
 import { IProductBasketData } from '../partial/ProductBasket';
+import { IListData } from '../common/List';
 
-export interface IBasketData extends IModalScreenStatusIsActive, IModalScreenStatusIsDisabled {
-    products: IProductBasketData[];
-    totlal: number;
+export interface IBasketScreenData extends IModalScreenStatusIsActive, IModalScreenStatusIsDisabled, INextButton {
+    basket: IBasketData;
 }
 
-export interface IBasketSettings extends IModalScreenSettings {
+export interface IBasketScreenSettings extends IModalScreenSettings {
     onRemove: (id: string) => void;
 }

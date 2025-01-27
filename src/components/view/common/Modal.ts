@@ -1,5 +1,6 @@
 import { View } from '../../base/View';
 import { IModalData, IModalSettings } from '../../../types/components/view/common/Modal';
+import { BasketScreen } from '../screen/BasketScreen';
 
 /**
  * @class ModalView - Класс реализации отображения модального окна
@@ -33,8 +34,10 @@ export class ModalView<C> extends View<IModalData<C>, IModalSettings<C>> {
 		this.settings.onOpen?.();
 	}
 
-	// установка контента в модальное окно TODO: контент не устанавливается
-	set content(data: C) {
+	// установка контента в модальное окно
+	set content(data: C) {		
+		this.settings.contentView.element.querySelector('button').replaceWith(this.settings.actions);
+
 		this.setValue(this.settings.content, this.settings.contentView.render(data));
 	}
 

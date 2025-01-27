@@ -41,7 +41,7 @@
 	</div>
 
 	<!-- modale_active -->
-	<!-- TODO: базовое окно для модальных окон -->
+	<!-- сделал его темплейтом для удобства :) -->
 	<template id="modal">
 		<div class="modal" >
 			<div class="modal__container">
@@ -103,9 +103,9 @@
 	<!-- TODO: карточки в корзине -->
 	<template id="card-basket">
 		<li class="basket__item card card_compact">
-			<span class="basket__item-index">1</span>
-			<span class="card__title">Фреймворк куки судьбы</span>
-			<span class="card__price">2500 синапсов</span>
+			<span class="basket__item-index"></span>
+			<span class="card__title"></span>
+			<span class="card__price"></span>
 
 			<!-- кнопка -->
 			<button class="basket__item-delete card__button" aria-label="удалить"></button>
@@ -117,6 +117,7 @@
 		<div class="basket">
 			<h2 class="modal__title"></h2>
 			<ul class="basket__list"></ul>
+			<div class="basket__list"></div>
 			<div class="modal__actions">
 				<!-- кнопка + месседж -->
 				<button class="button basket__button"></button>
@@ -197,13 +198,19 @@
 	</div> -->
 
 	<!-- Модельное окно для отображения списка корзины -->
-	<!-- <div class="modal">
+	<!-- <div class="modal modal_active">
 		<div class="modal__container">
 			<button class="modal__close" aria-label="закрыть"></button>
 			<div class="modal__content">
 				<div class="basket">
 					<h2 class="modal__title"></h2>
 					<ul class="basket__list">
+						<li class="basket__item card card_compact">
+							<span class="basket__item-index">2</span>
+							<span class="card__title">+1 час в сутках</span>
+							<span class="card__price">750 синапсов</span>
+							<button class="basket__item-delete" aria-label="удалить"></button>
+						</li>
 					</ul>
 					<div class="modal__actions">
 						<button class="button"></button>

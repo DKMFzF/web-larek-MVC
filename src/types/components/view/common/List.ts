@@ -9,12 +9,10 @@ export interface IItemData {
 
 export interface IListData<T> {
     items: T[];
-    // message?: string;
 }
 
 export interface IListSettings<T> {
     item: IView<T, unknown>;
-    // message: string;
     activeItemClass: string;
     itemClass: string;
 }

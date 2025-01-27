@@ -34,12 +34,15 @@ export const SETTINGS: ISETTINGS = {
     basketTemplate: '#basket',
     basketSettings: {
         title: '.modal__title',
-        list: '.basket__list',
-        action: '.basket__button',
-        price: '.basket__price',
-
-        activeItemClass: '',
-        itemClass: 'basket__item', // класс элементов корзины
+        // contentList: '',
+        basketList: '.basket__list',
+        list: {
+            itemClass: 'basket__item',
+            activeItemClass: '',
+        },
+        nextButton: '.basket__button',
+        total: '.basket__price',
+        // itemClass: 'basket__item', // класс элементов корзины
     },
 
     productTemplate: '#card-preview',
@@ -93,12 +96,14 @@ export const SETTINGS: ISETTINGS = {
 
     basketModal: {
         title: 'Корзина',
-        nextLabel: 'Оформить',
+        nextButton: 'Оформить',
+
         nextSettings: [
             'button', 
-            { className: 'button'}
+            { className: 'button basket__button'}
         ],
-        totalLabel: 'синапсов'
+        
+        totalLabel: 'синапсов',
     },
 
     orderModal: {

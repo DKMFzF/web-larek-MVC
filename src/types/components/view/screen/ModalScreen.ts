@@ -11,6 +11,10 @@ export interface IModalScreenStatusIsDisabled {
     isDisabled: boolean;
 }
 
+export interface INextButton {
+    nextButton: HTMLElement[];
+}
+
 export interface IModalScreenChangeSettings<T> {
     onChange: (data: T) => void;
 }

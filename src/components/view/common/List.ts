@@ -37,6 +37,7 @@ export class ListView<T extends IItemData> extends View<IListData<T>, IListSetti
 	 * Обновляем отображение списка элементов
 	 */
 	set items(items: T[]) {
+		// console.log();
 		this._elements = items.reduce<TElementsMap>((result, item) => {
 			// Копируем заранее настроенное отображение
 			const el = this.settings.item.copy();

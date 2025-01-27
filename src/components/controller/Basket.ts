@@ -1,9 +1,9 @@
 import { EnumAppStateModals, IAppState } from "../../types/components/model/AppState";
 import { TItemId } from "../../types/components/model/ProductAPI";
-import { IBasketSettings } from "../../types/components/view/screen/Basket";
+import { IBasketScreenSettings } from "../../types/components/view/screen/Basket";
 import { Controller } from "../base/Controller";
 
-export class BasketController extends Controller<IAppState> implements IBasketSettings {
+export class BasketController extends Controller<IAppState> implements IBasketScreenSettings {
     onRemove = (id: TItemId) => {
         this.model.removeProductInBasket(id);
     }

@@ -16,7 +16,7 @@ import { IModalScreenSettings } from '../../../types/components/view/screen/Moda
  */
 export abstract class ModalScreen<M, C, S extends IModalScreenSettings> extends Screen<C, S> {
 	protected declare modal: ModalView<M>;
-	protected declare nextButton: HTMLButtonElement; // TODO: не рендароиться
+	protected abstract declare nextButton: HTMLButtonElement;
 	abstract initContent(): IView<M>;
 
 	protected init() {
@@ -24,17 +24,19 @@ export abstract class ModalScreen<M, C, S extends IModalScreenSettings> extends 
 		this.element = this.modal.element; // передача заполненного элемента в основной элемент
 	}
 
-	// TODO: этот метод должен быть на уровне реализации отбедельных модальных окон
 	protected getNextButton(settings: { nextLabel: string; nextSettings: TElementCreator }, onClick: () => void) {
-		return ButtonView.make<HTMLButtonElement>(settings.nextLabel, settings.nextSettings, onClick);
+		return ButtonView.make<HTMLButtonElement>(
+			settings.nextLabel, 
+			settings.nextSettings, 
+			onClick
+		);
 	}
-
-	// клонирование базового модального окна
+	
 	protected getModalView(settings: { contentView: IView<M> }, onClose: () => void) {
-		// создание экземпляра модального окна с темплейта и настройками включающие контент и обработчик закрытия
 		return new ModalView<M>(cloneTemplate(SETTINGS.modalTemplate), { 
 			...SETTINGS.modalSettings, 
-			...settings, 
+			...settings,
+			actions: this.nextButton, 
 			onClose, 
 		});
 	}
@@ -45,9 +47,5 @@ export abstract class ModalScreen<M, C, S extends IModalScreenSettings> extends 
 
 	set isActive(value: boolean) {
 		this.modal.isActive = value;
-	}
-
-	set isDisabled(state: boolean) {
-		this.nextButton.disabled = state;
 	}
 }

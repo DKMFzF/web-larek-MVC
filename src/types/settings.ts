@@ -12,14 +12,14 @@ export interface ISETTINGS {
 	basketTemplate: string;
 	basketSettings: {
 		title: string;
-		list: string;
-		action: string;
-		price: string;
-
-		// message: string;
-
-		activeItemClass: string;
-		itemClass: string;
+		// contentList: string;
+		basketList: string;
+		list: {
+			itemClass: string;
+			activeItemClass: string;
+		};
+		nextButton: string;
+		total: string;
 	};
 
 	productTemplate: string;
@@ -37,7 +37,6 @@ export interface ISETTINGS {
 		index: string;
 		title: string;
 		price: string;
-
 		delete: string;
 	};
 	
@@ -87,7 +86,7 @@ export interface ISETTINGS {
 
 	basketModal: {
 		title: string;
-		nextLabel: string;
+		nextButton: string;
 		nextSettings: TElementCreator; 
 		totalLabel: string;
 	};

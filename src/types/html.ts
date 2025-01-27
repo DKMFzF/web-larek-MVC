@@ -10,7 +10,8 @@ export type TElementAttrs =
 	| 'href'
 	| 'src'
 	| 'alt'
-	| 'dataset'; // ограничиваем, что можно настроить
+	| 'dataset'
+	| 'disabled'; // ограничиваем, что можно настроить
 
 	export type TElementProps<T extends HTMLElement> = Partial<
 	Record<keyof T, string | boolean | object>

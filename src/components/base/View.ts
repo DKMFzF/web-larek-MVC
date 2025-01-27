@@ -1,4 +1,5 @@
 import {
+	TElementAttrs,
 	TElementChild,
 	TElementProps,
 	TElementValue,
@@ -51,6 +52,8 @@ export abstract class View<T, S extends object> implements IView<T, S> {
 		// Простая реализация рендера позволяющая, в том числе
 		// установить сеттеры для отдельных полей
 		// и вызывать их через поверхностное копирование.
+		// console.log(data);
+		// console.log('Попало в render');
 		if (typeof data === 'object') {
 			// это не безопасная конструкция в JS,
 			// но при правильной типизации в TS можем себе позволить
@@ -130,7 +133,9 @@ export abstract class View<T, S extends object> implements IView<T, S> {
 	) {
 		const el = query instanceof HTMLElement ? query : this.ensure(query);
 		if (typeof value === 'string') el.textContent = value;
-		else if (isChildElement(value)) setElementChildren(el, value);
+		else if (isChildElement(value)) {
+			setElementChildren(el, value);
+		}
 		else if (isPlainObject(value)) {
 			setElementProps<T>(el, value as TElementProps<T>);
 		} else {
