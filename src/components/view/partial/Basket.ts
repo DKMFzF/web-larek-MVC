@@ -17,17 +17,15 @@ export class BasketView extends View<IBasketData, IBasketSettings<IListData<IPro
     set products(value: IProductBasketData[]) {
         console.log('ХУЙ в PRODUCTS');
 
-        const basketContent = this.settings.basketListView.basketListContent;
-        console.log(basketContent)
-        // value.forEach(prod =>  {
-        //     basketContent.render(prod);
-        // });
-
-        // this.setValue(
-        //     this.settings.basketListView.basketList, 
-        //     this.settings.basketListView.basketListContent.render(value)
-        // );
+        this.setValue(
+            this.settings.basketListView.basketList, 
+            this.settings.basketListView.basketListContent.render(this.dataListMappint(value)),
+        );
     }
+
+    protected dataListMappint(value: IProductBasketData[]): IListData<IProductBasketData> {
+        return { items: value, }
+    } 
 
     set total(value: number) {
         console.log('Хуй в TOTAL');
