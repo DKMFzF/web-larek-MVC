@@ -23,7 +23,7 @@ export class ProductAPI extends Api implements IProductAPI {
     async getProducts(): Promise<IProduct[]> {
         const data = await this.get('/product/') as ApiListResponse<IProduct>;
         // изначально в image идёт .svg, меняем на .png + добалвляем сслыку 
-        data.items.map(product => product.image = `${this.cdn}${product.image.replace(/\.svg$/, '.png')}`);
+        data.items.map(product => product.image = `${product.image.replace(/\.svg$/, '.png')}`);
         return data.items;
     }
 

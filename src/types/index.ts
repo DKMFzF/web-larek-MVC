@@ -1,4 +1,14 @@
-// основной продукт
+export type CategoryType =
+    | 'другое'
+    | 'софт-скил'
+    | 'дополнительное'
+    | 'кнопка'
+    | 'хард-скил';
+
+export type CategoryMapping = {
+    [Key in CategoryType]: string;
+};
+
 export interface IProduct {
     id: string;
     title: string;
@@ -8,6 +18,16 @@ export interface IProduct {
     price: number | null;
     selected: boolean;
 }
+
+// export interface IProductSettings {
+//     id: string;
+//     title: string;
+//     image: string;
+//     category: string;
+//     description: string;
+//     price: number | null;
+//     selected: boolean;
+// }
 
 // заполнения данных пользователя
 export type TPaymentMethod = 'card' | 'cash' | null;
@@ -65,8 +85,8 @@ export type IFormErrors = Partial<Record<keyof IOrder, string>>;
 
 // состояние приложения
 export interface IAppState {
-    products: Map<string, IProduct>;
-    basket: Map<string, IProduct>;
+    products: IProduct[];
+    basket: IProduct[];
     order: IOrder;
     formError: IFormErrors;
 

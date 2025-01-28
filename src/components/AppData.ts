@@ -1,4 +1,5 @@
 import {
+	CategoryType,
 	IAppState,
 	IFormErrors,
 	IOrder,
@@ -20,8 +21,8 @@ export class Product extends Model<IProduct> {
 
 // Класс управления приложением
 export class AppState extends Model<IAppState> {
-	products: Map<string, IProduct> = new Map<string, IProduct>();
-	basket: Map<string, IProduct> = new Map<string, IProduct>();
+	products: IProduct[];
+	basket: IProduct[] = [];
 	basketTotal: number = 0;
 	order: IOrder = {
 		payment: '',
@@ -33,24 +34,24 @@ export class AppState extends Model<IAppState> {
 	};
 	formError: IFormErrors = {};
 
-	addProductInBasket(product: IProduct) {
-		if (!this.basket.has(product.id)) {
-			this.products.set(product.id, product);
-			this.basketTotal += product.price != null ? product.price : 0;
-		}
-	}
+	// addProductInBasket(product: IProduct) {
+	// 	if (!this.basket.has(product.id)) {
+	// 		this.products.set(product.id, product);
+	// 		this.basketTotal += product.price != null ? product.price : 0;
+	// 	}
+	// }
 
-	deleteProductInBasket(id: string) {
-		if (this.basket.has(id)) {
-			this.basket.delete(id);
-			this.basketTotal -=
-				this.products.get(id).price != null ? this.products.get(id).price : 0;
-		} else return;
-	}
+	// deleteProductInBasket(id: string) {
+	// 	if (this.basket.has(id)) {
+	// 		this.basket.delete(id);
+	// 		this.basketTotal -=
+	// 			this.products.get(id).price != null ? this.products.get(id).price : 0;
+	// 	} else return;
+	// }
 
-	getAmountProductInBasket() {
-		return this.basket.size;
-	}
+	// getAmountProductInBasket() {
+	// 	return this.basket.size;
+	// }
 
 	getTotalPricteInBasket() {
 		return this.basketTotal;
@@ -86,10 +87,10 @@ export class AppState extends Model<IAppState> {
 		return Object.keys(err).length === 0;
 	}
 
-	clearBasket() {
-		this.basket.clear();
-		this.basketTotal = 0;
-	}
+	// clearBasket() {
+	// 	this.basket.clear();
+	// 	this.basketTotal = 0;
+	// }
 
 	refreshOrder() {
 		this.order = {
@@ -103,19 +104,8 @@ export class AppState extends Model<IAppState> {
 	}
 
 	setProducts(products: IProduct[]) {
-		products.forEach((product) =>
-			this.products.set(
-				product.id,
-				new Product(
-					{
-						...product,
-						selected: false,
-					},
-					this.events
-				)
-			)
-		);
-		this.emitChanges('items:changed', { store: this.products });
+		this.products = products.map((item) => new Product({ ...item, selected: false }, this.events));
+    	this.emitChanges('items:changed', { store: this.products });
 	}
 
     resetSelected() {
