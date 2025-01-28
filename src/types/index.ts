@@ -1,10 +1,3 @@
-export type TCategoryType =
-    | 'другое'
-    | 'софт-скил'
-    | 'дополнительное'
-    | 'кнопка'
-    | 'хард-скил';
-
 export interface IProduct {
     id: string;
     title: string;
@@ -52,6 +45,7 @@ export type IFormErrors = Partial<Record<keyof IOrder, string>>;
 export interface IAppState {
     products: Map<string, IProduct>;
     basket: Map<string, IProduct>;
+    basketTotal: number;
     order: IOrder;
     formError: IFormErrors;
 
@@ -60,9 +54,9 @@ export interface IAppState {
     // orderProducts(): Promise<IOrderResult>;    
 
     // method basket
-    // addProductInBasket(product: IProduct): void;
+    addProductInBasket(product: IProduct): void;
     // deleteProductInBasket(id: string): void;
-    // getAmountProductInBasket(): number;
+    getAmountProductInBasket(): number;
     getTotalPricteInBasket(): number;
 
     // method order

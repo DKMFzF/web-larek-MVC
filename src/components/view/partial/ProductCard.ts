@@ -1,8 +1,14 @@
 import { View } from '../../base/View';
 import { ensureElement, handlePrice } from '../../../utils/utils';
-import { CDN_URL, SETTINGS } from '../../../utils/constants';
-import { categoryCheck } from '../../../utils/constants';
-import { TCategoryType } from '../../../types';
+import { SETTINGS } from '../../../utils/constants';
+
+export const categoryCheck: Record<string, string> = {
+  'другое': 'card__category_other',
+  'софт-скил': 'card__category_soft',
+  'дополнительное': 'card__category_additional',
+  'кнопка': 'card__category_button',
+  'хард-скил': 'card__category_hard',
+}
 
 interface ICardActions {
   onClick: (event: MouseEvent) => void;
@@ -73,7 +79,7 @@ export class ProductCardView extends View<IProductCardView> {
     if (this._button && !value) this._button.disabled = true;
   }
 
-  set category(value: TCategoryType) {
+  set category(value: string) {
     this._category.textContent = value;
     this._category.classList.add(categoryCheck[value]);
   }

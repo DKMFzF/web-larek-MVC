@@ -50,6 +50,18 @@ export class AppState extends Model<IAppState> implements IAppState {
 		return this.api.getProducts()
 	}
 
+	// basket
+	addProductInBasket(product: IProduct): void {
+		if (!product) throw new Error(`[INVALID PRODUCT]`);
+		if (this.products.has(product.id)) this.basket.set(product.id, product);
+		else throw new Error(`[INVALIDE PRODUCT ID]`);
+		console.log(this.basket);
+	}
+
+	getAmountProductInBasket(): number {
+		return this.basket.size;
+	}
+
 	getTotalPricteInBasket() {
 		return this.basketTotal;
 	}

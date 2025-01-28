@@ -68,12 +68,14 @@ events.on(AppStateComponents.PRODUCT.SELECT, (item: IProduct) => {
     });
   });
 
-// events.on('card:toBasket', (item: IProduct) => {
-//     item.selected = true;
-//     app.addToBasket(item);
-//     page.counter = appData.getBasketAmount();
-//     modal.close();
-// })
+// добавляем product в basket 
+events.on(AppStateComponents.PRODUCT.TO_BASKET, (item: IProduct) => {
+    item.selected = true;
+    app.addProductInBasket(item);
+    app.basketTotal += item.price;
+    main.counter = app.getAmountProductInBasket();
+    modal.close();
+})
 
 // при закрытии модалки прокрутка разрешается
 events.on(AppStateComponents.MODAL.CLOSE, () => {

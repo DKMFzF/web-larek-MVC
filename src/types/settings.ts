@@ -16,6 +16,14 @@ export interface ISETTINGS {
         content: string;
     }
 
+    // basket
+    basketTemplate: string;
+    basketSettings: {
+        button: string;
+        total: string;
+        list: string;
+    }
+
     // product-card
     productCardPreviewTemplate: string;
     productCardMainTemplate: string;
@@ -26,5 +34,9 @@ export interface ISETTINGS {
         price: string;
         button: string;
         text: string;
+    }
+    productBasketSettings: {
+        id: string;
+        buttonDelete: string;
     }
 }

@@ -1,17 +1,8 @@
-import { TCategoryType } from '../types';
 import { ISETTINGS,  } from '../types/settings';
 
 export const API_URL = `${process.env.API_ORIGIN}/api/weblarek`;
 export const CDN_URL = `${process.env.API_ORIGIN}/content/weblarek`;
 export const DEVELOPMENT = process.env.NODE_ENV === 'development';
-
-export const categoryCheck: Record<TCategoryType, string> = {
-    'другое': 'card__category_other',
-    'софт-скил': 'card__category_soft',
-    'дополнительное': 'card__category_additional',
-    'кнопка': 'card__category_button',
-    'хард-скил': 'card__category_hard',
-}
 
 export const AppStateComponents = {
     MODAL: {
@@ -39,6 +30,14 @@ export const SETTINGS: ISETTINGS = {
         basket: '.header__basket',
     },
 
+    // basket
+    basketTemplate: '',
+    basketSettings: {
+        button: '.basket__button',
+        total: '.basket__price',
+        list: '.basket__list',
+    },
+
     // modal
     modalContainer: '#modal-container', 
     modalSettings: {
@@ -58,4 +57,8 @@ export const SETTINGS: ISETTINGS = {
         button: '.card__button',
         text: '.card__text',
     },
+    productBasketSettings: {
+        id: '.basket__item-index',
+        buttonDelete: '.basket__item-delete',
+    }
 };
