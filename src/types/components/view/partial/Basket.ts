@@ -1,4 +1,3 @@
-import { ListView } from "../../../../components/view/common/List";
 import { IView } from "../../base/View";
 import { IListData } from "../common/List";
 import { IProductBasketData } from "./ProductBasket";
