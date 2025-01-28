@@ -9,7 +9,7 @@ import { ProductAPI } from './components/model/ProductsAPI';
 import { EventEmitter } from './components/base/events';
 import { cloneTemplate, ensureElement } from './utils/utils';
 import { AppState } from './components/model/AppData';
-import { PageView } from './components/view/base/Page';
+import { PageView } from './components/view/partial/Page';
 import { ModalView } from './components/view/base/Modal';
 import { IProduct } from './types';
 import { ProductItemView, ProductItemModalView } from './components/view/partial/ProductCard';
@@ -49,7 +49,7 @@ events.on(AppStateComponents.PRODUCT.CHANGE, () => {
 
 // открытие карточки
 events.on(AppStateComponents.PRODUCT.SELECT, (item: IProduct) => {
-    main.locked = true;
+    main.locked();
     const product = new ProductItemModalView(cloneTemplate(templates.cardPreviewTemplate), {
       onClick: () => {
         events.emit(AppStateComponents.PRODUCT.TO_BASKET, item)
@@ -77,5 +77,5 @@ events.on(AppStateComponents.PRODUCT.SELECT, (item: IProduct) => {
 
 // при закрытии модалки прокрутка разрешается
 events.on(AppStateComponents.MODAL.CLOSE, () => {
-    main.locked = false;
+    main.locked();
 });
