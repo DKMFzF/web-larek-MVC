@@ -1,13 +1,9 @@
-export type CategoryType =
+export type TCategoryType =
     | 'другое'
     | 'софт-скил'
     | 'дополнительное'
     | 'кнопка'
     | 'хард-скил';
-
-export type CategoryMapping = {
-    [Key in CategoryType]: string;
-};
 
 export interface IProduct {
     id: string;
@@ -18,16 +14,6 @@ export interface IProduct {
     price: number | null;
     selected: boolean;
 }
-
-// export interface IProductSettings {
-//     id: string;
-//     title: string;
-//     image: string;
-//     category: string;
-//     description: string;
-//     price: number | null;
-//     selected: boolean;
-// }
 
 // заполнения данных пользователя
 export type TPaymentMethod = 'card' | 'cash' | null;
@@ -60,25 +46,25 @@ export interface IProductAPI {
 }
 
 // все модальные окна страницы
-// export enum EnumAppStateModals {
-//     PRIVIEW_PRODUCT = 'modal:priviewProduct',
-//     BASKET = 'modal:basket',
-// 	ORDER = 'modal:order',
-// 	CONTACTS = 'modal:contacts',
-// 	SUCCESS = 'modal:success',
-// 	NONE = 'modal:none',
-// }
+export enum EnumAppStateModals {
+    PRIVIEW_PRODUCT = 'modal:priviewProduct',
+    BASKET = 'modal:basket',
+	ORDER = 'modal:order',
+	CONTACTS = 'modal:contacts',
+	SUCCESS = 'modal:success',
+	NONE = 'modal:none',
+}
 
-// // Какие изменения состояния приложения могут происходить
-// export enum EnumAppStateChanges {
-// 	PRODUCTS = 'change:product',
-// 	MODAL = 'change:modal',
-// 	MODAL_MESSAGE = 'change:modalMessage',
-// 	SELECTED_PRODUCT = 'change:selectedProduct',
-//     BASKET = 'change:basket',
-//     ORDER = 'change:order',
-//     CONTACTS = 'change:contacts',
-// }
+// Какие изменения состояния приложения могут происходить
+export enum EnumAppStateChanges {
+	PRODUCTS = 'change:product',
+	MODAL = 'change:modal',
+	MODAL_MESSAGE = 'change:modalMessage',
+	SELECTED_PRODUCT = 'change:selectedProduct',
+    BASKET = 'change:basket',
+    ORDER = 'change:order',
+    CONTACTS = 'change:contacts',
+}
 
 // Типизация ошибки
 export type IFormErrors = Partial<Record<keyof IOrder, string>>;

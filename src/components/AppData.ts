@@ -1,5 +1,5 @@
 import {
-	CategoryType,
+	EnumAppStateChanges,
 	IAppState,
 	IFormErrors,
 	IOrder,
@@ -33,25 +33,6 @@ export class AppState extends Model<IAppState> {
 		items: [],
 	};
 	formError: IFormErrors = {};
-
-	// addProductInBasket(product: IProduct) {
-	// 	if (!this.basket.has(product.id)) {
-	// 		this.products.set(product.id, product);
-	// 		this.basketTotal += product.price != null ? product.price : 0;
-	// 	}
-	// }
-
-	// deleteProductInBasket(id: string) {
-	// 	if (this.basket.has(id)) {
-	// 		this.basket.delete(id);
-	// 		this.basketTotal -=
-	// 			this.products.get(id).price != null ? this.products.get(id).price : 0;
-	// 	} else return;
-	// }
-
-	// getAmountProductInBasket() {
-	// 	return this.basket.size;
-	// }
 
 	getTotalPricteInBasket() {
 		return this.basketTotal;
@@ -103,9 +84,13 @@ export class AppState extends Model<IAppState> {
 		};
 	}
 
+	// изменение продуктов
 	setProducts(products: IProduct[]) {
-		this.products = products.map((item) => new Product({ ...item, selected: false }, this.events));
-    	this.emitChanges('items:changed', { store: this.products });
+		this.products = products.map((item) => new Product({ 
+			...item, 
+			selected: false 
+		}, this.events));
+    	this.emitChanges(EnumAppStateChanges.PRODUCTS, { store: this.products });
 	}
 
     resetSelected() {

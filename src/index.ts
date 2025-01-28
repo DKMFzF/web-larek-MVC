@@ -7,7 +7,8 @@ import { AppState } from './components/AppData';
 import { Page } from './components/Page';
 import { Modal } from './components/common/Modal';
 import { IProduct } from './types';
-import { ProductItem } from './components/Card';
+import { ProductItemView } from './components/ProductCard';
+import { EnumAppStateChanges } from './types/index';
 
 const api = new ProductAPI(CDN_URL, API_URL);
 const events = new EventEmitter();
@@ -35,14 +36,13 @@ api
     .catch(err => console.log(err));
 
 // Изменяем каталог
-events.on('items:changed', () => {
+events.on(EnumAppStateChanges.PRODUCTS, () => {
     main.products = appData.products.map(item => {
-        const product = new ProductItem(cloneTemplate(productsTemplate), {
+        const product = new ProductItemView(cloneTemplate(productsTemplate), {
             onClick: () => {
                 events.emit('card:toBasket', item);
             }
         });
-        console.log(item.image)
         return product.render({
             id: item.id,
             title: item.title,
