@@ -18,7 +18,7 @@ const api = new ProductAPI(CDN_URL, API_URL);
 const events = new EventEmitter();
 const main = new PageView(document.body, events);
 const modal = new ModalView(ensureElement<HTMLElement>(SETTINGS.modalContainer), events);
-const app = new AppState({}, events);
+const app = new AppState(api, {}, events);
 const templates = {
     productsTemplate: ensureElement<HTMLTemplateElement>(SETTINGS.productCardMainTemplate),
     cardPreviewTemplate: ensureElement<HTMLTemplateElement>(SETTINGS.productCardPreviewTemplate),
@@ -29,13 +29,11 @@ const templates = {
 }
 
 // Получаем данные с сервера
-api.getProducts()
-    .then(res => app.setProducts(res as IProduct[]))
-    .catch(err => console.log(err));
+app.laodProducts().catch(err => console.log(err));
 
 // Изменяем каталог
 events.on(AppStateComponents.PRODUCT.CHANGE, () => {
-    main.products = app.products.map(item => {
+    main.products = Array.from(app.products.values()).map(item => {
         const product = new ProductItemView(cloneTemplate(templates.productsTemplate), {
             onClick: () => events.emit(AppStateComponents.PRODUCT.SELECT, item)
         });
@@ -69,6 +67,13 @@ events.on(AppStateComponents.PRODUCT.SELECT, (item: IProduct) => {
       }),
     });
   });
+
+// events.on('card:toBasket', (item: IProduct) => {
+//     item.selected = true;
+//     app.addToBasket(item);
+//     page.counter = appData.getBasketAmount();
+//     modal.close();
+// })
 
 // при закрытии модалки прокрутка разрешается
 events.on(AppStateComponents.MODAL.CLOSE, () => {

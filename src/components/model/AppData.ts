@@ -7,6 +7,8 @@ import {
 } from '../../types';
 import { Model } from '../base/Modal';
 import { AppStateComponents } from '../../utils/constants';
+import { IProductAPI } from './ProductsAPI';
+import { IEvents } from '../base/events';
 
 // Класс товара
 export class Product extends Model<IProduct> {
@@ -19,10 +21,11 @@ export class Product extends Model<IProduct> {
 	selected: boolean;
 }
 
-// Класс управления приложением
-export class AppState extends Model<IAppState> {
-	products: IProduct[];
-	basket: IProduct[] = [];
+// Класс управления приложением  implements IAppState
+export class AppState extends Model<IAppState> implements IAppState {
+	// products: IProduct[];
+	products: Map<string, IProduct> = new Map<string, IProduct>();	
+	basket: Map<string, IProduct> = new Map<string, IProduct>();
 	basketTotal: number = 0;
 	order: IOrder = {
 		payment: '',
@@ -33,6 +36,19 @@ export class AppState extends Model<IAppState> {
 		items: [],
 	};
 	formError: IFormErrors = {};
+
+	constructor(protected api: IProductAPI, data: Partial<IAppState>, events: IEvents) {
+		super(data, events);
+	}
+
+	// api
+	async laodProducts(): Promise<IProduct[]> {
+        this.products.clear();
+		const products: IProduct[] = await this.api.getProducts();
+		for (const product of products) this.products.set(product.id, product);
+		this.emitChanges(AppStateComponents.PRODUCT.CHANGE);
+		return this.api.getProducts()
+	}
 
 	getTotalPricteInBasket() {
 		return this.basketTotal;
@@ -68,10 +84,10 @@ export class AppState extends Model<IAppState> {
 		return Object.keys(err).length === 0;
 	}
 
-	// clearBasket() {
-	// 	this.basket.clear();
-	// 	this.basketTotal = 0;
-	// }
+	clearBasket() {
+		this.basket.clear();
+		this.basketTotal = 0;
+	}
 
 	refreshOrder() {
 		this.order = {
@@ -85,15 +101,21 @@ export class AppState extends Model<IAppState> {
 	}
 
 	// изменение продуктов
-	setProducts(products: IProduct[]) {
-		this.products = products.map((item) => new Product({ 
-			...item, 
-			selected: false 
-		}, this.events));
-    	this.emitChanges(AppStateComponents.PRODUCT.CHANGE, { store: this.products });
-	}
+	// setProducts(products: IProduct[]) {
+	// 	products.forEach(product => {
+	// 		this.products.set(product.id, new Product(
+	// 			{
+	// 				...product,
+	// 				selected: false,
+	// 			},
+	// 			this.events
+	// 		))
+	// 	});
 
-    resetSelected() {
-        this.products.forEach((product) => product.selected = false);
-    }
+    // 	this.emitChanges(AppStateComponents.PRODUCT.CHANGE, { store: this.products });
+	// }
+
+	resetSelected() {
+		Array.from(this.products.values()).forEach(item => item.selected = false);
+	}
 }
