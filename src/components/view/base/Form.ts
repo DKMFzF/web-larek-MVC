@@ -1,13 +1,13 @@
-import { Component } from '../../base/Components';
+import { View } from '../../base/View';
 import { IEvents } from '../../base/events';
 import { ensureElement } from '../../../utils/utils';
 
-interface IFormState {
+interface IFormStateView {
   valid: boolean;
   errors: string[];
 }
 
-export class Form<T> extends Component<IFormState> {
+export class FormView<T> extends View<IFormStateView> {
   protected _submit: HTMLButtonElement;
   protected _errors: HTMLElement;
 
@@ -48,7 +48,7 @@ export class Form<T> extends Component<IFormState> {
     this.setText(this._errors, value);
   }
 
-  render(state: Partial<T> & IFormState) {
+  render(state: Partial<T> & IFormStateView) {
     const { valid, errors, ...inputs } = state;
     super.render({ valid, errors });
     Object.assign(this, inputs);

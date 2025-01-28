@@ -1,5 +1,4 @@
 import {
-	EnumAppStateChanges,
 	IAppState,
 	IFormErrors,
 	IOrder,
@@ -7,6 +6,7 @@ import {
 	IProduct,
 } from '../../types';
 import { Model } from '../base/Modal';
+import { AppStateComponents } from '../../utils/constants';
 
 // Класс товара
 export class Product extends Model<IProduct> {
@@ -90,7 +90,7 @@ export class AppState extends Model<IAppState> {
 			...item, 
 			selected: false 
 		}, this.events));
-    	this.emitChanges(EnumAppStateChanges.PRODUCTS, { store: this.products });
+    	this.emitChanges(AppStateComponents.PRODUCT.CHANGE, { store: this.products });
 	}
 
     resetSelected() {

@@ -1,4 +1,10 @@
-export abstract class Component<T> {
+interface IView<T> {
+    toggleClass(element: HTMLElement, className: string, force?: boolean): void;
+    setDisabled(element: HTMLElement, state: boolean): void;
+	render(data?: Partial<T>): HTMLElement;
+}
+
+export abstract class View<T> implements IView<T> {
     protected constructor(protected readonly container: HTMLElement) {}
 
     // Переключить класс

@@ -1,4 +1,4 @@
-import { Component } from '../../base/Components';
+import { View } from '../../base/View';
 import { ensureElement, handlePrice } from '../../../utils/utils';
 import { CDN_URL, SETTINGS } from '../../../utils/constants';
 import { categoryCheck } from '../../../utils/constants';
@@ -20,7 +20,7 @@ export interface IProductCardView {
 }
 
 // Общий класс для карточек
-export class ProductCardView extends Component<IProductCardView> {
+export class ProductCardView extends View<IProductCardView> {
   protected _id: string;
   protected _title: HTMLElement;
   protected _image: HTMLImageElement;
@@ -31,11 +31,11 @@ export class ProductCardView extends Component<IProductCardView> {
   constructor(container: HTMLElement, actions?: ICardActions) {
     super(container);
 
-    this._title = ensureElement<HTMLElement>(SETTINGS.productCard.title, container);
-    this._image = ensureElement<HTMLImageElement>(SETTINGS.productCard.image, container);
-    this._button = container.querySelector(SETTINGS.productCard.button);
-    this._category = container.querySelector(SETTINGS.productCard.category);
-    this._price = container.querySelector(SETTINGS.productCard.price);
+    this._title = ensureElement<HTMLElement>(SETTINGS.productSettings.title, container);
+    this._image = ensureElement<HTMLImageElement>(SETTINGS.productSettings.image, container);
+    this._button = container.querySelector(SETTINGS.productSettings.button);
+    this._category = container.querySelector(SETTINGS.productSettings.category);
+    this._price = container.querySelector(SETTINGS.productSettings.price);
 
     if (actions?.onClick) {
       if (this._button) this._button.addEventListener('click', actions.onClick);
@@ -87,13 +87,13 @@ export class ProductItemView extends ProductCardView {
 }
 
 // основа для карточки в мадалке превьюшки
-export class StoreItemPreview extends ProductCardView {
+export class ProductItemModalView extends ProductCardView {
   protected _description: HTMLElement;
 
   constructor(container: HTMLElement, actions?: ICardActions) {
     super(container, actions);
 
-    this._description = container.querySelector(SETTINGS.productCard.text);
+    this._description = container.querySelector(SETTINGS.productSettings.text);
   }
 
   set description(value: string) {

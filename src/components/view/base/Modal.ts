@@ -1,20 +1,21 @@
-import { Component } from "../../base/Components";
+import { View } from "../../base/View";
 import { ensureElement } from "../../../utils/utils";
 import { IEvents } from "../../base/events";
+import { SETTINGS, AppStateComponents } from "../../../utils/constants";
 
-interface IModalData {
+interface IModalDataView {
     content: HTMLElement;
 }
 
-export class Modal extends Component<IModalData> {
+export class ModalView extends View<IModalDataView> {
     protected _closeButton: HTMLButtonElement;
     protected _content: HTMLElement;
 
     constructor(container: HTMLElement, protected events: IEvents) {
         super(container);
 
-        this._closeButton = ensureElement<HTMLButtonElement>('.modal__close', container);
-        this._content = ensureElement<HTMLElement>('.modal__content', container);
+        this._closeButton = ensureElement<HTMLButtonElement>(SETTINGS.modalSettings.close, container);
+        this._content = ensureElement<HTMLElement>(SETTINGS.modalSettings.content, container);
 
         this._closeButton.addEventListener('click', this.close.bind(this));
         this.container.addEventListener('click', this.close.bind(this));
@@ -26,17 +27,17 @@ export class Modal extends Component<IModalData> {
     }
 
     open() {
-        this.container.classList.add('modal_active');
-        this.events.emit('modal:open');
+        this.container.classList.add(SETTINGS.modalSettings.activeClass);
+        this.events.emit(AppStateComponents.MODAL.OPEN);
     }
 
     close() {
-        this.container.classList.remove('modal_active');
+        this.container.classList.remove(SETTINGS.modalSettings.activeClass);
         this.content = null;
-        this.events.emit('modal:close');
+        this.events.emit(AppStateComponents.MODAL.CLOSE);
     }
 
-    render(data: IModalData): HTMLElement {
+    render(data: IModalDataView): HTMLElement {
         super.render(data);
         this.open();
         return this.container;

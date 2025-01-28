@@ -46,25 +46,25 @@ export interface IProductAPI {
 }
 
 // все модальные окна страницы
-export enum EnumAppStateModals {
-    PRIVIEW_PRODUCT = 'modal:priviewProduct',
-    BASKET = 'modal:basket',
-	ORDER = 'modal:order',
-	CONTACTS = 'modal:contacts',
-	SUCCESS = 'modal:success',
-	NONE = 'modal:none',
-}
+// export enum EnumAppStateModals {
+//     PRIVIEW_PRODUCT = 'modal:priviewProduct',
+//     BASKET = 'modal:basket',
+// 	ORDER = 'modal:order',
+// 	CONTACTS = 'modal:contacts',
+// 	SUCCESS = 'modal:success',
+// 	NONE = 'modal:none',
+// }
 
-// Какие изменения состояния приложения могут происходить
-export enum EnumAppStateChanges {
-	PRODUCTS = 'change:product',
-	MODAL = 'change:modal',
-	MODAL_MESSAGE = 'change:modalMessage',
-	SELECTED_PRODUCT = 'change:selectedProduct',
-    BASKET = 'change:basket',
-    ORDER = 'change:order',
-    CONTACTS = 'change:contacts',
-}
+// // Какие изменения состояния приложения могут происходить
+// export enum EnumAppStateChanges {
+// 	PRODUCTS = 'change:product',
+// 	MODAL = 'change:modal',
+// 	MODAL_MESSAGE = 'change:modalMessage',
+// 	SELECTED_PRODUCT = 'change:selectedProduct',
+//     BASKET = 'change:basket',
+//     ORDER = 'change:order',
+//     CONTACTS = 'change:contacts',
+// }
 
 // Типизация ошибки
 export type IFormErrors = Partial<Record<keyof IOrder, string>>;
