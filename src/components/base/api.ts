@@ -19,10 +19,7 @@ export type ApiListResponse<Type> = {
   
     protected async handleResponse(response: Response): Promise<Partial<object>> {
       if (response.ok) return response.json();
-      else
-        return response
-          .json()
-          .then((data) => Promise.reject(data.error ?? response.statusText));
+      else return response.json().then((data) => Promise.reject(data.error ?? response.statusText));
     }
   
     async get(uri: string) {
