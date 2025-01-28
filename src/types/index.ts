@@ -6,12 +6,13 @@ export interface IProduct {
     category: string;
     description: string;
     price: number | null;
+    selected: boolean;
 }
 
 // заполнения данных пользователя
 export type TPaymentMethod = 'card' | 'cash' | null;
 export interface IOrderMethod {
-    payment: TPaymentMethod;
+    payment: string;
     address: string;
 }
 
@@ -39,25 +40,25 @@ export interface IProductAPI {
 }
 
 // все модальные окна страницы
-export enum EnumAppStateModals {
-    PRIVIEW_PRODUCT = 'modal:priviewProduct',
-    BASKET = 'modal:basket',
-	ORDER = 'modal:order',
-	CONTACTS = 'modal:contacts',
-	SUCCESS = 'modal:success',
-	NONE = 'modal:none',
-}
+// export enum EnumAppStateModals {
+//     PRIVIEW_PRODUCT = 'modal:priviewProduct',
+//     BASKET = 'modal:basket',
+// 	ORDER = 'modal:order',
+// 	CONTACTS = 'modal:contacts',
+// 	SUCCESS = 'modal:success',
+// 	NONE = 'modal:none',
+// }
 
-// Какие изменения состояния приложения могут происходить
-export enum EnumAppStateChanges {
-	PRODUCTS = 'change:product',
-	MODAL = 'change:modal',
-	MODAL_MESSAGE = 'change:modalMessage',
-	SELECTED_PRODUCT = 'change:selectedProduct',
-    BASKET = 'change:basket',
-    ORDER = 'change:order',
-    CONTACTS = 'change:contacts',
-}
+// // Какие изменения состояния приложения могут происходить
+// export enum EnumAppStateChanges {
+// 	PRODUCTS = 'change:product',
+// 	MODAL = 'change:modal',
+// 	MODAL_MESSAGE = 'change:modalMessage',
+// 	SELECTED_PRODUCT = 'change:selectedProduct',
+//     BASKET = 'change:basket',
+//     ORDER = 'change:order',
+//     CONTACTS = 'change:contacts',
+// }
 
 // Типизация ошибки
 export type IFormErrors = Partial<Record<keyof IOrder, string>>;
@@ -66,20 +67,8 @@ export type IFormErrors = Partial<Record<keyof IOrder, string>>;
 export interface IAppState {
     products: Map<string, IProduct>;
     basket: Map<string, IProduct>;
-    // basketTotal: number;
-    // contacts: IContacts; // для localStorage
     order: IOrder;
     formError: IFormErrors;
-
-    openedModal: EnumAppStateModals;
-
-    // api method
-    // laodProducts(): Promise<void>;
-    // orderProducts(): Promise<IOrderResult[]>;
-
-    // method in localStorage
-    // restoreState(): void;
-    // persistState(): void;
 
     // method basket
     addProductInBasket(product: IProduct): void;
@@ -96,9 +85,13 @@ export interface IAppState {
     // dumping methods
     clearBasket(): void;
     refreshOrder(): boolean;
-    setStore(items: IProduct[]): void;
+    setProducts(items: IProduct[]): void;
     resetSelected(): void;
+}
 
-    // method open modal
-    // openModal(modal: EnumAppStateModals): void;
+export interface IOrderForm {
+    payment: string;
+    address: string;
+    email: string;
+    phone: string;
 }
