@@ -1,13 +1,13 @@
 import './scss/styles.scss';
 import { API_URL, CDN_URL } from './utils/constants';
-import { ProductAPI } from './components/ProductsAPI';
+import { ProductAPI } from './components/model/ProductsAPI';
 import { EventEmitter } from './components/base/events';
 import { cloneTemplate, ensureElement } from './utils/utils';
-import { AppState } from './components/AppData';
-import { Page } from './components/Page';
-import { Modal } from './components/common/Modal';
+import { AppState } from './components/model/AppData';
+import { Page } from './components/view/base/Page';
+import { Modal } from './components/view/base/Modal';
 import { IProduct } from './types';
-import { ProductItemView } from './components/ProductCard';
+import { ProductItemView } from './components/view/partial/ProductCard';
 import { EnumAppStateChanges } from './types/index';
 
 const api = new ProductAPI(CDN_URL, API_URL);
@@ -30,8 +30,7 @@ const main = new Page(document.body, events);
 const modal = new Modal(ensureElement<HTMLElement>('#modal-container'), events);
 
 // Получаем данные с сервера
-api
-    .getProducts()
+api.getProducts()
     .then(res => appData.setProducts(res as IProduct[]))
     .catch(err => console.log(err));
 
@@ -39,9 +38,7 @@ api
 events.on(EnumAppStateChanges.PRODUCTS, () => {
     main.products = appData.products.map(item => {
         const product = new ProductItemView(cloneTemplate(productsTemplate), {
-            onClick: () => {
-                events.emit('card:toBasket', item);
-            }
+            onClick: () => events.emit('card:toBasket', item)
         });
         return product.render({
             id: item.id,

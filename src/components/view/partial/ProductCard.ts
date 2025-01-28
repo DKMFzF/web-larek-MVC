@@ -1,8 +1,8 @@
-import { Component } from './base/Components';
-import { ensureElement, handlePrice } from '../utils/utils';
-import { CDN_URL, SETTINGS } from '../utils/constants';
-import { categoryCheck } from '../utils/constants';
-import { TCategoryType } from '../types';
+import { Component } from '../../base/Components';
+import { ensureElement, handlePrice } from '../../../utils/utils';
+import { CDN_URL, SETTINGS } from '../../../utils/constants';
+import { categoryCheck } from '../../../utils/constants';
+import { TCategoryType } from '../../../types';
 
 interface ICardActions {
   onClick: (event: MouseEvent) => void;

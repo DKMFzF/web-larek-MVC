@@ -5,8 +5,8 @@ import {
 	IOrder,
 	IOrderForm,
 	IProduct,
-} from '../types';
-import { Model } from './base/Modal';
+} from '../../types';
+import { Model } from '../base/Modal';
 
 // Класс товара
 export class Product extends Model<IProduct> {
