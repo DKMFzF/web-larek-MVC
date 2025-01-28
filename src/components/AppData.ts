@@ -7,6 +7,7 @@ import {
 } from '../types';
 import { Model } from './base/Modal';
 
+// Класс товара
 export class Product extends Model<IProduct> {
 	id: string;
 	title: string;
@@ -17,6 +18,7 @@ export class Product extends Model<IProduct> {
 	selected: boolean;
 }
 
+// Класс управления приложением
 export class AppState extends Model<IAppState> {
 	products: Map<string, IProduct> = new Map<string, IProduct>();
 	basket: Map<string, IProduct> = new Map<string, IProduct>();
