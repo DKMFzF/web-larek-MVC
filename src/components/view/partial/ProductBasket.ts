@@ -1,17 +1,18 @@
-import { IProduct } from "../../../types";
 import { SETTINGS } from "../../../utils/constants";
 import { handlePrice } from "../../../utils/utils";
 import { View } from "../../base/View";
 
-export interface IProductBasket extends IProduct {
+export interface IProductBasketView {
   index: number;
+  title: string;
+  price: number | null;
 }
 
 export interface IProductItemBasketActions {
   onClick: (event: MouseEvent) => void;
 }
 
-export class ProductItemBasket extends View<IProductBasket> {
+export class ProductItemBasket extends View<IProductBasketView> {
   protected _index: HTMLElement;
   protected _title: HTMLElement;
   protected _price: HTMLElement;

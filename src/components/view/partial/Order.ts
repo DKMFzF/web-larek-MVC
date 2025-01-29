@@ -1,9 +1,13 @@
-import { IOrderMethod } from "../../../types";
 import { AppStateComponents, SETTINGS } from "../../../utils/constants";
 import { IEvents } from "../../base/events";
 import { FormView } from "../base/Form";
 
-export class OrderView extends FormView<IOrderMethod> {
+export interface IOrderMethodView {
+    payment: string;
+    address: string;
+}
+
+export class OrderView extends FormView<IOrderMethodView> {
     protected _card: HTMLButtonElement;
     protected _cash: HTMLButtonElement;
 
@@ -25,7 +29,7 @@ export class OrderView extends FormView<IOrderMethod> {
         });
     }
 
-    protected onInputChange(field: keyof IOrderMethod, value: string) {
+    protected onInputChange(field: keyof IOrderMethodView, value: string) {
         this.events.emit(AppStateComponents.ORDER.INPUT, { field, value, })
     }
 

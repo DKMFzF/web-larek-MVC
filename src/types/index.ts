@@ -78,3 +78,13 @@ export interface IAppState {
     // setProducts(items: IProduct[]): void;
     resetSelected(): void;
 }
+
+// export interface IOrderMethodView {
+//     payment: string;
+//     address: string;
+// }
+
+// export interface IContactsView {
+//     email: string;
+//     phone: string;
+// }

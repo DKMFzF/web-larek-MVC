@@ -1,7 +1,7 @@
 import { View } from '../../base/View';
 import { IEvents } from '../../base/events';
 import { ensureElement } from '../../../utils/utils';
-import { AppStateComponents, SETTINGS } from '../../../utils/constants';
+import { SETTINGS } from '../../../utils/constants';
 
 interface IFormStateView {
   valid: boolean;

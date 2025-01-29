@@ -1,22 +1,14 @@
-import { IProduct } from '../../../types';
 import { handlePrice } from '../../../utils/utils';
 import { View } from '../../base/View';
 import { IEvents } from '../.././base/events';
 import { AppStateComponents, SETTINGS } from '../../../utils/constants';
 
-/*
-  * Интерфейс, описывающий корзину товаров
-  * */
-export interface IBasket {
+export interface IBasketView {
   list: HTMLElement[];
   total: number;
 }
 
-/*
-  * Класс, описывающий корзину товаров
-  * */
-export class BasketView extends View<IBasket> {
-  // Ссылки на внутренние элементы
+export class BasketView extends View<IBasketView> {
   protected _list: HTMLElement;
   protected _total: HTMLElement;
   protected _button: HTMLButtonElement;
