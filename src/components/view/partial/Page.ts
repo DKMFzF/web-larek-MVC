@@ -40,7 +40,8 @@ export class PageView extends View<IPageView> {
   }
 
   // Сеттер для блока прокрутки
-  locked() {
-    this._wrapper.classList.toggle(SETTINGS.pageSettings.locked);
+  set locked(state: boolean) {
+    if (state) this._wrapper.classList.add(SETTINGS.pageSettings.locked);
+    else this._wrapper.classList.remove(SETTINGS.pageSettings.locked);
   }
 }

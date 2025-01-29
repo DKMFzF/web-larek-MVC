@@ -35,7 +35,7 @@ export class Basket extends View<IBasket> {
   }
 
   // Сеттер для общей цены
-  set price(price: number) {
+  set total(price: number) {
     this._total.textContent = handlePrice(price) + ' синапсов';
   }
 

@@ -15,7 +15,8 @@ export const AppStateComponents = {
         TO_BASKET: 'product:toBasket'
     },
     BASKET: {
-        OPEN: 'basket:open'
+        OPEN: 'basket:open',
+        DELETE: 'basket:delete',
     }
 }
 

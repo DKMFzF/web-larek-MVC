@@ -17,11 +17,7 @@ export class ProductItemBasket extends View<IProductBasket> {
   protected _price: HTMLElement;
   protected _button: HTMLButtonElement;
 
-  constructor(
-    protected blockName: string,
-    container: HTMLElement,
-    actions?: IProductItemBasketActions
-  ) {
+  constructor(container: HTMLElement, actions?: IProductItemBasketActions) {
     super(container);
 
     this._title = container.querySelector(SETTINGS.productSettings.title);
