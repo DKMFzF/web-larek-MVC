@@ -56,6 +56,16 @@ export interface ISETTINGS {
         }
     }
 
+    // contacts
+    contactsTemplate: string;
+
+    // success
+    successTemplate: string;
+    successSettings: {
+        description: string;
+        button: string;
+    }
+
     // text errors in forms
     errorFormText: {
         payment: string;

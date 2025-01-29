@@ -30,7 +30,8 @@ export const AppStateComponents = {
         INPUT: 'contactsInput:change',
         READY: 'contacts:ready',
         SUBMIT: 'contacts:submit',
-    }
+    },
+
 }
 
 // Настройка приложения
@@ -91,6 +92,16 @@ export const SETTINGS: ISETTINGS = {
     formSettings: {
         error: '.form__errors',
         buttonSubmit: 'button[type=submit]',
+    },
+
+    // contacts
+    contactsTemplate: '#contacts',
+
+    // success
+    successTemplate: '#success',
+    successSettings: {
+        description: '.order-success__description',
+        button: '.order-success__close',
     },
 
     errorFormText: {

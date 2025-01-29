@@ -17,6 +17,7 @@ import { BasketView } from './components/view/partial/Basket';
 import { ProductItemBasket } from './components/view/partial/ProductBasket';
 import { OrderView } from './components/view/partial/Order';
 import { ContactsView } from './components/view/partial/Contact';
+import { SuccessView } from './components/view/partial/Success';
 
 const api = new ProductAPI(CDN_URL, API_URL);
 const events = new EventEmitter();
@@ -29,14 +30,20 @@ const templates = {
     cardBasketTemplate: ensureElement<HTMLTemplateElement>(SETTINGS.productCardBasketTemplate),
     basketTemplate: ensureElement<HTMLTemplateElement>(SETTINGS.basketTemplate),
     orderTemplat: ensureElement<HTMLTemplateElement>(SETTINGS.orderTemplate),
-    contactsTemplate: ensureElement<HTMLTemplateElement>('#contacts'),
-    successTemplate: ensureElement<HTMLTemplateElement>('#success'),
+    contactsTemplate: ensureElement<HTMLTemplateElement>(SETTINGS.contactsTemplate),
+    successTemplate: ensureElement<HTMLTemplateElement>(SETTINGS.successTemplate),
 }
 
 // компоненты
 const basket = new BasketView(cloneTemplate(templates.basketTemplate), events);
 const order = new OrderView(cloneTemplate(templates.orderTemplat), events);
 const contacts = new ContactsView(cloneTemplate(templates.contactsTemplate), events);
+const success = new SuccessView(cloneTemplate(templates.successTemplate), { 
+  onClick: () => {
+    events.emit(AppStateComponents.MODAL.CLOSE);
+    modal.close();
+  }
+});
 
 // Получаем данные с сервера
 app.laodProducts().catch(err => console.log(err));
@@ -59,7 +66,6 @@ events.on(AppStateComponents.PRODUCT.CHANGE, () => {
 
 // открытие карточки
 events.on(AppStateComponents.PRODUCT.SELECT, (item: IProduct) => {
-  // console.log(item.selected)
   main.locked = true;
   const product = new ProductItemModalView(cloneTemplate(templates.cardPreviewTemplate), {
     onClick: () => {
@@ -174,14 +180,7 @@ events.on(AppStateComponents.CONTACT.INPUT, (data: { field: keyof IContacts, val
   app.setOrderField(data.field, data.value);
 });
 
-// events.on(AppStateComponents.CONTACT.SUBMIT, () => {
-  
-  
-//   // modal.render({
-//   //   content: s.render(
-//   //     {
-
-//   //     }
-//   //   )
-//   // });
-// });
+// открытие окна подтверждения
+events.on(AppStateComponents.CONTACT.SUBMIT, () => {
+  modal.render({ content: success.render({ description: app.basketTotal, })});
+});
