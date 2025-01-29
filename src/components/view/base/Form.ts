@@ -26,17 +26,15 @@ export class FormView<T> extends View<IFormStateView> {
       this.onInputChange(field, value);
     });
 
-    // отправка данных
+    // переход на следующую модалку
     this.container.addEventListener('submit', (e: Event) => {
       e.preventDefault();
-      this.events.emit(`${this.container.name}:submit`); // TODO: потанциальная ошибка
+      this.events.emit(`${this.container.name}:submit`);
     });
   }
 
   // изменение инпута
-  protected onInputChange(field: keyof T, value: string) {
-    this.events.emit(AppStateComponents.FORM.INPUT, { field, value, })
-  }
+  protected onInputChange(field: keyof T, value: string) {}
 
   set valid(value: boolean) {
     this._submit.disabled = !value;

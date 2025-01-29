@@ -6,7 +6,7 @@ import {
 	IProduct,
 } from '../../types';
 import { Model } from '../base/Modal';
-import { AppStateComponents } from '../../utils/constants';
+import { AppStateComponents, SETTINGS } from '../../utils/constants';
 import { IProductAPI } from './ProductsAPI';
 import { IEvents } from '../base/events';
 
@@ -23,7 +23,6 @@ export class Product extends Model<IProduct> {
 
 // Класс управления приложением  implements IAppState
 export class AppState extends Model<IAppState> implements IAppState {
-	// products: IProduct[];
 	products: Map<string, IProduct> = new Map<string, IProduct>();	
 	basket: Map<string, IProduct> = new Map<string, IProduct>();
 	basketTotal: number = 0;
@@ -69,23 +68,20 @@ export class AppState extends Model<IAppState> implements IAppState {
 		this.basket.delete(id);
 	}
 
-	// order
-	setItems() {
-		this.order.items = Array.from(this.basket.values()).map(
-			(product) => product.id
-		);
+	setOrderItems() {
+		this.order.items = Array.from(this.basket.values()).map((product) => product.id);
 	}
 
 	setOrderField(field: keyof IOrderForm, value: string) {
 		this.order[field] = value;
-		if (this.validateContacts()) this.events.emit('contacts:ready', this.order);
-		if (this.validateOrder()) this.events.emit('order:ready', this.order);
+		if (this.validateContacts()) this.events.emit(AppStateComponents.CONTACT.READY, this.order);
+		if (this.validateOrder()) this.events.emit(AppStateComponents.ORDER.READY, this.order);
 	}
 
 	validateOrder() {
 		const err: typeof this.formError = {};
-		if (!this.order.address) err.address = 'Необходимо указать адресс';
-		if (!this.order.payment) err.payment = 'Необходимо указать способ оплаты';
+		if (!this.order.address) err.address = SETTINGS.errorFormText.address;
+		if (!this.order.payment) err.payment = SETTINGS.errorFormText.payment;
 		this.formError = err;
 		this.events.emit(AppStateComponents.ORDER.ERROR, this.formError);
 		return Object.keys(err).length === 0;
@@ -93,10 +89,10 @@ export class AppState extends Model<IAppState> implements IAppState {
 
 	validateContacts() {
 		const err: typeof this.formError = {};
-		if (!this.order.email) err.email = 'Необходимо указать email';
-		if (!this.order.phone) err.phone = 'Необходимо указать телефон';
+		if (!this.order.email) err.email = SETTINGS.errorFormText.email;
+		if (!this.order.phone) err.phone = SETTINGS.errorFormText.phone;
 		this.formError = err;
-		this.events.emit('contactsFormErrors:change', this.formError);
+		this.events.emit(AppStateComponents.CONTACT.ERROR, this.formError);
 		return Object.keys(err).length === 0;
 	}
 
@@ -115,21 +111,6 @@ export class AppState extends Model<IAppState> implements IAppState {
 			items: [],
 		};
 	}
-
-	// изменение продуктов
-	// setProducts(products: IProduct[]) {
-	// 	products.forEach(product => {
-	// 		this.products.set(product.id, new Product(
-	// 			{
-	// 				...product,
-	// 				selected: false,
-	// 			},
-	// 			this.events
-	// 		))
-	// 	});
-
-    // 	this.emitChanges(AppStateComponents.PRODUCT.CHANGE, { store: this.products });
-	// }
 
 	resetSelected() {
 		Array.from(this.products.values()).forEach(item => item.selected = false);

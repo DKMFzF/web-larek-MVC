@@ -55,4 +55,12 @@ export interface ISETTINGS {
             active: string;
         }
     }
+
+    // text errors in forms
+    errorFormText: {
+        payment: string;
+        address: string;
+        email: string;
+        phone: string;
+    }
 }

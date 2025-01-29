@@ -41,6 +41,13 @@ export interface IProductAPI {
 // Типизация ошибки
 export type IFormErrors = Partial<Record<keyof IOrder, string>>;
 
+export interface IOrderForm {
+    payment: string;
+    address: string;
+    email: string;
+    phone: string;
+}
+
 // состояние приложения
 export interface IAppState {
     products: Map<string, IProduct>;
@@ -60,7 +67,7 @@ export interface IAppState {
     getTotalPricteInBasket(): number;
 
     // method order
-    setItems(): void; // Метод для добавления ID товаров в корзине в поле items для order
+    setOrderItems(): void; // Метод для добавления ID товаров в корзине в поле items для order
     setOrderField(field: keyof IOrderForm, value: string): void;
     validateContacts(): boolean;
     validateOrder(): boolean;
@@ -70,11 +77,4 @@ export interface IAppState {
     refreshOrder(): void;
     // setProducts(items: IProduct[]): void;
     resetSelected(): void;
-}
-
-export interface IOrderForm {
-    payment: string;
-    address: string;
-    email: string;
-    phone: string;
 }

@@ -1,5 +1,5 @@
 import { IOrderMethod } from "../../../types";
-import { SETTINGS } from "../../../utils/constants";
+import { AppStateComponents, SETTINGS } from "../../../utils/constants";
 import { IEvents } from "../../base/events";
 import { FormView } from "../base/Form";
 
@@ -23,6 +23,10 @@ export class OrderView extends FormView<IOrderMethod> {
             button.classList.add(SETTINGS.orderSettings.orderMethodPay.active);
             this.onInputChange('payment', name);
         });
+    }
+
+    protected onInputChange(field: keyof IOrderMethod, value: string) {
+        this.events.emit(AppStateComponents.ORDER.INPUT, { field, value, })
     }
 
     btnsInActive() {

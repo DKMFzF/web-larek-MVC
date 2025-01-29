@@ -19,12 +19,17 @@ export const AppStateComponents = {
         DELETE: 'basket:delete',
         ORDER: 'basket:order',
     },
-    FORM: {
-        INPUT: 'formInput:change',
-    },
     ORDER: {
         ERROR: 'orderFormErrors:change',
-        INPUT: 'orderInput:change', 
+        INPUT: 'orderInput:change',
+        READY: 'order:ready',
+        SUBMIT: 'order:submit',
+    },
+    CONTACT: {
+        ERROR: 'contactsFormErrors:change',
+        INPUT: 'contactsInput:change',
+        READY: 'contacts:ready',
+        SUBMIT: 'contacts:submit',
     }
 }
 
@@ -86,5 +91,12 @@ export const SETTINGS: ISETTINGS = {
     formSettings: {
         error: '.form__errors',
         buttonSubmit: 'button[type=submit]',
+    },
+
+    errorFormText: {
+        payment: 'Необходимо указать адресс;',
+        address: 'Необходимо указать способ оплаты;',
+        email: 'Необходимо указать email;',
+        phone: 'Необходимо указать телефон;',
     }
 };

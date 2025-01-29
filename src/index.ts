@@ -11,11 +11,12 @@ import { cloneTemplate, ensureElement } from './utils/utils';
 import { AppState } from './components/model/AppData';
 import { PageView } from './components/view/partial/Page';
 import { ModalView } from './components/view/base/Modal';
-import { IOrderForm, IOrderMethod, IProduct } from './types';
+import { IContacts, IOrderForm, IOrderMethod, IProduct } from './types';
 import { ProductItemView, ProductItemModalView } from './components/view/partial/ProductCard';
 import { BasketView } from './components/view/partial/Basket';
 import { ProductItemBasket } from './components/view/partial/ProductBasket';
 import { OrderView } from './components/view/partial/Order';
+import { ContactsView } from './components/view/partial/Contact';
 
 const api = new ProductAPI(CDN_URL, API_URL);
 const events = new EventEmitter();
@@ -35,6 +36,7 @@ const templates = {
 // компоненты
 const basket = new BasketView(cloneTemplate(templates.basketTemplate), events);
 const order = new OrderView(cloneTemplate(templates.orderTemplat), events);
+const contacts = new ContactsView(cloneTemplate(templates.contactsTemplate), events);
 
 // Получаем данные с сервера
 app.laodProducts().catch(err => console.log(err));
@@ -124,8 +126,9 @@ events.on(AppStateComponents.BASKET.DELETE, (item: IProduct) => {
   if (app.basket.size === 0) basket.disableButton();
 })
 
-// открытие контактов
+// открытие order
 events.on(AppStateComponents.BASKET.ORDER, () => {
+  app.setOrderItems();
   modal.render({
     content: order.render({
         address: '',
@@ -135,14 +138,50 @@ events.on(AppStateComponents.BASKET.ORDER, () => {
   });
 });
 
-// валидация контактов
+// валидация order
 events.on(AppStateComponents.ORDER.ERROR, (dataErr: IOrderMethod) => {
   order.valid = !dataErr.payment && !dataErr.address;
-  order.errors = Object.values(dataErr).filter(errStr => !!errStr).join('; ');
+  order.errors = Object.values(dataErr).filter(errStr => !!errStr).join(' ');
 });
 
-// Изменились введенные данные
-events.on(AppStateComponents.FORM.INPUT, (data: { field: keyof IOrderMethod, value: string }) => {
+// изменение order в AppState
+events.on(AppStateComponents.ORDER.INPUT, (data: { field: keyof IOrderMethod, value: string }) => {
   app.setOrderField(data.field, data.value);
 });
 
+// открытие формы контактов
+events.on(AppStateComponents.ORDER.SUBMIT, () => {
+  modal.render({
+    content: contacts.render(
+      {
+        email: '',
+        phone: '',
+        valid: false,
+        errors: []
+      }
+    ),
+  });
+})
+
+// валидация contact
+events.on(AppStateComponents.CONTACT.ERROR, (dataErr: IContacts) => {
+  contacts.valid = !dataErr.email && !dataErr.phone;
+  contacts.errors = Object.values(dataErr).filter(errStr => !!errStr).join(' ');
+});
+
+// изменение order в AppState
+events.on(AppStateComponents.CONTACT.INPUT, (data: { field: keyof IContacts, value: string }) => {
+  app.setOrderField(data.field, data.value);
+});
+
+// events.on(AppStateComponents.CONTACT.SUBMIT, () => {
+  
+  
+//   // modal.render({
+//   //   content: s.render(
+//   //     {
+
+//   //     }
+//   //   )
+//   // });
+// });
