@@ -6,7 +6,7 @@ import { cloneTemplate, ensureElement } from './utils/utils';
 import { AppState } from './components/model/AppData';
 import { PageView } from './components/view/partial/Page';
 import { ModalView } from './components/view/base/Modal';
-import { IContacts, IOrderMethod, IProduct } from './types';
+import { IContacts, IOrderMethod, IOrderResult, IProduct } from './types';
 import { ProductItemView, ProductItemModalView } from './components/view/partial/ProductCard';
 import { BasketView } from './components/view/partial/Basket';
 import { ProductItemBasket } from './components/view/partial/ProductBasket';
@@ -161,7 +161,7 @@ events.on(AppStateComponents.ORDER.SUBMIT, () => {
       }
     ),
   });
-})
+});
 
 // валидация contact
 events.on(AppStateComponents.CONTACT.ERROR, (dataErr: IContacts) => {
@@ -174,7 +174,22 @@ events.on(AppStateComponents.CONTACT.INPUT, (data: { field: keyof IContacts, val
   app.setOrderField(data.field, data.value);
 });
 
-// открытие окна подтверждения
+// отправка данных покупки на сервер
 events.on(AppStateComponents.CONTACT.SUBMIT, () => {
-  modal.render({ content: components.success.render({ description: app.basketTotal, })});
+  app.orderProducts()
+    .then((answer) => {
+      events.emit(AppStateComponents.CONTACT.TO_SUCCESS, answer);
+      components.order.btnsInActive();
+      main.counter = 0;
+      components.order.clearingForms();
+      components.contacts.clearingForms();
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+});
+
+// открытие окна подтверждения
+events.on(AppStateComponents.CONTACT.TO_SUCCESS, (answer: IOrderResult) => {
+  modal.render({ content: components.success.render({ description: answer.total, })});
 });

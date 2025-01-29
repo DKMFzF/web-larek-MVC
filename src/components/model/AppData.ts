@@ -3,6 +3,7 @@ import {
 	IFormErrors,
 	IOrder,
 	IOrderForm,
+	IOrderResult,
 	IProduct,
 } from '../../types';
 import { Model } from '../base/Modal';
@@ -49,6 +50,18 @@ export class AppState extends Model<IAppState> implements IAppState {
 		return this.api.getProducts()
 	}
 
+	async orderProducts(): Promise<IOrderResult> {
+		try {
+            const result = await this.api.orderProducts(this.order);
+			this.clearBasket();
+			this.refreshOrder();
+			this.resetSelected();
+            return result;
+        } catch (err: unknown) {
+			console.log(err);
+        }
+	}
+
 	// basket
 	addProductInBasket(product: IProduct): void {
 		if (!product) throw new Error(`[INVALID PRODUCT]`);
@@ -74,6 +87,7 @@ export class AppState extends Model<IAppState> implements IAppState {
 
 	setOrderField(field: keyof IOrderForm, value: string) {
 		this.order[field] = value;
+		this.order.total = this.basketTotal;
 		if (this.validateContacts()) this.events.emit(AppStateComponents.CONTACT.READY, this.order);
 		if (this.validateOrder()) this.events.emit(AppStateComponents.ORDER.READY, this.order);
 	}

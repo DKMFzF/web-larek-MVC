@@ -53,7 +53,8 @@ export interface ISETTINGS {
             card: string;
             cash: string;
             active: string;
-        }
+        },
+        address: string;
     }
 
     // contacts

@@ -30,8 +30,8 @@ export const AppStateComponents = {
         INPUT: 'contactsInput:change',
         READY: 'contacts:ready',
         SUBMIT: 'contacts:submit',
-    },
-
+        TO_SUCCESS: 'order:success',
+    }
 }
 
 // Настройка приложения
@@ -77,7 +77,8 @@ export const SETTINGS: ISETTINGS = {
             card: 'card',
             cash: 'cash',
             active: 'button_alt-active',
-        }
+        },
+        address: 'input[name="address"]',
     },
 
     // modal

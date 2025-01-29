@@ -44,6 +44,10 @@ export class FormView<T> extends View<IFormStateView> {
     this.setText(this._errors, value);
   }
 
+  clearingForms() {
+    this.container.reset();
+  }
+
   render(state: Partial<T> & IFormStateView) {
     const { valid, errors, ...inputs } = state;
     super.render({ valid, errors });

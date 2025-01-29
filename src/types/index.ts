@@ -58,7 +58,7 @@ export interface IAppState {
 
     // api
     laodProducts(): Promise<IProduct[]>;
-    // orderProducts(): Promise<IOrderResult>;    
+    orderProducts(): Promise<IOrderResult>;    
 
     // method basket
     addProductInBasket(product: IProduct): void;

@@ -11,7 +11,7 @@ export interface IProductAPI {
     orderProducts: (order: IOrder) => Promise<IOrderResult>;
 }
 
-const enum ProductAPIPaths {
+const enum EnumProductAPIPaths {
     PATH_PRODUCTS = '/product',
     PATH_PRODUCT = '/product/',
     PATH_ORDER = '/order',
@@ -27,7 +27,7 @@ export class ProductAPI extends Api implements IProductAPI {
 
     // загрузка всех продуктов
     async getProducts(): Promise<IProduct[]> {
-        const data = await this.get(ProductAPIPaths.PATH_PRODUCTS) as ApiListResponse<IProduct>;
+        const data = await this.get(EnumProductAPIPaths.PATH_PRODUCTS) as ApiListResponse<IProduct>;
         // изначально в image идёт .svg, меняем на .png + добалвляем сслыку 
         data.items.map(product => product.image = `${this.cdn}${product.image.replace(/\.svg$/, '.png')}`);
         return data.items;
@@ -35,13 +35,13 @@ export class ProductAPI extends Api implements IProductAPI {
 
     // Загрузка продукта по id
     async getProduct(id: string): Promise<IProduct> {
-        const data = await this.get(`${ProductAPIPaths.PATH_PRODUCT}${id}`);
+        const data = await this.get(`${EnumProductAPIPaths.PATH_PRODUCT}${id}`);
         return data as IProduct;
     }
 
     // загрузка всех order на сервер
     async orderProducts(order: IOrder): Promise<IOrderResult> {
-        const data = await this.post('/order', order) as IOrderResult;
+        const data = await this.post(EnumProductAPIPaths.PATH_ORDER, order) as IOrderResult;
         return data;
     }
 }
