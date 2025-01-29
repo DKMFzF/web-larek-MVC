@@ -21,6 +21,10 @@ export const AppStateComponents = {
     },
     FORM: {
         INPUT: 'formInput:change',
+    },
+    ORDER: {
+        ERROR: 'orderFormErrors:change',
+        INPUT: 'orderInput:change', 
     }
 }
 

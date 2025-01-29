@@ -82,21 +82,21 @@ export class AppState extends Model<IAppState> implements IAppState {
 		if (this.validateOrder()) this.events.emit('order:ready', this.order);
 	}
 
-	validateContacts() {
+	validateOrder() {
 		const err: typeof this.formError = {};
-		if (!this.order.email) err.email = 'Необходимо указать почту';
-		if (!this.order.phone) err.phone = 'Необходимо указать телефон';
+		if (!this.order.address) err.address = 'Необходимо указать адресс';
+		if (!this.order.payment) err.payment = 'Необходимо указать способ оплаты';
 		this.formError = err;
-		this.events.emit('contactsFormErrors:change', this.formError);
+		this.events.emit(AppStateComponents.ORDER.ERROR, this.formError);
 		return Object.keys(err).length === 0;
 	}
 
-	validateOrder() {
+	validateContacts() {
 		const err: typeof this.formError = {};
 		if (!this.order.email) err.email = 'Необходимо указать email';
 		if (!this.order.phone) err.phone = 'Необходимо указать телефон';
 		this.formError = err;
-		this.events.emit('orderFormErrors:change', this.formError);
+		this.events.emit('contactsFormErrors:change', this.formError);
 		return Object.keys(err).length === 0;
 	}
 

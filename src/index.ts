@@ -11,7 +11,7 @@ import { cloneTemplate, ensureElement } from './utils/utils';
 import { AppState } from './components/model/AppData';
 import { PageView } from './components/view/partial/Page';
 import { ModalView } from './components/view/base/Modal';
-import { IProduct } from './types';
+import { IOrderForm, IOrderMethod, IProduct } from './types';
 import { ProductItemView, ProductItemModalView } from './components/view/partial/ProductCard';
 import { BasketView } from './components/view/partial/Basket';
 import { ProductItemBasket } from './components/view/partial/ProductBasket';
@@ -114,6 +114,7 @@ events.on(AppStateComponents.BASKET.OPEN, () => {
   });
 });
 
+// удаление товара из корзины
 events.on(AppStateComponents.BASKET.DELETE, (item: IProduct) => {
   item.selected = false;
   app.deleteProductInBasket(item.id);
@@ -123,6 +124,7 @@ events.on(AppStateComponents.BASKET.DELETE, (item: IProduct) => {
   if (app.basket.size === 0) basket.disableButton();
 })
 
+// открытие контактов
 events.on(AppStateComponents.BASKET.ORDER, () => {
   modal.render({
     content: order.render({
@@ -132,3 +134,15 @@ events.on(AppStateComponents.BASKET.ORDER, () => {
     })
   });
 });
+
+// валидация контактов
+events.on(AppStateComponents.ORDER.ERROR, (dataErr: IOrderMethod) => {
+  order.valid = !dataErr.payment && !dataErr.address;
+  order.errors = Object.values(dataErr).filter(errStr => !!errStr).join('; ');
+});
+
+// Изменились введенные данные
+events.on(AppStateComponents.FORM.INPUT, (data: { field: keyof IOrderMethod, value: string }) => {
+  app.setOrderField(data.field, data.value);
+});
+
