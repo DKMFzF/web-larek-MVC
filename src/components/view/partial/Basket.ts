@@ -2,7 +2,7 @@ import { IProduct } from '../../../types';
 import { handlePrice } from '../../../utils/utils';
 import { View } from '../../base/View';
 import { IEvents } from '../.././base/events';
-import { SETTINGS } from '../../../utils/constants';
+import { AppStateComponents, SETTINGS } from '../../../utils/constants';
 
 /*
   * Интерфейс, описывающий корзину товаров
@@ -15,7 +15,7 @@ export interface IBasket {
 /*
   * Класс, описывающий корзину товаров
   * */
-export class Basket extends View<IBasket> {
+export class BasketView extends View<IBasket> {
   // Ссылки на внутренние элементы
   protected _list: HTMLElement;
   protected _total: HTMLElement;
@@ -29,9 +29,10 @@ export class Basket extends View<IBasket> {
     this._total = container.querySelector(SETTINGS.basketSettings.total);
     this._list = container.querySelector(SETTINGS.basketSettings.list);
 
-    if (this._button) {
-      this._button.addEventListener('click', () => this.events.emit('basket:order'))
-    }
+    if (this._button) this._button.addEventListener(
+      'click', 
+      () => this.events.emit(AppStateComponents.BASKET.ORDER)
+    );
   }
 
   // Сеттер для общей цены

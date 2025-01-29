@@ -28,7 +28,7 @@ export class AppState extends Model<IAppState> implements IAppState {
 	basket: Map<string, IProduct> = new Map<string, IProduct>();
 	basketTotal: number = 0;
 	order: IOrder = {
-		payment: '',
+		payment: null,
 		address: '',
 		email: '',
 		phone: '',
@@ -55,7 +55,6 @@ export class AppState extends Model<IAppState> implements IAppState {
 		if (!product) throw new Error(`[INVALID PRODUCT]`);
 		if (this.products.has(product.id)) this.basket.set(product.id, product);
 		else throw new Error(`[INVALIDE PRODUCT ID]`);
-		console.log(this.basket);
 	}
 
 	getAmountProductInBasket(): number {
@@ -66,6 +65,11 @@ export class AppState extends Model<IAppState> implements IAppState {
 		return this.basketTotal;
 	}
 
+	deleteProductInBasket(id: string) {
+		this.basket.delete(id);
+	}
+
+	// order
 	setItems() {
 		this.order.items = Array.from(this.basket.values()).map(
 			(product) => product.id
@@ -103,7 +107,7 @@ export class AppState extends Model<IAppState> implements IAppState {
 
 	refreshOrder() {
 		this.order = {
-			payment: '',
+			payment: null,
 			address: '',
 			email: '',
 			phone: '',

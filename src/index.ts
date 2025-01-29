@@ -13,8 +13,9 @@ import { PageView } from './components/view/partial/Page';
 import { ModalView } from './components/view/base/Modal';
 import { IProduct } from './types';
 import { ProductItemView, ProductItemModalView } from './components/view/partial/ProductCard';
-import { Basket } from './components/view/partial/Basket';
+import { BasketView } from './components/view/partial/Basket';
 import { ProductItemBasket } from './components/view/partial/ProductBasket';
+import { OrderView } from './components/view/partial/Order';
 
 const api = new ProductAPI(CDN_URL, API_URL);
 const events = new EventEmitter();
@@ -24,14 +25,16 @@ const app = new AppState(api, {}, events);
 const templates = {
     productsTemplate: ensureElement<HTMLTemplateElement>(SETTINGS.productCardMainTemplate),
     cardPreviewTemplate: ensureElement<HTMLTemplateElement>(SETTINGS.productCardPreviewTemplate),
-    cardBasketTemplate: ensureElement<HTMLTemplateElement>('#card-basket'),
-    basketTemplate: ensureElement<HTMLTemplateElement>('#basket'),
+    cardBasketTemplate: ensureElement<HTMLTemplateElement>(SETTINGS.productCardBasketTemplate),
+    basketTemplate: ensureElement<HTMLTemplateElement>(SETTINGS.basketTemplate),
+    orderTemplat: ensureElement<HTMLTemplateElement>(SETTINGS.orderTemplate),
     contactsTemplate: ensureElement<HTMLTemplateElement>('#contacts'),
     successTemplate: ensureElement<HTMLTemplateElement>('#success'),
 }
 
 // компоненты
-const basket = new Basket(cloneTemplate(templates.basketTemplate), events);
+const basket = new BasketView(cloneTemplate(templates.basketTemplate), events);
+const order = new OrderView(cloneTemplate(templates.orderTemplat), events);
 
 // Получаем данные с сервера
 app.laodProducts().catch(err => console.log(err));
@@ -113,9 +116,19 @@ events.on(AppStateComponents.BASKET.OPEN, () => {
 
 events.on(AppStateComponents.BASKET.DELETE, (item: IProduct) => {
   item.selected = false;
-  app.basket.delete(item.id);
+  app.deleteProductInBasket(item.id);
   main.counter = app.basket.size;
   app.basketTotal -= item.price;
   basket.total = app.basketTotal;
   if (app.basket.size === 0) basket.disableButton();
 })
+
+events.on(AppStateComponents.BASKET.ORDER, () => {
+  modal.render({
+    content: order.render({
+        address: '',
+        valid: false,
+        errors: []
+    })
+  });
+});

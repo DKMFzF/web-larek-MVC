@@ -17,6 +17,10 @@ export const AppStateComponents = {
     BASKET: {
         OPEN: 'basket:open',
         DELETE: 'basket:delete',
+        ORDER: 'basket:order',
+    },
+    FORM: {
+        INPUT: 'formInput:change',
     }
 }
 
@@ -31,25 +35,10 @@ export const SETTINGS: ISETTINGS = {
         basket: '.header__basket',
     },
 
-    // basket
-    basketTemplate: '',
-    basketSettings: {
-        button: '.basket__button',
-        total: '.basket__price',
-        list: '.basket__list',
-    },
-
-    // modal
-    modalContainer: '#modal-container', 
-    modalSettings: {
-        activeClass: 'modal_active',
-        content: '.modal__content',
-        close: '.modal__close',
-    },
-
     // product-card
     productCardPreviewTemplate: '#card-preview',
     productCardMainTemplate: '#card-catalog',
+    productCardBasketTemplate: '#card-basket',
     productSettings: {
         title: '.card__title',
         image: '.card__image',
@@ -61,5 +50,37 @@ export const SETTINGS: ISETTINGS = {
     productBasketSettings: {
         id: '.basket__item-index',
         buttonDelete: '.basket__item-delete',
+    },
+
+    // basket
+    basketTemplate: '#basket',
+    basketSettings: {
+        button: '.basket__button',
+        total: '.basket__price',
+        list: '.basket__list',
+    },
+
+    // order
+    orderTemplate: '#order',
+    orderSettings: {
+        orderMethodPay: {
+            card: 'card',
+            cash: 'cash',
+            active: 'button_alt-active',
+        }
+    },
+
+    // modal
+    modalContainer: '#modal-container', 
+    modalSettings: {
+        activeClass: 'modal_active',
+        content: '.modal__content',
+        close: '.modal__close',
+    },
+
+    // form-model
+    formSettings: {
+        error: '.form__errors',
+        buttonSubmit: 'button[type=submit]',
     }
 };

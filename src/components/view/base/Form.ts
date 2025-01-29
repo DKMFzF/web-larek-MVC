@@ -1,6 +1,7 @@
 import { View } from '../../base/View';
 import { IEvents } from '../../base/events';
 import { ensureElement } from '../../../utils/utils';
+import { AppStateComponents, SETTINGS } from '../../../utils/constants';
 
 interface IFormStateView {
   valid: boolean;
@@ -14,30 +15,27 @@ export class FormView<T> extends View<IFormStateView> {
   constructor(protected container: HTMLFormElement, protected events: IEvents) {
     super(container);
 
-    this._submit = ensureElement<HTMLButtonElement>(
-      'button[type=submit]',
-      this.container
-    );
-    this._errors = ensureElement<HTMLElement>('.form__errors', this.container);
+    this._submit = ensureElement<HTMLButtonElement>(SETTINGS.formSettings.buttonSubmit, this.container);
+    this._errors = ensureElement<HTMLElement>(SETTINGS.formSettings.error, this.container);
 
-    this.container.addEventListener('input', (e: Event) => {
-      const target = e.target as HTMLInputElement;
+    // ввод данных
+    this.container.addEventListener('input', (evt: Event) => {
+      const target = evt.target as HTMLInputElement;
       const field = target.name as keyof T;
       const value = target.value;
       this.onInputChange(field, value);
     });
 
+    // отправка данных
     this.container.addEventListener('submit', (e: Event) => {
       e.preventDefault();
-      this.events.emit(`${this.container.name}:submit`);
+      this.events.emit(`${this.container.name}:submit`); // TODO: потанциальная ошибка
     });
   }
 
+  // изменение инпута
   protected onInputChange(field: keyof T, value: string) {
-    this.events.emit('orderInput:change', {
-      field,
-      value,
-    })
+    this.events.emit(AppStateComponents.FORM.INPUT, { field, value, })
   }
 
   set valid(value: boolean) {

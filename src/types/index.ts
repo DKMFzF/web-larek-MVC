@@ -9,7 +9,7 @@ export interface IProduct {
 }
 
 // заполнения данных пользователя
-export type TPaymentMethod = 'card' | 'cash' | null;
+// export type TPaymentMethod = 'card' | 'cash' | null;
 export interface IOrderMethod {
     payment: string;
     address: string;
@@ -55,7 +55,7 @@ export interface IAppState {
 
     // method basket
     addProductInBasket(product: IProduct): void;
-    // deleteProductInBasket(id: string): void;
+    deleteProductInBasket(id: string): void;
     getAmountProductInBasket(): number;
     getTotalPricteInBasket(): number;
 

@@ -8,6 +8,23 @@ export interface ISETTINGS {
         basket: string;
     }
 
+    // product-card
+    productCardPreviewTemplate: string;
+    productCardMainTemplate: string;
+    productCardBasketTemplate: string;
+    productSettings: {
+        title: string;
+        image: string;
+        category: string;
+        price: string;
+        button: string;
+        text: string;
+    }
+    productBasketSettings: {
+        id: string;
+        buttonDelete: string;
+    }
+
     // modal
     modalContainer: string;
     modalSettings: {
@@ -24,19 +41,18 @@ export interface ISETTINGS {
         list: string;
     }
 
-    // product-card
-    productCardPreviewTemplate: string;
-    productCardMainTemplate: string;
-    productSettings: {
-        title: string;
-        image: string;
-        category: string;
-        price: string;
-        button: string;
-        text: string;
+    formSettings: {
+        error: string;
+        buttonSubmit: string;
     }
-    productBasketSettings: {
-        id: string;
-        buttonDelete: string;
+
+    // order
+    orderTemplate: string;
+    orderSettings: {
+        orderMethodPay: {
+            card: string;
+            cash: string;
+            active: string;
+        }
     }
 }
