@@ -6,6 +6,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { DefinePlugin } = require('webpack');
 const TerserPlugin = require("terser-webpack-plugin");
 
+// const CopyWebpackPlugin = require("copy-webpack-plugin");
+
 require('dotenv').config({
   path: path.join(process.cwd(), process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env')
 });
@@ -30,6 +32,14 @@ const config = {
     new HtmlWebpackPlugin({
       template: "src/pages/index.html"
     }),
+
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     { from: "src/public/manifest.json", to: "manifest.json" }, // Копируем манифест в dist
+    //     // { from: "src/public/android-chrome-192x192.png", to: "android-chrome-192x192.png" }, // Копируем иконки, если они есть
+    //     // { from: "src/public/android-chrome-512x512.png", to: "android-chrome-512x512.png" },
+    //   ],
+    // }),
 
     new MiniCssExtractPlugin(),
 
