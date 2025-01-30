@@ -106,9 +106,9 @@ export const SETTINGS: ISETTINGS = {
 	},
 
 	errorFormText: {
-		payment: 'Необходимо указать адресс;',
-		address: 'Необходимо указать способ оплаты;',
-		email: 'Необходимо указать email;',
-		phone: 'Необходимо указать телефон;',
+		payment: 'Укажите адресс;',
+		address: 'Укажите способ оплаты;',
+		email: 'Укажите email;',
+		phone: 'Укажите телефон;',
 	},
 };
