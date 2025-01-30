@@ -48,6 +48,17 @@ export interface IOrderForm {
     phone: string;
 }
 
+export interface IPersistedStateBasket {
+    products: IProduct[];
+}
+
+export interface IPersistedStateContacts {
+    contacts: IOrderForm;
+}
+
+// типизация для localStorage
+export interface IPersistedStateAll extends IPersistedStateBasket, IPersistedStateContacts {}
+
 // состояние приложения
 export interface IAppState {
     products: Map<string, IProduct>;
@@ -75,16 +86,5 @@ export interface IAppState {
     // dumping methods
     clearBasket(): void;
     refreshOrder(): void;
-    // setProducts(items: IProduct[]): void;
     resetSelected(): void;
 }
-
-// export interface IOrderMethodView {
-//     payment: string;
-//     address: string;
-// }
-
-// export interface IContactsView {
-//     email: string;
-//     phone: string;
-// }

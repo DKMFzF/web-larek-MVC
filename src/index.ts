@@ -89,9 +89,7 @@ events.on(AppStateComponents.PRODUCT.TO_BASKET, (item: IProduct) => {
 })
 
 // при закрытии модалки прокрутка разрешается
-events.on(AppStateComponents.MODAL.CLOSE, () => {
-    main.locked = false;
-});
+events.on(AppStateComponents.MODAL.CLOSE, () => main.locked = false);
 
 // евент на открытие корзины
 events.on(AppStateComponents.BASKET.OPEN, () => {

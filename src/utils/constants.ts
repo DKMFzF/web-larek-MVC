@@ -110,5 +110,5 @@ export const SETTINGS: ISETTINGS = {
         address: 'Необходимо указать способ оплаты;',
         email: 'Необходимо указать email;',
         phone: 'Необходимо указать телефон;',
-    }
+    },
 };
