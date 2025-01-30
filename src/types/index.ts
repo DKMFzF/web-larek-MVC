@@ -48,17 +48,6 @@ export interface IOrderForm {
     phone: string;
 }
 
-export interface IPersistedStateBasket {
-    products: IProduct[];
-}
-
-export interface IPersistedStateContacts {
-    contacts: IOrderForm;
-}
-
-// типизация для localStorage
-export interface IPersistedStateAll extends IPersistedStateBasket, IPersistedStateContacts {}
-
 // состояние приложения
 export interface IAppState {
     products: Map<string, IProduct>;

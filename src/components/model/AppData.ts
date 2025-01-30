@@ -4,9 +4,6 @@ import {
 	IOrder,
 	IOrderForm,
 	IOrderResult,
-	IPersistedStateBasket,
-	IPersistedStateContacts,
-	IPersistedStateAll,
 	IProduct,
 } from '../../types';
 import { Model } from '../base/Modal';
@@ -67,9 +64,9 @@ export class AppState extends Model<IAppState> implements IAppState {
 
 	// basket
 	addProductInBasket(product: IProduct): void {
-		if (!product) throw new Error(`[INVALID PRODUCT]`);
+		if (!product) throw new Error(EnumErrorAppStateComponents.InvProduct);
 		if (this.products.has(product.id)) this.basket.set(product.id, product);	
-		else throw new Error(`[INVALIDE PRODUCT ID]`);
+		else throw new Error(EnumErrorAppStateComponents.InvProductId);
 	}
 
 	getAmountProductInBasket(): number {
@@ -133,3 +130,8 @@ export class AppState extends Model<IAppState> implements IAppState {
 		Array.from(this.products.values()).forEach(item => item.selected = false);
 	}
 }
+
+const enum EnumErrorAppStateComponents {
+	InvProduct = '[INVALID PRODUCT]',
+	InvProductId = `[INVALIDE PRODUCT ID]`,
+} 
