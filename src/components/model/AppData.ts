@@ -24,9 +24,9 @@ export class Product extends Model<IProduct> {
 
 // Класс управления приложением  implements IAppState
 export class AppState extends Model<IAppState> implements IAppState {
-	products: Map<string, IProduct> = new Map<string, IProduct>();	
+	products: Map<string, IProduct> = new Map<string, IProduct>();
 	basket: Map<string, IProduct> = new Map<string, IProduct>();
-	basketTotal: number = 0;
+	basketTotal = 0;
 	order: IOrder = {
 		payment: null,
 		address: '',
@@ -37,35 +37,39 @@ export class AppState extends Model<IAppState> implements IAppState {
 	};
 	formError: IFormErrors = {};
 
-	constructor(protected api: IProductAPI, data: Partial<IAppState>, events: IEvents) {
+	constructor(
+		protected api: IProductAPI,
+		data: Partial<IAppState>,
+		events: IEvents
+	) {
 		super(data, events);
 	}
 
 	// api
 	async laodProducts(): Promise<IProduct[]> {
-        this.products.clear();
+		this.products.clear();
 		const products: IProduct[] = await this.api.getProducts();
 		for (const product of products) this.products.set(product.id, product);
 		this.emitChanges(AppStateComponents.PRODUCT.CHANGE);
-		return this.api.getProducts()
+		return this.api.getProducts();
 	}
 
 	async orderProducts(): Promise<IOrderResult> {
 		try {
-            const result = await this.api.orderProducts(this.order);
+			const result = await this.api.orderProducts(this.order);
 			this.clearBasket();
 			this.refreshOrder();
 			this.resetSelected();
-            return result;
-        } catch (err: unknown) {
+			return result;
+		} catch (err: unknown) {
 			console.log(err);
-        }
+		}
 	}
 
 	// basket
 	addProductInBasket(product: IProduct): void {
 		if (!product) throw new Error(EnumErrorAppStateComponents.InvProduct);
-		if (this.products.has(product.id)) this.basket.set(product.id, product);	
+		if (this.products.has(product.id)) this.basket.set(product.id, product);
 		else throw new Error(EnumErrorAppStateComponents.InvProductId);
 	}
 
@@ -82,14 +86,18 @@ export class AppState extends Model<IAppState> implements IAppState {
 	}
 
 	setOrderItems() {
-		this.order.items = Array.from(this.basket.values()).map((product) => product.id);
+		this.order.items = Array.from(this.basket.values()).map(
+			(product) => product.id
+		);
 	}
 
 	setOrderField(field: keyof IOrderForm, value: string) {
 		this.order[field] = value;
 		this.order.total = this.basketTotal;
-		if (this.validateContacts()) this.events.emit(AppStateComponents.CONTACT.READY, this.order);
-		if (this.validateOrder()) this.events.emit(AppStateComponents.ORDER.READY, this.order);
+		if (this.validateContacts())
+			this.events.emit(AppStateComponents.CONTACT.READY, this.order);
+		if (this.validateOrder())
+			this.events.emit(AppStateComponents.ORDER.READY, this.order);
 	}
 
 	validateOrder() {
@@ -127,11 +135,13 @@ export class AppState extends Model<IAppState> implements IAppState {
 	}
 
 	resetSelected() {
-		Array.from(this.products.values()).forEach(item => item.selected = false);
+		Array.from(this.products.values()).forEach(
+			(item) => (item.selected = false)
+		);
 	}
 }
 
 const enum EnumErrorAppStateComponents {
 	InvProduct = '[INVALID PRODUCT]',
 	InvProductId = `[INVALIDE PRODUCT ID]`,
-} 
+}
