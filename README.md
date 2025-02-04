@@ -55,8 +55,6 @@ yarn build
 
 ### base/
 
-# README
-
 ## Типы данных в проекте
 
 ### API
