@@ -1,4 +1,4 @@
-# Проектная работа "Веб-ларек"
+# "Веб-ларек"
 
 Стек: HTML, SCSS, TS, Webpack
 
@@ -44,7 +44,6 @@ npm run build
 ```
 yarn build
 ```
-
 
 ## Архитектура приложения 
 - MVC (Model-View-Controller) 
