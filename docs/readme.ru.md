@@ -51,7 +51,14 @@ npm run build
 yarn build
 ```
 
-## Description modules App
+## Архитектура Приложения (MVC)
+
+### Модели
+![model](./model.png)  
+
+### Отображение
+![screen_app](./view.png)
+
 [Description of the modules in English](./architecture.en.md) <-- click  
 [Описание модулей на русском](./architecture.ru.md) <-- клик 
 

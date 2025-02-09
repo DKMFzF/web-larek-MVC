@@ -54,7 +54,14 @@ or
 yarn build
 ```
 
-## Description modules App
+## Application Architecture (MVC)
+
+### Model
+![model](./docs/model.png)  
+
+### View
+![screen_app](./docs/view.png)
+
 [Description of the modules in English](./docs/architecture.en.md) <-- click  
 [Описание модулей на русском](./docs/architecture.ru.md) <-- клик 
 
