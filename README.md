@@ -5,9 +5,9 @@
 [Дока на русском](./docs/readme.ru.md) <--- клик  
 
 ## Stack
-- HTML, 
-- SCSS, 
-- TS, 
+- HTML 
+- SCSS 
+- TS 
 - Webpack
 
 ## Project structure:
