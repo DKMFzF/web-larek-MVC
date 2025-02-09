@@ -52,8 +52,8 @@ yarn build
 ```
 
 ## Description modules App
-[Description of the modules in English](./docs/architecture.en.md) <-- click  
-[Описание модулей на русском](./docs/architecture.ru.md) <-- клик 
+[Description of the modules in English](./architecture.en.md) <-- click  
+[Описание модулей на русском](./architecture.ru.md) <-- клик 
 
 ## Автор
 
