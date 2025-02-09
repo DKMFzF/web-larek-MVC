@@ -1,194 +1,70 @@
-# "Веб-ларек"
+# "Web larek"
 
-Стек: HTML, SCSS, TS, Webpack
+![screen_app](./docs/screen_app.png)
 
-Структура проекта:
-- src/ — исходные файлы проекта
-- src/components/ — папка с JS компонентами
-- src/components/base/ — папка с базовым кодом
-- src/components/model/ — папка с моделями данных
-- src/components/view — папка с классами отображения
-  - /base — папка с базовыми классами отображения
-  - /partial — папка с конкретными классами отображения
+[Дока на русском](./docs/readme.ru.md) <--- клик  
 
-Важные файлы:
-- src/pages/index.html — HTML-файл главной страницы
-- src/types/index.ts — файл с типами
-- src/index.ts — точка входа приложения
-- src/scss/styles.scss — корневой файл стилей
-- src/utils/constants.ts — файл с константами
-- src/utils/utils.ts — файл с утилитами
+## Stack
+- HTML, 
+- SCSS, 
+- TS, 
+- Webpack
 
-## Установка и запуск
-Для установки и запуска проекта необходимо выполнить команды
+## Project structure:
+- src/ — project source files
+- src/components/ — folder with JS components
+- src/components/base/ — folder with the base code
+- src/components/model/ — folder with data models
+- src/components/view — folder with display classes
+- /base — folder with basic display classes
+- /partial — folder with specific display classes
+
+## Important files:
+- src/pages/index.html — HTML file of the main page
+- src/types/index.ts file with types
+- src/index.ts is the application's entry point
+- src/scss/styles.scss — the root file of styles
+- src/utils/constants.ts file with constants
+- src/utils/utils.ts file with utilities
+
+## Installation and launch
+To install and run the project, run the following commands
 
 ```
 npm install
 npm run start
 ```
 
-или
+or
 
 ```
 yarn
 yarn start
 ```
-## Сборка
+
+## Assembly
 
 ```
 npm run build
 ```
 
-или
+or
 
 ```
 yarn build
 ```
 
-## Архитектура приложения 
-- MVC (Model-View-Controller) 
+## Description modules App
+[Description of the modules in English](./docs/architecture.en.md) <-- click  
+[Описание модулей на русском](./docs/architecture.ru.md) <-- клик 
 
-## Типы данных в проекте
 
-### API
-#### `IProduct`
-Интерфейс описывает данные о продукте:
-- `id: string` – уникальный идентификатор
-- `title: string` – название товара
-- `image: string` – ссылка на изображение товара
-- `category: string` – категория товара
-- `description: string` – описание товара
-- `price: number | null` – цена товара
-- `selected: boolean` – выбран ли товар
+## Author
 
-#### `IOrderMethod`
-Интерфейс для описания метода оформления заказа:
-- `payment: string` – метод оплаты
-- `address: string` – адрес доставки
+** [Kirill Doroshev (DKMFzF)](https://vk.com/dkmfzf ) **
 
-#### `IContacts`
-Расширяет `IOrderMethod`, добавляя контактные данные пользователя:
-- `email: string` – адрес электронной почты
-- `phone: string` – номер телефона
+## License
 
-#### `IOrder`
-Расширяет `IContacts`, добавляя детали заказа:
-- `total: number` – общая сумма заказа
-- `items: string[]` – список товаров в заказе
+This project is licensed under the MIT license
 
-#### `IOrderResult`
-Ответ API после оформления заказа:
-- `id: string` – идентификатор заказа
-- `total: number` – общая сумма заказа
-
-#### `IProductAPI`
-Интерфейс API для работы с товарами и заказами:
-- `getProducts(): Promise<IProduct[]>` – получение списка товаров
-- `getProduct(id: string): Promise<IProduct>` – получение товара по ID
-- `orderProducts(order: IOrder): Promise<IOrderResult[]>` – оформление заказа
-
-### Ошибки форм
-#### `IFormErrors`
-Типизация ошибок формы заказа:  
-`Partial<Record<keyof IOrder, string>>`
-
-#### `IOrderForm`
-Структура формы заказа:
-- `payment: string`
-- `address: string`
-- `email: string`
-- `phone: string`
-
-### Состояние приложения
-#### `IAppState`
-Интерфейс описывает глобальное состояние приложения:
-- `products: Map<string, IProduct>` – список товаров
-- `basket: Map<string, IProduct>` – товары в корзине
-- `basketTotal: number` – общая сумма товаров в корзине
-- `order: IOrder` – данные заказа
-- `formError: IFormErrors` – ошибки формы
-
-Методы:
-- **API**:
-  - `laodProducts(): Promise<IProduct[]>`
-  - `orderProducts(): Promise<IOrderResult>`
-- **Работа с корзиной**:
-  - `addProductInBasket(product: IProduct): void`
-  - `deleteProductInBasket(id: string): void`
-  - `getAmountProductInBasket(): number`
-  - `getTotalPriceInBasket(): number`
-- **Работа с заказом**:
-  - `setOrderItems(): void` – добавление ID товаров в `items`
-  - `setOrderField(field: keyof IOrderForm, value: string): void` – установка данных заказа
-  - `validateContacts(): boolean` – валидация контактов
-  - `validateOrder(): boolean` – валидация заказа
-- **Сброс состояния**:
-  - `clearBasket(): void`
-  - `refreshOrder(): void`
-  - `resetSelected(): void`
-
-### Вспомогательные типы
-#### `ApiListResponse<Type>`
-Ответ API с массивом элементов:
-- `total: number`
-- `items: Type[]`
-
-### События
-#### `IEvents`
-Интерфейс для работы с событиями:
-- `on<T>(event: EventName, callback: (data: T) => void): void` – подписка
-- `emit<T>(event: string, data?: T): void` – генерация события
-- `trigger<T>(event: string, context?: Partial<T>): (data: T) => void` – триггер события
-
-### Отображение (Views)
-#### `IView<T>`
-Интерфейс базового представления:
-- `toggleClass(element: HTMLElement, className: string, force?: boolean): void`
-- `setDisabled(element: HTMLElement, state: boolean): void`
-- `render(data?: Partial<T>): HTMLElement`
-
-#### `IModalDataView`
-- `content: HTMLElement` – содержимое модального окна
-
-#### `IBasketView`
-- `list: HTMLElement[]` – список товаров в корзине
-- `total: number` – общая сумма
-
-#### `IContactsView`
-- `email: string`
-- `phone: string`
-
-#### `IOrderMethodView`
-- `payment: string`
-- `address: string`
-
-#### `IPageView`
-- `counter: number`
-- `products: HTMLElement[]`
-- `locked: boolean`
-
-#### `IProductBasketView`
-- `index: number`
-- `title: string`
-- `price: number | null`
-
-#### `IProductItemBasketActions`
-- `onClick(event: MouseEvent): void`
-
-#### `ICardActions`
-- `onClick(event: MouseEvent): void`
-
-#### `IProductCardView`
-- `id: string`
-- `title: string`
-- `category: string`
-- `description: string`
-- `image: string`
-- `price: number | null`
-- `selected: boolean`
-
-#### `ISuccess`
-- `description: number`
-
-#### `ISuccessActions`
-- `onClick(event: MouseEvent): void`
+Спасибо Яндекс Практикум!
