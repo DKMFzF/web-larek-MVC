@@ -3,9 +3,9 @@
 ![screen_app](./screen_app.png)
 
 ## Стек
-- HTML, 
-- SCSS, 
-- TS, 
+- HTML 
+- SCSS 
+- TS 
 - Webpack
 
 ## Структура проекта:
