@@ -2,7 +2,7 @@
 
 ![screen_app](./docs/screen_app.png)
 
-[Дока на русском](./docs/readme.ru.md) <--- клик  
+[Дока на русском](./docs/readme.ru.md)
 
 ## Stack
 - HTML 
