@@ -10,7 +10,7 @@
 - TS 
 - Webpack
 
-## Project structure:
+## Project structure
 - src/ — project source files
 - src/components/ — folder with JS components
 - src/components/base/ — folder with the base code
@@ -19,7 +19,7 @@
   - /base — folder with basic display classes
   - /partial — folder with specific display classes
 
-## Important files:
+## Important files
 - src/pages/index.html — HTML file of the main page
 - src/types/index.ts file with types
 - src/index.ts is the application's entry point
@@ -73,5 +73,3 @@ yarn build
 ## License
 
 This project is licensed under the MIT license
-
-Спасибо Яндекс Практикум!
