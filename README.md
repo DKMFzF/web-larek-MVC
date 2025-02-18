@@ -2,7 +2,7 @@
 
 ![screen_app](./docs/screen_app.png)
 
-[Дока на русском](./docs/readme.ru.md) <--- клик  
+[Дока на русском](./docs/readme.ru.md)
 
 ## Stack
 - HTML 
@@ -62,8 +62,8 @@ yarn build
 ### View
 ![screen_app](./docs/view.png)
 
-[Description of the modules in English](./docs/architecture.en.md) <-- click  
-[Описание модулей на русском](./docs/architecture.ru.md) <-- клик 
+[Description of the modules in English](./docs/architecture.en.md)
+[Описание модулей на русском](./docs/architecture.ru.md)
 
 
 ## Author
