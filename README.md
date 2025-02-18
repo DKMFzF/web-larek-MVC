@@ -16,8 +16,8 @@
 - src/components/base/ — folder with the base code
 - src/components/model/ — folder with data models
 - src/components/view — folder with display classes
-- /base — folder with basic display classes
-- /partial — folder with specific display classes
+  - /base — folder with basic display classes
+  - /partial — folder with specific display classes
 
 ## Important files:
 - src/pages/index.html — HTML file of the main page
