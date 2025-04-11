@@ -1,4 +1,4 @@
-# "Web larek"
+# Web larek
 
 ![screen_app](./docs/screen_app.png)
 
